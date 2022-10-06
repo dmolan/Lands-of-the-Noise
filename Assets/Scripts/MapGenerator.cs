@@ -9,6 +9,7 @@ public class MapGenerator : MonoBehaviour
     public float noiseScale;
 
     public int octaves;
+    [Range(0, 1)]
     public float persistance;
     public float lacunarity;
 
@@ -23,5 +24,14 @@ public class MapGenerator : MonoBehaviour
 
         MapDisplay display = FindObjectOfType<MapDisplay>();
         display.DrawNoiseMap(noiseMap);
+    }
+
+    // Called every time one of public variables is changed
+    void OnValidate()
+    {
+        if (mapWidth < 1) mapWidth = 1;
+        if (mapHeight < 1) mapHeight = 1;
+        if (lacunarity < 1) lacunarity = 1;
+        if (octaves < 0) octaves = 0;
     }
 }
