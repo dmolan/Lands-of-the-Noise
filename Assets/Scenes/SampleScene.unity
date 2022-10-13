@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -256,15 +256,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 853b9a0307615d141836626031b8c7a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  drawMode: 1
   mapWidth: 100
   mapHeight: 100
-  noiseScale: 16.6
+  noiseScale: 22.61
   octaves: 4
-  persistance: 0.475
+  persistance: 0.203
   lacunarity: 1
-  seed: 0
-  offset: {x: 126.09, y: -138.2}
+  seed: 3
+  offset: {x: -35.72, y: 45.11}
+  Water: 0
+  Mountain: 0
   autoUpdate: 1
+  regions:
+  - name: Deep Water
+    height: 0.2
+    colour: {r: 0.10208259, g: 0.15443668, b: 0.6981132, a: 0}
+  - name: Water
+    height: 0.4
+    colour: {r: 0.13550194, g: 0.24722795, b: 0.8207547, a: 0}
+  - name: LightWater
+    height: 0.5
+    colour: {r: 0.09233712, g: 0.52776706, b: 0.7830189, a: 0}
+  - name: Sand
+    height: 0.6
+    colour: {r: 0.7169812, g: 0.71240824, b: 0.1792453, a: 0}
+  - name: Light Forest
+    height: 0.67
+    colour: {r: 0.17065683, g: 0.6132076, b: 0.20663653, a: 0}
+  - name: Forest
+    height: 0.81
+    colour: {r: 0.07450981, g: 0.39607847, b: 0.10196079, a: 0}
+  - name: Dark Forest
+    height: 0.91
+    colour: {r: 0.111728795, g: 0.2830189, b: 0.097454615, a: 0}
+  - name: Mountain
+    height: 0.985
+    colour: {r: 0.2830189, g: 0.2830189, b: 0.2830189, a: 0}
+  - name: Mountain Top
+    height: 1
+    colour: {r: 0.86433005, g: 0.9150943, b: 0.85898006, a: 0}
 --- !u!4 &1983762810
 Transform:
   m_ObjectHideFlags: 0
