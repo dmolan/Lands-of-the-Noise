@@ -8,7 +8,7 @@ public static class MeshGenerator
     {
         int width = heightMap.GetLength(0);
         int height = heightMap.GetLength(1);
-        //needed for centering mesh on the screen
+        // For centering mesh on the screen
         float topLeftX = (width - 1) / -2f;
         float topLeftZ = (height - 1) / 2f;
 
@@ -23,7 +23,7 @@ public static class MeshGenerator
         | \ | \ |                     |
         6 - 7 - 8     i+2w i+2w+1 ... |
 
-        We also don't need start forming triangles from 2,5,6,7,8
+        We also don't need to start forming triangles from 2,5,6,7,8
         */
 
         for (int y = 0; y < height; ++y)
