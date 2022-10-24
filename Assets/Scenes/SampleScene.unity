@@ -259,43 +259,51 @@ MonoBehaviour:
   drawMode: 1
   mapWidth: 100
   mapHeight: 100
-  noiseScale: 22.61
+  noiseScale: 18.82
   octaves: 4
-  persistance: 0.203
-  lacunarity: 1
-  seed: 3
-  offset: {x: -35.72, y: 45.11}
-  Water: 0
-  Mountain: 0
+  persistance: 0.235
+  lacunarity: 2.87
+  seed: 57
+  offset: {x: -43.4, y: 39.3}
+  waterLevel: -0.2
   autoUpdate: 1
   regions:
-  - name: Deep Water
-    height: 0.2
+  - name: Dark Water
+    height: 0
     colour: {r: 0.10208259, g: 0.15443668, b: 0.6981132, a: 0}
+    defaultHeight: 0.2
   - name: Water
-    height: 0.4
+    height: 0.25
     colour: {r: 0.13550194, g: 0.24722795, b: 0.8207547, a: 0}
-  - name: LightWater
-    height: 0.5
+    defaultHeight: 0.4
+  - name: Light Water
+    height: 0.375
     colour: {r: 0.09233712, g: 0.52776706, b: 0.7830189, a: 0}
+    defaultHeight: 0.5
   - name: Sand
-    height: 0.6
+    height: 0.50000006
     colour: {r: 0.7169812, g: 0.71240824, b: 0.1792453, a: 0}
+    defaultHeight: 0.6
   - name: Light Forest
-    height: 0.67
+    height: 0.58750004
     colour: {r: 0.17065683, g: 0.6132076, b: 0.20663653, a: 0}
+    defaultHeight: 0.67
   - name: Forest
-    height: 0.81
+    height: 0.7625
     colour: {r: 0.07450981, g: 0.39607847, b: 0.10196079, a: 0}
+    defaultHeight: 0.81
   - name: Dark Forest
-    height: 0.91
+    height: 0.88750005
     colour: {r: 0.111728795, g: 0.2830189, b: 0.097454615, a: 0}
+    defaultHeight: 0.91
   - name: Mountain
-    height: 0.985
+    height: 0.98125005
     colour: {r: 0.2830189, g: 0.2830189, b: 0.2830189, a: 0}
+    defaultHeight: 0.985
   - name: Mountain Top
     height: 1
     colour: {r: 0.86433005, g: 0.9150943, b: 0.85898006, a: 0}
+    defaultHeight: 1
 --- !u!4 &1983762810
 Transform:
   m_ObjectHideFlags: 0
