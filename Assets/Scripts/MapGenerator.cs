@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MapGenerator : MonoBehaviour
 {
-    public enum DrawMode {NoiseMap, ColourMap};
+    public enum DrawMode {NoiseMap, ColourMap, Mesh};
     public DrawMode drawMode;
 
     public int mapWidth;
@@ -18,6 +18,9 @@ public class MapGenerator : MonoBehaviour
 
     public int seed;
     public Vector2 offset;
+
+    public float meshHeightMultiplier;
+    public AnimationCurve meshHeightCurve;
 
     [Range(-1, 1)]
     public float waterLevel;
@@ -89,6 +92,10 @@ public class MapGenerator : MonoBehaviour
                 regions[regions.Length-1].height = 1;
             }
             display.DrawTexture(TextureGenerator.TextureFromColourMap(colourMap, mapWidth, mapHeight));
+        }
+        else 
+        {
+            display.DrawMesh(MeshGenerator.GenerateTerrainMesh(noiseMap, meshHeightMultiplier, meshHeightCurve), TextureGenerator.TextureFromColourMap(colourMap, mapWidth, mapHeight));
         }
     }
 
