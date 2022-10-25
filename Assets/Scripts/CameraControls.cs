@@ -5,43 +5,29 @@ using UnityEngine;
 public class CameraControls : MonoBehaviour
 {
     [SerializeField]
-    private float _mouseSensitivity = 7f;
-
-    private float _rotationY;
-    private float _rotationX;
-
-    [SerializeField]
-    private Transform _target;
-
-    [SerializeField]
-    private float _distanceFromTarget = 800.0f;
-
-    private Vector3 _currentRotation;
-    private Vector3 _smoothVelocity = Vector3.zero;
-
-    [SerializeField]
-    private float _smoothTime = 0.2f;
-
-    //[SerializeField]
-    //private Vector2 _rotationXMinMax = new Vector2(-40, 40);
-
+    private Transform target;
     public MapGenerator mapGen;
+
+    [SerializeField]
+    private float distanceFromTarget = 800.0f;
+    [SerializeField]
+    private float mouseSensitivity = 7f;
+    [SerializeField]
+    private float smoothTime = 0.2f;
+
+    private Vector3 currentRotation;
+    private Vector3 smoothVelocity = Vector3.zero;
+
+    private float rotationY;
+    private float rotationX;
 
     void Start()
     {
         mapGen.GenerateMap();
 
-        _rotationY = 0;
-        _rotationX = 30;
-
-        Vector3 nextRotation = new Vector3(_rotationX, _rotationY);
-
-        // Apply damping between rotation changes
-        // _currentRotation = Vector3.SmoothDamp(_currentRotation, nextRotation, ref _smoothVelocity, _smoothTime);
-        transform.localEulerAngles = nextRotation;
-
-        // Substract forward vector of the GameObject to point its forward vector to the target
-        transform.position = _target.position - transform.forward * _distanceFromTarget;
+        // Set beginning position of camera (it will be rotated later)
+        rotationY = 0;
+        rotationX = 30;
     }
 
     private bool isMousePressed = false;
@@ -55,24 +41,20 @@ public class CameraControls : MonoBehaviour
         {
             isMousePressed = true;
 
-            float mouseX = Input.GetAxis("Mouse X") * _mouseSensitivity;
-            //float mouseY = Input.GetAxis("Mouse Y") * _mouseSensitivity;
+            float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
+            //float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
 
-            _rotationY += mouseX;
-            _rotationX = 30;
+            rotationY += mouseX;
+            rotationX = 30;
         }
 
-            // Apply clamping for x rotation 
-            //_rotationX = Mathf.Clamp(_rotationX, _rotationXMinMax.x, _rotationXMinMax.y);
+        Vector3 nextRotation = new Vector3(rotationX, rotationY);
 
-            Vector3 nextRotation = new Vector3(_rotationX, _rotationY);
+        // Apply damping between rotation changes
+        currentRotation = Vector3.SmoothDamp(currentRotation, nextRotation, ref smoothVelocity, smoothTime);
+        transform.localEulerAngles = currentRotation;
 
-            // Apply damping between rotation changes
-            _currentRotation = Vector3.SmoothDamp(_currentRotation, nextRotation, ref _smoothVelocity, _smoothTime);
-            transform.localEulerAngles = _currentRotation;
-
-            // Substract forward vector of the GameObject to point its forward vector to the target
-            transform.position = _target.position - transform.forward * _distanceFromTarget;
-        
+        // Substract forward vector of the GameObject to point its forward vector to the target
+        transform.position = target.position - transform.forward * distanceFromTarget;
     }
 }
