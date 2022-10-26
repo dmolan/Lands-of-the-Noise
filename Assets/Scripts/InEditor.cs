@@ -9,7 +9,10 @@ public class InEditor : MonoBehaviour
 
     private MapGenerator.DrawMode prevDrawMode = MapGenerator.DrawMode.NoiseMap;
 
-
+    void Start()
+    {
+        mapGen.GenerateMap();
+    }
     
     void Update()
     {
