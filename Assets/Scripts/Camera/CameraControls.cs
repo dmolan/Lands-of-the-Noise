@@ -71,6 +71,9 @@ public class CameraControls : MonoBehaviour
         transform.position = target.position - transform.forward * currentDistance;
 
         // Lineary interpolate distance from target
-        currentDistance = Mathf.Lerp(currentDistance, nextDistance, Time.deltaTime*distanceLerpTime);
+        if (nextDistance > 0)
+        {
+            currentDistance = Mathf.Lerp(currentDistance, nextDistance, Time.deltaTime*distanceLerpTime);
+        }
     }
 }
