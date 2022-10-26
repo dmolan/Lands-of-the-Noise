@@ -5,15 +5,21 @@ using UnityEngine;
 public class CameraControls : MonoBehaviour
 {
     [SerializeField]
-    private Transform target;
+    public Transform target;
     public MapGenerator mapGen;
 
     [SerializeField]
-    private float distanceFromTarget = 800.0f;
+    public float distanceFromTarget = 800.0f;
     [SerializeField]
-    private float mouseSensitivity = 7f;
+    public float mouseSensitivity = 5f;
     [SerializeField]
-    private float smoothTime = 0.2f;
+    public float scrollingSpeed = 500f;
+    [SerializeField]
+    public float rotationSmoothTime = 60f;
+    [SerializeField]
+    public float distanceLerpTime = 10f;
+    [SerializeField]
+    public float angleOfView = 40f;
 
     private Vector3 currentRotation;
     private Vector3 smoothVelocity = Vector3.zero;
@@ -21,18 +27,28 @@ public class CameraControls : MonoBehaviour
     private float rotationY;
     private float rotationX;
 
+    private float distanceDelta;
+
     void Start()
     {
         mapGen.GenerateMap();
 
         // Set beginning position of camera (it will be rotated later)
         rotationY = 0;
-        rotationX = 30;
+        rotationX = angleOfView;
+
+        currentRotation = new Vector3(angleOfView, 0);
+
+        distanceDelta = distanceFromTarget;
     }
 
     private bool isMousePressed = false;
     void Update()
     {
+        if (Input.GetAxis("Mouse ScrollWheel") != 0f)
+        {
+            distanceDelta = distanceFromTarget - Input.GetAxis("Mouse ScrollWheel") * scrollingSpeed;
+        }
         if (Input.GetMouseButtonUp(0))
         {
             isMousePressed = false;
@@ -45,16 +61,19 @@ public class CameraControls : MonoBehaviour
             //float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
 
             rotationY += mouseX;
-            rotationX = 30;
+            rotationX = angleOfView;
         }
 
         Vector3 nextRotation = new Vector3(rotationX, rotationY);
 
         // Apply damping between rotation changes
-        currentRotation = Vector3.SmoothDamp(currentRotation, nextRotation, ref smoothVelocity, smoothTime);
+        currentRotation = Vector3.SmoothDamp(currentRotation, nextRotation, ref smoothVelocity, Time.deltaTime * rotationSmoothTime);
         transform.localEulerAngles = currentRotation;
 
         // Substract forward vector of the GameObject to point its forward vector to the target
         transform.position = target.position - transform.forward * distanceFromTarget;
+
+        // Lineary interpolate distance from target
+        distanceFromTarget = Mathf.Lerp(distanceFromTarget, distanceDelta, Time.deltaTime*distanceLerpTime);
     }
 }
