@@ -61,4 +61,7 @@ Thumbs.db.meta
 
 # VS Code
 *.vscode
+
+# Personal
 Assets/Scenes/SampleScene.unity
+Assets/TextMesh Pro

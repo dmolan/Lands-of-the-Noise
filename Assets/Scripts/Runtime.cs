@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Runtime : MonoBehaviour
 {
@@ -24,6 +25,15 @@ public class Runtime : MonoBehaviour
         {
             plane.SetActive(true); // false to hide, true to show
             mesh.SetActive(false); // false to hide, true to show
+        }
+    }
+
+    void Update()
+    {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            // Run pause screen
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
         }
     }
 }
