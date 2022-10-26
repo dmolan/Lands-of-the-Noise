@@ -4,50 +4,47 @@ using UnityEngine;
 
 public class CameraControls : MonoBehaviour
 {
-    [SerializeField]
     public Transform target;
-    public MapGenerator mapGen;
 
-    [SerializeField]
-    public float distanceFromTarget = 800.0f;
-    [SerializeField]
+    public float currentDistance = 800.0f;
+    public float angleOfView = 50f;
+
+    // Mouse controls
     public float mouseSensitivity = 5f;
-    [SerializeField]
     public float scrollingSpeed = 500f;
-    [SerializeField]
+
+    // Parameters for smoothly changing camera rotation/zoom
     public float rotationSmoothTime = 60f;
-    [SerializeField]
     public float distanceLerpTime = 10f;
-    [SerializeField]
-    public float angleOfView = 40f;
 
     private Vector3 currentRotation;
     private Vector3 smoothVelocity = Vector3.zero;
 
+    private float nextDistance;
+
     private float rotationY;
     private float rotationX;
 
-    private float distanceDelta;
+    private bool isMousePressed = false;
+
+
 
     void Start()
     {
-        mapGen.GenerateMap();
-
-        // Set beginning position of camera (it will be rotated later)
         rotationY = 0;
         rotationX = angleOfView;
 
-        currentRotation = new Vector3(angleOfView, 0);
+        // Set beginning rotation of camera
+        currentRotation = new Vector3(rotationX, rotationY);
 
-        distanceDelta = distanceFromTarget;
+        nextDistance = currentDistance;
     }
 
-    private bool isMousePressed = false;
     void Update()
     {
         if (Input.GetAxis("Mouse ScrollWheel") != 0f)
         {
-            distanceDelta = distanceFromTarget - Input.GetAxis("Mouse ScrollWheel") * scrollingSpeed;
+            nextDistance = currentDistance - Input.GetAxis("Mouse ScrollWheel") * scrollingSpeed;
         }
         if (Input.GetMouseButtonUp(0))
         {
@@ -71,9 +68,9 @@ public class CameraControls : MonoBehaviour
         transform.localEulerAngles = currentRotation;
 
         // Substract forward vector of the GameObject to point its forward vector to the target
-        transform.position = target.position - transform.forward * distanceFromTarget;
+        transform.position = target.position - transform.forward * currentDistance;
 
         // Lineary interpolate distance from target
-        distanceFromTarget = Mathf.Lerp(distanceFromTarget, distanceDelta, Time.deltaTime*distanceLerpTime);
+        currentDistance = Mathf.Lerp(currentDistance, nextDistance, Time.deltaTime*distanceLerpTime);
     }
 }
