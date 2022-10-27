@@ -54,11 +54,20 @@ public class CameraControls : MonoBehaviour
         {
             isMousePressed = true;
 
-            float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
-            //float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
+            float mouseX = 0, mouseY = 0;
+            if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
+            {
+                mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
+            }
+            else
+            {
+                mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
+            }
 
             rotationY += mouseX;
-            rotationX = angleOfView;
+            rotationX += mouseY;
+            if (rotationX < 0) rotationX = 0;
+            if (rotationX > 90) rotationX = 90;
         }
 
         Vector3 nextRotation = new Vector3(rotationX, rotationY);

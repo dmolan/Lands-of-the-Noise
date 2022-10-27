@@ -13,11 +13,18 @@ public class MapGenerator : MonoBehaviour
 
     public int octaves;
     [Range(0, 1)]
-    public float persistance;
-    public float lacunarity;
+
+    // [@HideInInspector]
+    public float persistance = 0.5f;
+
+    // [@HideInInspector]
+    public float lacunarity = 2f;
 
     public int seed;
     public Vector2 offset;
+
+    // [@HideInInspector]
+    public float offsetSpeed = 0.01f;
 
     public float meshHeightMultiplier;
     public AnimationCurve meshHeightCurve;
@@ -28,6 +35,8 @@ public class MapGenerator : MonoBehaviour
     public bool autoUpdate;
 
     public TerrainType[] regions;
+
+    
 
 
 
@@ -99,6 +108,67 @@ public class MapGenerator : MonoBehaviour
         {
             display.DrawMesh(MeshGenerator.GenerateTerrainMesh(noiseMap, meshHeightMultiplier, meshHeightCurve), TextureGenerator.TextureFromColourMap(colourMap, mapWidth, mapHeight));
         }
+    }
+
+    public void changePersistance(float newPersistance)
+    {
+        persistance = newPersistance;
+        GenerateMap();
+    }
+
+    public void changeLacunarity(float newLacunarity)
+    {
+        lacunarity = newLacunarity;
+        GenerateMap();
+    }
+
+    public void changeScale(float newNoiseScale)
+    {
+        noiseScale = newNoiseScale;
+        GenerateMap();
+    }
+
+    public void changeOctaves(float newOctaves)
+    {
+        octaves = (int)newOctaves;
+        GenerateMap();
+    }
+
+    public void changeWidth(string newMapWidth)
+    {
+        if (newMapWidth != "")
+        {
+            mapWidth = int.Parse(newMapWidth);
+            if (mapWidth > 300) mapWidth = 300;
+            if (mapWidth < 0) mapWidth = 1;
+            GenerateMap();
+        }
+    }
+
+    public void changeHeight(string newMapHeight)
+    {
+        if (newMapHeight != "")
+        {
+            mapHeight = int.Parse(newMapHeight);
+            if (mapHeight > 300) mapHeight = 300;
+            if (mapHeight < 0) mapHeight = 1;
+            GenerateMap();
+        }
+    }
+
+    public void changeMeshHeightMultiplier(string newMeshHeightMultiplier)
+    {
+        if (newMeshHeightMultiplier != "")
+        {
+            meshHeightMultiplier = float.Parse(newMeshHeightMultiplier);
+            if (meshHeightMultiplier < 0.0001) meshHeightMultiplier = 0.0001f;
+            GenerateMap();
+        }
+    }
+
+    public void changeOffsetSpeed(float newOffsetSpeed)
+    {
+        offsetSpeed = newOffsetSpeed;
     }
 
     // Called every time one of public variables is changed
