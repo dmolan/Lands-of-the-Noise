@@ -46,11 +46,11 @@ public class CameraControls : MonoBehaviour
         {
             nextDistance = currentDistance - Input.GetAxis("Mouse ScrollWheel") * scrollingSpeed;
         }
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(1))
         {
             isMousePressed = false;
         }
-        else if (Input.GetMouseButtonDown(0) || isMousePressed)
+        else if (Input.GetMouseButtonDown(1) || isMousePressed)
         {
             isMousePressed = true;
 
