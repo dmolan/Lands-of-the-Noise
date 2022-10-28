@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class MapGenerator : MonoBehaviour
 {
@@ -179,6 +180,35 @@ public class MapGenerator : MonoBehaviour
         else drawMode = DrawMode.ColourMap;
 
         GenerateMap();
+    }
+
+    public TMP_InputField InputFieldSeed;
+    public void randomSeed()
+    {
+        seed = Random.Range(0, (int)1e9 - 1);
+        InputFieldSeed.text = seed.ToString();
+        // InputFieldSeed.
+        GenerateMap();
+    }
+
+    public void changeSeed(string newSeed)
+    {
+        if (newSeed != "")
+        {
+            if (newSeed.Length > 9) seed = (int)1e9 - 1;
+            else seed = int.Parse(newSeed);
+
+            GenerateMap();
+        }
+    }
+
+    public void checkSeed(string seed)
+    {
+        if (seed.Length > 9) 
+        {
+            seed = seed.Substring(0, 9);
+            InputFieldSeed.text = seed;
+        }
     }
 
     // Called every time one of public variables is changed

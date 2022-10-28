@@ -66,7 +66,7 @@ public class CameraControls : MonoBehaviour
 
             rotationY += mouseX;
             rotationX += mouseY;
-            if (rotationX < 0) rotationX = 0;
+            if (rotationX < 10) rotationX = 10;
             if (rotationX > 90) rotationX = 90;
         }
 

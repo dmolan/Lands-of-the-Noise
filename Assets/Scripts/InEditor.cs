@@ -22,13 +22,13 @@ public class InEditor : MonoBehaviour
             if (mapGen.drawMode == MapGenerator.DrawMode.Mesh)
             {
                 mapGen.GenerateMap();
-                plane.SetActive(false); // false to hide, true to show
-                mesh.SetActive(true); // false to hide, true to show
+                plane.SetActive(false);
+                mesh.SetActive(true);
             }
             else
             {
-                plane.SetActive(true); // false to hide, true to show
-                mesh.SetActive(false); // false to hide, true to show
+                plane.SetActive(true); 
+                mesh.SetActive(false); 
             }
         }
     }
