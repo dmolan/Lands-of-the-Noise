@@ -171,6 +171,16 @@ public class MapGenerator : MonoBehaviour
         offsetSpeed = newOffsetSpeed;
     }
 
+    public void changeDrawMode(int val)
+    {
+        if (val == 0) drawMode = DrawMode.NoiseMap;
+        else if (val == 1) drawMode = DrawMode.ColourMap;
+        else if (val == 2) drawMode = DrawMode.Mesh;
+        else drawMode = DrawMode.ColourMap;
+
+        GenerateMap();
+    }
+
     // Called every time one of public variables is changed
     void OnValidate()
     {
