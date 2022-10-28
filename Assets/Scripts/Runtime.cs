@@ -1,18 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Runtime : MonoBehaviour
 {
     public MapGenerator mapGen;
+    
     public GameObject plane;
     public GameObject mesh;
 
     public GameObject canvasMenu;
     public GameObject canvasApp;
 
-    // Start is called before the first frame update
+
+
     void Start()
     {
         mapGen.GenerateMap();
@@ -38,6 +39,8 @@ public class Runtime : MonoBehaviour
             // Run pause screen
             canvasMenu.SetActive(true);
             canvasApp.SetActive(false);
+            plane.SetActive(false);
+            mesh.SetActive(false);
         }
         if (Input.GetKey(KeyCode.RightArrow))
         {
