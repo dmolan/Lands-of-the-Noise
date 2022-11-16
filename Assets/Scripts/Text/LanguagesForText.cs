@@ -6,10 +6,6 @@ using TMPro;
 
 public class LanguagesForText : MonoBehaviour
 {
-    public Canvas canvasMenu;
-    public Canvas canvasApp;
-    public Canvas canvasPreferences;
-
     public TextMeshProUGUI textMainMenuRun;
     public TextMeshProUGUI textMainMenuOptions;
     public TextMeshProUGUI textMainMenuExit;
@@ -127,37 +123,6 @@ public class LanguagesForText : MonoBehaviour
     {
         if (val == 0) changeLanguageToUkr();
         else if (val == 1) changeLanguageToEng();
-    }
-
-    private float prefScale = 3;
-    private float appScale = 2;
-
-    public void changeCanvasScale(int val)
-    {
-        if (val == 0) 
-        {
-            canvasMenu.scaleFactor = 0.25f;
-            canvasApp.scaleFactor = 0.25f*appScale;
-            canvasPreferences.scaleFactor = 0.25f*prefScale;
-        }
-        else if (val == 1) 
-        {
-            canvasMenu.scaleFactor = 0.50f;
-            canvasApp.scaleFactor = 0.50f*appScale;
-            canvasPreferences.scaleFactor = 0.50f*prefScale;
-        }
-        else if (val == 2) 
-        {
-            canvasMenu.scaleFactor = 0.75f;
-            canvasApp.scaleFactor = 0.75f*appScale;
-            canvasPreferences.scaleFactor = 0.75f*prefScale;
-        }
-        else if (val == 3) 
-        {
-            canvasMenu.scaleFactor = 1.00f;
-            canvasApp.scaleFactor = 1.00f*appScale;
-            canvasPreferences.scaleFactor = 1.00f*prefScale;
-        }
     }
 
     void Start()
