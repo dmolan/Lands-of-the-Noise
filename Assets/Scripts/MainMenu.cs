@@ -9,15 +9,15 @@ public class MainMenu : MonoBehaviour
     public GameObject plane;
     public GameObject mesh;
 
-    public GameObject canvasMenu;
-    public GameObject canvasApp;
+    public GameObject objectCanvasMenu;
+    public GameObject objectCanvasApp;
 
-    
+
 
     public void RunApp()
     {
-        canvasMenu.SetActive(false);
-        canvasApp.SetActive(true);
+        objectCanvasMenu.SetActive(false);
+        objectCanvasApp.SetActive(true);
 
         if (mapGen.drawMode == MapGenerator.DrawMode.Mesh)
         {

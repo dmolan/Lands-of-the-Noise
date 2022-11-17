@@ -2,53 +2,71 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class ScaleUI
+public class ScaleUI : MonoBehaviour
 {
-    public static Canvas canvasMenu;
-    public static Canvas canvasApp;
-    public static Canvas canvasPreferences;
+    public Canvas canvasMenu;
+    public Canvas canvasApp;
+    public Canvas canvasPreferences;
 
-    private static float menuScale = 0.5f;
-    private static float appScale = 0.5f;
-    private static float prefScale = 0.5f;
+    private float defMenuScale = 0.6f;
+    private float defAppScale = 0.9f;
+    private float defPrefScale = 0.65f;
 
-    public static void changeCanvasScale(int val)
+    private float menuScale;
+    private float appScale;
+    private float prefScale;
+
+    void Start()
+    {
+        menuScale = defMenuScale;
+        appScale = defAppScale;
+        prefScale = defPrefScale;
+    }
+
+    void Update()
+    {
+        if (canvasMenu.scaleFactor != menuScale) canvasMenu.scaleFactor = menuScale;
+        if (canvasApp.scaleFactor != appScale) canvasApp.scaleFactor = appScale;
+        if (canvasPreferences.scaleFactor != prefScale) canvasPreferences.scaleFactor = prefScale;
+    }
+
+    public void changeCanvasScale(int val)
     {
         if (val == 0) 
         {
-            canvasMenu.scaleFactor = 0.25f;
-            canvasApp.scaleFactor = 0.25f;
-            canvasPreferences.scaleFactor = 0.25f;
+            menuScale = defMenuScale*(3/4f);
+            appScale = defAppScale*(3/4f);
+            prefScale = defPrefScale*(3/4f);
         }
         else if (val == 1) 
         {
-            canvasMenu.scaleFactor = 0.50f;
-            canvasApp.scaleFactor = 0.50f;
-            canvasPreferences.scaleFactor = 0.50f;
+            menuScale = defMenuScale;
+            appScale = defAppScale;
+            prefScale = defPrefScale;
         }
         else if (val == 2) 
         {
-            canvasMenu.scaleFactor = 0.75f;
-            canvasApp.scaleFactor = 0.75f;
-            canvasPreferences.scaleFactor = 0.75f;
+            menuScale = defMenuScale*(5/4f);
+            appScale = defAppScale*(5/4f);
+            prefScale = defPrefScale*(5/4f);
         }
         else if (val == 3) 
         {
-            canvasMenu.scaleFactor = 1.00f;
-            canvasApp.scaleFactor = 1.00f;
-            canvasPreferences.scaleFactor = 1.00f;
+            menuScale = defMenuScale*(3/2f);
+            appScale = defAppScale*(3/2f);
+            prefScale = defPrefScale*(3/2f);
         }
     }
 
-    public static void setMenuCanvasScale()
+    public void setMenuCanvasScale()
     {
         canvasMenu.scaleFactor = menuScale;
     }
-    public static void setAppCanvasScale()
+    public void setAppCanvasScale()
     {
         canvasApp.scaleFactor = appScale;
     }
-    public static void setPrefCanvasScale()
+    public void setPrefCanvasScale()
     {
         canvasPreferences.scaleFactor = prefScale;
     }
