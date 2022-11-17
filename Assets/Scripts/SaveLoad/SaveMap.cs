@@ -2,10 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.UI;
+using TMPro;
 
 public class SaveMap : MonoBehaviour
 {
     public MapGenerator mapGen;
+    public Slider sliderPersistance;
+    public Slider sliderLacunarity;
+    public Slider sliderScale;
+    public Slider sliderOctaves;
+    public TMP_InputField InputFieldWidth;
+    public TMP_InputField InputFieldHeight;
+    public TMP_InputField InputFieldSeed;
+    public TMP_InputField InputFieldMultiplier;
+    public TMP_Dropdown DrawMode;
+
+
 
     public void saveCurrentMap()
     {
@@ -17,6 +30,7 @@ public class SaveMap : MonoBehaviour
 
             string mapData = 
             "SaveMode: " + "Default" + '\r' + '\n' +
+            "DrawMode: " + mapGen.drawMode + '\r' + '\n' +
             "Seed: " + mapGen.seed + '\r'  + '\n' +
             "Width: " + mapGen.mapWidth + '\r'  + '\n' + 
             "Height: " + mapGen.mapHeight + '\r'  + '\n' + 
@@ -25,7 +39,8 @@ public class SaveMap : MonoBehaviour
             "Lacunarity: " + mapGen.lacunarity + '\r'  + '\n' +
             "NoiseScale: " + mapGen.noiseScale + '\r'  + '\n' +
             "OffsetX: " + mapGen.offset.x + '\r'  + '\n' +
-            "OffsetY: " + mapGen.offset.y + '\r'  + '\n';
+            "OffsetY: " + mapGen.offset.y + '\r'  + '\n' +
+            "MeshHeightMultiplier: " + mapGen.meshHeightMultiplier + '\r' + '\n';
             
             for (int x = 0; x < widthHeight.First; ++x)
             {
@@ -48,27 +63,31 @@ public class SaveMap : MonoBehaviour
             
             if (strNumbers[1] == "Default")
             {
-                mapGen.seed = int.Parse(strNumbers[4]);
-                mapGen.mapWidth = int.Parse(strNumbers[7]);
-                mapGen.mapHeight = int.Parse(strNumbers[10]);
-                mapGen.octaves = int.Parse(strNumbers[13]);
-                mapGen.persistance = float.Parse(strNumbers[16]);
-                mapGen.lacunarity = float.Parse(strNumbers[19]);
-                mapGen.noiseScale = float.Parse(strNumbers[22]);
-                mapGen.offset.x = float.Parse(strNumbers[25]);
-                mapGen.offset.y = float.Parse(strNumbers[28]);
+                if (strNumbers[4] == "NoiseMap") mapGen.drawMode = MapGenerator.DrawMode.NoiseMap;
+                else if (strNumbers[4] == "ColourMap") mapGen.drawMode = MapGenerator.DrawMode.ColourMap;
+                else if (strNumbers[4] == "Mesh") mapGen.drawMode = MapGenerator.DrawMode.Mesh;
+                mapGen.seed = int.Parse(strNumbers[7]);
+                mapGen.mapWidth = int.Parse(strNumbers[10]);
+                mapGen.mapHeight = int.Parse(strNumbers[13]);
+                mapGen.octaves = int.Parse(strNumbers[16]);
+                mapGen.persistance = float.Parse(strNumbers[19]);
+                mapGen.lacunarity = float.Parse(strNumbers[22]);
+                mapGen.noiseScale = float.Parse(strNumbers[25]);
+                mapGen.offset.x = float.Parse(strNumbers[28]);
+                mapGen.offset.y = float.Parse(strNumbers[31]);
+
+                sliderOctaves.value = mapGen.octaves;
+                sliderPersistance.value = mapGen.persistance;
+                sliderLacunarity.value = mapGen.lacunarity;
+                sliderScale.value = mapGen.noiseScale;
+
+                InputFieldWidth.text = mapGen.mapWidth.ToString();
+                InputFieldHeight.text = mapGen.mapHeight.ToString();
+                InputFieldSeed.text = mapGen.seed.ToString();
+                InputFieldMultiplier.text = mapGen.meshHeightMultiplier.ToString();
 
                 mapGen.GenerateMap();
             }
-            // float[,] noiseMap = new float[mapWidth, mapHeight];
-            // for (int x = 0; x < mapWidth; ++x)
-            // {
-            //     for (int y = 0; y < mapHeight; ++y)
-            //     {
-            //         noiseMap[x,y] = mapData[y * mapHeight + x];
-            //     }
-            //     mapData += '\n';
-            // }
         }
 
     }
