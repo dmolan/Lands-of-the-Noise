@@ -1,5 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿/*
+ *  Waits for key and mouse input, if there are so, calls "generateMap()"
+*/
 using UnityEngine;
 
 public class Runtime : MonoBehaviour
@@ -16,7 +17,7 @@ public class Runtime : MonoBehaviour
 
     void Start()
     {
-        mapGen.GenerateMap();
+        mapGen.generateMap();
 
         if (mapGen.drawMode == MapGenerator.DrawMode.Mesh)
         {
@@ -31,7 +32,6 @@ public class Runtime : MonoBehaviour
     }
 
     private bool changeMade = false;
-
     void Update()
     {
         if (Input.GetKey(KeyCode.Escape))
@@ -64,7 +64,7 @@ public class Runtime : MonoBehaviour
         }
         if (changeMade) 
         {
-            mapGen.GenerateMap();
+            mapGen.generateMap();
             changeMade = false;
         }
     }

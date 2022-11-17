@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class TextureGenerator
 {
-    public static Texture2D TextureFromColourMap(Color[] colourMap, int width, int height)
+    public static Texture2D TextureFromColorMap(Color[] colorMap, int width, int height)
     {
         Texture2D texture = new Texture2D (width, height);
         texture.filterMode = FilterMode.Point;
         texture.wrapMode = TextureWrapMode.Clamp;
-        texture.SetPixels(colourMap);
+        texture.SetPixels(colorMap);
         texture.Apply();
         return texture;
     }
@@ -21,15 +21,15 @@ public class TextureGenerator
 
         Texture2D texture = new Texture2D (width, height);
 
-        Color[] colourMap = new Color[width * height];
+        Color[] colorMap = new Color[width * height];
         for (int y = 0; y < height; ++y)
         {
             for (int x = 0; x < width; ++x)
             {
-                colourMap[y*width + x] = Color.Lerp(Color.black, Color.white, heightMap[x, y]);
+                colorMap[y*width + x] = Color.Lerp(Color.black, Color.white, heightMap[x, y]);
             }
         }
        
-        return TextureFromColourMap(colourMap, width, height);
+        return TextureFromColorMap(colorMap, width, height);
     }
 }

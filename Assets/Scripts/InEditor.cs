@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿/*  
+ *  This code is executed only in UnityEditor.
+ *  It's purpose is to draw map on editor start and when DrawMode is changed in editor.
+*/
+using UnityEngine;
 
 [ExecuteInEditMode]
 public class InEditor : MonoBehaviour
@@ -11,7 +15,7 @@ public class InEditor : MonoBehaviour
 
     void Start()
     {
-        mapGen.GenerateMap();
+        mapGen.generateMap();
     }
     
     void Update()
@@ -21,7 +25,7 @@ public class InEditor : MonoBehaviour
             prevDrawMode = mapGen.drawMode;
             if (mapGen.drawMode == MapGenerator.DrawMode.Mesh)
             {
-                mapGen.GenerateMap();
+                mapGen.generateMap();
                 plane.SetActive(false);
                 mesh.SetActive(true);
             }

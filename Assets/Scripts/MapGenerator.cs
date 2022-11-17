@@ -5,26 +5,21 @@ using TMPro;
 
 public class MapGenerator : MonoBehaviour
 {
-    public enum DrawMode {NoiseMap, ColourMap, Mesh};
+    public enum DrawMode {NoiseMap, ColorMap, Mesh};
     public DrawMode drawMode;
+
+    public int seed;
 
     public int mapWidth;
     public int mapHeight;
     public float noiseScale;
 
     public int octaves;
+
     [Range(0, 1)]
-
-    // [@HideInInspector]
     public float persistance = 0.5f;
-
-    // [@HideInInspector]
     public float lacunarity = 2f;
-
-    public int seed;
     public Vector2 offset;
-
-    // [@HideInInspector]
     public float offsetSpeed = 0.01f;
 
     public float meshHeightMultiplier;
@@ -39,27 +34,18 @@ public class MapGenerator : MonoBehaviour
 
     
 
-    public float[,] GetNoiseMap()
+    public float[,] getNoiseMap()
     {
         float[,] noiseMap = Noise.GenerateNoiseMap(mapWidth, mapHeight, seed, noiseScale, octaves, persistance, lacunarity, offset);
         
         return noiseMap;
     }
 
-    public Pair<int, int> getMapWidthHeight()
-    {
-        Pair<int, int> widthHeight = new Pair<int, int>();
-        widthHeight.First = mapWidth;
-        widthHeight.Second = mapHeight;
-
-        return widthHeight;
-    }
-
-    public void GenerateMap()
+    public void generateMap()
     {
         float[,] noiseMap = Noise.GenerateNoiseMap(mapWidth, mapHeight, seed, noiseScale, octaves, persistance, lacunarity, offset);
 
-        Color[] colourMap = new Color[mapWidth * mapHeight];
+        Color[] colorMap = new Color[mapWidth * mapHeight];
         for (int y = 0; y < mapHeight; ++y)
         {
             for (int x = 0; x < mapWidth; ++x)
@@ -69,7 +55,7 @@ public class MapGenerator : MonoBehaviour
                 {
                     if (currentHeight <= regions[i].height)
                     {
-                        colourMap[y*mapWidth + x] = regions[i].colour;
+                        colorMap[y*mapWidth + x] = regions[i].color;
                         break;
                     }
                 }
@@ -82,7 +68,7 @@ public class MapGenerator : MonoBehaviour
         {
             display.DrawTexture(TextureGenerator.TextureFromHeightMap(noiseMap));
         }
-        else if (drawMode == DrawMode.ColourMap)
+        else if (drawMode == DrawMode.ColorMap)
         {
             if (waterLevel > 0)
             {
@@ -95,18 +81,10 @@ public class MapGenerator : MonoBehaviour
             }
             else
             {
-                // (if water < 0) 0.6 * (1+waterLevel)
-                // 0.2 0.4 0.5 0.6 | 0.67 0.81 0.91 0.985 1
-
                 for (int i = 0; i < regions.Length; ++i)
                 {
                     regions[i].height = (regions[i].defaultHeight + waterLevel);
                 }
-
-                // for (int i = 0; i < 4+1; ++i)
-                // {
-
-                // }
 
                 for (int i = 0; i < regions.Length-1; ++i)
                 {
@@ -117,36 +95,36 @@ public class MapGenerator : MonoBehaviour
                 }
                 regions[regions.Length-1].height = 1;
             }
-            display.DrawTexture(TextureGenerator.TextureFromColourMap(colourMap, mapWidth, mapHeight));
+            display.DrawTexture(TextureGenerator.TextureFromColorMap(colorMap, mapWidth, mapHeight));
         }
         else 
         {
-            display.DrawMesh(MeshGenerator.GenerateTerrainMesh(noiseMap, meshHeightMultiplier, meshHeightCurve), TextureGenerator.TextureFromColourMap(colourMap, mapWidth, mapHeight));
+            display.DrawMesh(MeshGenerator.GenerateTerrainMesh(noiseMap, meshHeightMultiplier, meshHeightCurve), TextureGenerator.TextureFromColorMap(colorMap, mapWidth, mapHeight));
         }
     }
 
     public void changePersistance(float newPersistance)
     {
         persistance = newPersistance;
-        GenerateMap();
+        generateMap();
     }
 
     public void changeLacunarity(float newLacunarity)
     {
         lacunarity = newLacunarity;
-        GenerateMap();
+        generateMap();
     }
 
     public void changeScale(float newNoiseScale)
     {
         noiseScale = newNoiseScale;
-        GenerateMap();
+        generateMap();
     }
 
     public void changeOctaves(float newOctaves)
     {
         octaves = (int)newOctaves;
-        GenerateMap();
+        generateMap();
     }
 
     public void changeWidth(string newMapWidth)
@@ -156,7 +134,7 @@ public class MapGenerator : MonoBehaviour
             mapWidth = int.Parse(newMapWidth);
             if (mapWidth > 300) mapWidth = 300;
             if (mapWidth < 0) mapWidth = 1;
-            GenerateMap();
+            generateMap();
         }
     }
 
@@ -167,7 +145,7 @@ public class MapGenerator : MonoBehaviour
             mapHeight = int.Parse(newMapHeight);
             if (mapHeight > 300) mapHeight = 300;
             if (mapHeight < 0) mapHeight = 1;
-            GenerateMap();
+            generateMap();
         }
     }
 
@@ -177,7 +155,7 @@ public class MapGenerator : MonoBehaviour
         {
             meshHeightMultiplier = float.Parse(newMeshHeightMultiplier);
             if (meshHeightMultiplier < 0.0001) meshHeightMultiplier = 0.0001f;
-            GenerateMap();
+            generateMap();
         }
     }
 
@@ -189,11 +167,11 @@ public class MapGenerator : MonoBehaviour
     public void changeDrawMode(int val)
     {
         if (val == 0) drawMode = DrawMode.NoiseMap;
-        else if (val == 1) drawMode = DrawMode.ColourMap;
+        else if (val == 1) drawMode = DrawMode.ColorMap;
         else if (val == 2) drawMode = DrawMode.Mesh;
-        else drawMode = DrawMode.ColourMap;
+        else drawMode = DrawMode.ColorMap;
 
-        GenerateMap();
+        generateMap();
     }
 
     public TMP_InputField InputFieldSeed;
@@ -202,7 +180,7 @@ public class MapGenerator : MonoBehaviour
         seed = Random.Range(0, (int)1e9 - 1);
         InputFieldSeed.text = seed.ToString();
         // InputFieldSeed.
-        GenerateMap();
+        generateMap();
     }
 
     public void changeSeed(string newSeed)
@@ -212,7 +190,7 @@ public class MapGenerator : MonoBehaviour
             if (newSeed.Length > 9) seed = (int)1e9 - 1;
             else seed = int.Parse(newSeed);
 
-            GenerateMap();
+            generateMap();
         }
     }
 
@@ -241,19 +219,7 @@ public struct TerrainType
     public string name;
     //[@HideInInspector]
     public float height;
-    public Color colour;
+    public Color color;
 
     public float defaultHeight;
-}
-
-public class Pair<T, U>
-{
-    public Pair() {}
-    public Pair(T first, U second)
-    {
-        this.First = first;
-        this.Second = second;
-    }
-    public T First {get; set; }
-    public U Second {get; set; }
 }

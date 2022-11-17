@@ -25,8 +25,7 @@ public class SaveMap : MonoBehaviour
         string savePath = EditorUtility.SaveFilePanel("Save map as TXT", "", "mapSave" + ".txt", "txt");
         if (savePath.Length != 0)
         {
-            float[,] noiseMap = mapGen.GetNoiseMap();
-            Pair<int, int> widthHeight = mapGen.getMapWidthHeight();
+            float[,] noiseMap = mapGen.getNoiseMap();
 
             string mapData = 
             "SaveMode: " + "Default" + '\r' + '\n' +
@@ -42,9 +41,9 @@ public class SaveMap : MonoBehaviour
             "OffsetY: " + mapGen.offset.y + '\r'  + '\n' +
             "MeshHeightMultiplier: " + mapGen.meshHeightMultiplier + '\r' + '\n';
             
-            for (int x = 0; x < widthHeight.First; ++x)
+            for (int x = 0; x < mapGen.mapWidth; ++x)
             {
-                for (int y = 0; y < widthHeight.Second; ++y)
+                for (int y = 0; y < mapGen.mapHeight; ++y)
                 {
                     mapData += noiseMap[x, y] + " ";
                 }
@@ -64,8 +63,9 @@ public class SaveMap : MonoBehaviour
             if (strNumbers[1] == "Default")
             {
                 if (strNumbers[4] == "NoiseMap") mapGen.drawMode = MapGenerator.DrawMode.NoiseMap;
-                else if (strNumbers[4] == "ColourMap") mapGen.drawMode = MapGenerator.DrawMode.ColourMap;
+                else if (strNumbers[4] == "ColorMap") mapGen.drawMode = MapGenerator.DrawMode.ColorMap;
                 else if (strNumbers[4] == "Mesh") mapGen.drawMode = MapGenerator.DrawMode.Mesh;
+                else mapGen.drawMode = MapGenerator.DrawMode.NoiseMap;
                 mapGen.seed = int.Parse(strNumbers[7]);
                 mapGen.mapWidth = int.Parse(strNumbers[10]);
                 mapGen.mapHeight = int.Parse(strNumbers[13]);
@@ -86,7 +86,7 @@ public class SaveMap : MonoBehaviour
                 InputFieldSeed.text = mapGen.seed.ToString();
                 InputFieldMultiplier.text = mapGen.meshHeightMultiplier.ToString();
 
-                mapGen.GenerateMap();
+                mapGen.generateMap();
             }
         }
 

@@ -1,5 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿/*
+ *  A function that by given parametrs returns noiseMap (using Perlin Noise)
+*/
 using UnityEngine;
 
 public static class Noise
@@ -9,6 +10,7 @@ public static class Noise
     {
         float[,] noiseMap = new float[mapWidth, mapHeight];
 
+        // prng - Pseudo Random Number Generator
         System.Random prng = new System.Random(seed);
         Vector2[] octavesOffsets = new Vector2[octaves];
         for (int i = 0; i < octaves; ++i)

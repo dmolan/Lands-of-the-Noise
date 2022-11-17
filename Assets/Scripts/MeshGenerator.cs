@@ -1,5 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿/*
+ *  Constructing data for renderer (trian, vert, uvs) from height map
+*/
 using UnityEngine;
 
 public static class MeshGenerator 
@@ -8,13 +9,13 @@ public static class MeshGenerator
     {
         int width = heightMap.GetLength(0);
         int height = heightMap.GetLength(1);
+
         // For centering mesh on the screen
         float topLeftX = (width - 1) / -2f;
         float topLeftZ = (height - 1) / 2f;
 
         MeshData meshData = new MeshData(width, height);
-        int vertexIndex = 0;
-
+        
         /*
         Forming triangles: 0,4,3; 4,0,1; 1,5,4; 5,1,2; ...
         0 - 1 - 2     i    i+1    ... |
@@ -26,6 +27,7 @@ public static class MeshGenerator
         We also don't need to start forming triangles from 2,5,6,7,8
         */
 
+        int vertexIndex = 0;
         for (int y = 0; y < height; ++y)
         {
             for (int x = 0; x < width; ++x)
@@ -59,6 +61,7 @@ public class MeshData
     {
         vertices = new Vector3[meshWidth * meshHeight];
         uvs = new Vector2[meshWidth * meshHeight];
+
         // (meshWidth-1)*(meshHeight-1) - amount of squares, 6 - triangle sides in square        
         triangles = new int[(meshWidth-1)*(meshHeight-1)*6];
     }
@@ -77,7 +80,10 @@ public class MeshData
         mesh.vertices = vertices;
         mesh.triangles = triangles;
         mesh.uv = uvs;
+
+        // This is needed for lighting to work correctly with new mesh
         mesh.RecalculateNormals();
+
         return mesh;
     }
 }

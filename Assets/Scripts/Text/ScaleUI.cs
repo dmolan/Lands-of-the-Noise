@@ -16,6 +16,8 @@ public class ScaleUI : MonoBehaviour
     private float appScale;
     private float prefScale;
 
+
+
     void Start()
     {
         menuScale = defMenuScale;
@@ -56,18 +58,5 @@ public class ScaleUI : MonoBehaviour
             appScale = defAppScale*(3/2f);
             prefScale = defPrefScale*(3/2f);
         }
-    }
-
-    public void setMenuCanvasScale()
-    {
-        canvasMenu.scaleFactor = menuScale;
-    }
-    public void setAppCanvasScale()
-    {
-        canvasApp.scaleFactor = appScale;
-    }
-    public void setPrefCanvasScale()
-    {
-        canvasPreferences.scaleFactor = prefScale;
     }
 }

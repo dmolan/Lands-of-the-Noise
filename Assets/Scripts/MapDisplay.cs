@@ -1,5 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿/*
+ *  These are the functions which do the rendering with given texture.
+*/
 using UnityEngine;
 
 public class MapDisplay : MonoBehaviour
@@ -11,7 +12,7 @@ public class MapDisplay : MonoBehaviour
     public void DrawTexture(Texture2D texture)
     {
         textureRenderer.sharedMaterial.mainTexture = texture;
-        textureRenderer.transform.localScale = new Vector3 (texture.width, 1,texture.height);
+        textureRenderer.transform.localScale = new Vector3 (texture.width, 1, texture.height);
     }
 
     public void DrawMesh(MeshData meshData, Texture2D texture)

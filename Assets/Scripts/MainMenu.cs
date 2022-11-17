@@ -1,5 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿/*
+ *  This functions are used by buttons in MainMenu: "Run" and "Exit".
+*/
 using UnityEngine;
 
 public class MainMenu : MonoBehaviour
