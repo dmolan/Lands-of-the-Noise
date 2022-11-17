@@ -39,7 +39,21 @@ public class MapGenerator : MonoBehaviour
 
     
 
+    public float[,] GetNoiseMap()
+    {
+        float[,] noiseMap = Noise.GenerateNoiseMap(mapWidth, mapHeight, seed, noiseScale, octaves, persistance, lacunarity, offset);
+        
+        return noiseMap;
+    }
 
+    public Pair<int, int> getMapWidthHeight()
+    {
+        Pair<int, int> widthHeight = new Pair<int, int>();
+        widthHeight.First = mapWidth;
+        widthHeight.Second = mapHeight;
+
+        return widthHeight;
+    }
 
     public void GenerateMap()
     {
@@ -230,4 +244,16 @@ public struct TerrainType
     public Color colour;
 
     public float defaultHeight;
+}
+
+public class Pair<T, U>
+{
+    public Pair() {}
+    public Pair(T first, U second)
+    {
+        this.First = first;
+        this.Second = second;
+    }
+    public T First {get; set; }
+    public U Second {get; set; }
 }
