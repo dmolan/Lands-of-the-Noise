@@ -1,5 +1,5 @@
 ﻿/*
- *  This functions are used by buttons in MainMenu: "Run" and "Exit".
+ *  Functions used by the buttons in MainMenu: "Run" and "Exit".
 */
 using UnityEngine;
 

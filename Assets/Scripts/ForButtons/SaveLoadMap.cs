@@ -1,11 +1,15 @@
-﻿using System.Collections;
+﻿/*
+ *  Functions used by the buttons SaveFile and LoadFile
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.UI;
 using TMPro;
 
-public class SaveMap : MonoBehaviour
+public class SaveLoadMap : MonoBehaviour
 {
     public MapGenerator mapGen;
     public Slider sliderPersistance;
