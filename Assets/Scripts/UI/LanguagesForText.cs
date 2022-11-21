@@ -1,7 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿/*
+ *  This code is executed only at the runtime.
+ *  Contains functions for translating all text:
+ *  1) ukr -> eng;
+ *  2) eng -> ukr.
+*/
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 public class LanguagesForText : MonoBehaviour

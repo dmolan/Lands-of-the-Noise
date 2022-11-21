@@ -1,12 +1,12 @@
 ﻿/*
- *  A function that by given parametrs returns noiseMap (using Perlin Noise)
+ *  By the given parameters returns noiseMap (using built-in Perlin Noise)
 */
 using UnityEngine;
 
 public static class Noise
 {
-    public static float[,] GenerateNoiseMap(int mapWidth, int mapHeight, int seed, float scale, 
-    int octaves, float persistance, float lacunarity, Vector2 offset) 
+    public static float[,] GenerateNoiseMap(int seed, int mapWidth, int mapHeight, int octaves,
+    float persistance, float lacunarity, float noiseScale, Vector2 offset) 
     {
         float[,] noiseMap = new float[mapWidth, mapHeight];
 
@@ -20,7 +20,7 @@ public static class Noise
             octavesOffsets[i] = new Vector2 (offesX, offesY);
         }
 
-        if (scale <= 0) scale = 0.0001f;
+        if (noiseScale <= 0) noiseScale = 0.0001f;
 
         float maxNoiseHeight = float.MinValue;
         float minNoiseHeight = float.MaxValue;
@@ -37,8 +37,8 @@ public static class Noise
                 float noiseHeigh = 0;
                 for (int i = 0; i < octaves; ++i)
                 {
-                    float sampleX = (x - halfWidth) / scale * frequency + octavesOffsets[i].x;
-                    float sampleY = (y - halfHeight) / scale * frequency + octavesOffsets[i].y;
+                    float sampleX = (x - halfWidth) / noiseScale * frequency + octavesOffsets[i].x;
+                    float sampleY = (y - halfHeight) / noiseScale * frequency + octavesOffsets[i].y;
 
                     float perlinValue = 2*Mathf.PerlinNoise(sampleX, sampleY)-1;
                     noiseHeigh += perlinValue * amplitude;

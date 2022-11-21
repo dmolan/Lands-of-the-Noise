@@ -1,5 +1,5 @@
 ﻿/*
- *  Constructing data for renderer (trian, vert, uvs) from height map
+ *  Constructs Mesh Data (triangles, vertices, uvs) for the Map Display from Height Map
 */
 using UnityEngine;
 

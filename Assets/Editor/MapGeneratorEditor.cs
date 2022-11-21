@@ -1,5 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿/*
+ *  This code is executed only in UnityEditor.
+ *  It's purpose is redrawing map on:
+ *  1) value change
+ *  2) GUI Button "Generate" pressed.
+*/
 using UnityEngine;
 using UnityEditor;
 

@@ -1,5 +1,6 @@
 ﻿/*
- *  Waits for key and mouse input, if there are so, calls "generateMap()"
+ *  This code is executed only at the runtime.
+ *  Waits for key and mouse input, if there are such, calls "generateMap()"
 */
 using UnityEngine;
 

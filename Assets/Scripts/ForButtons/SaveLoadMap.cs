@@ -1,9 +1,7 @@
 ﻿/*
- *  Functions used by the buttons SaveFile and LoadFile
+ *  This code is executed only at the runtime.
+ *  Functions used by the buttons in the App: "SaveFile" and "LoadFile".
 */
-
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.UI;
@@ -22,6 +20,9 @@ public class SaveLoadMap : MonoBehaviour
     public TMP_InputField InputFieldMultiplier;
     public TMP_Dropdown DrawMode;
 
+    // TODO: resolve loading screen issue
+    // public GameObject LoadingCanvas;
+
 
 
     public void saveCurrentMap()
@@ -29,6 +30,8 @@ public class SaveLoadMap : MonoBehaviour
         string savePath = EditorUtility.SaveFilePanel("Save map as TXT", "", "mapSave" + ".txt", "txt");
         if (savePath.Length != 0)
         {
+            // LoadingCanvas.SetActive(true);
+            
             float[,] noiseMap = mapGen.getNoiseMap();
 
             string mapData = 
@@ -45,17 +48,19 @@ public class SaveLoadMap : MonoBehaviour
             "OffsetY: " + mapGen.offset.y + '\r'  + '\n' +
             "MeshHeightMultiplier: " + mapGen.meshHeightMultiplier + '\r' + '\n';
             
-            for (int x = 0; x < mapGen.mapWidth; ++x)
+            for (short x = 0; x < mapGen.mapWidth; ++x)
             {
-                for (int y = 0; y < mapGen.mapHeight; ++y)
+                for (short y = 0; y < mapGen.mapHeight; ++y)
                 {
                     mapData += noiseMap[x, y] + " ";
                 }
-                mapData += '\r' + '\n';
+                mapData += "\r\n";
             }
             System.IO.File.WriteAllText(savePath, mapData);
+            // LoadingCanvas.SetActive(false);
         }
     }
+
     public void loadMap()
     {
         string loadPath = EditorUtility.OpenFilePanel("Load a map from TXT", "", "txt");
@@ -93,6 +98,5 @@ public class SaveLoadMap : MonoBehaviour
                 mapGen.generateMap();
             }
         }
-
     }
 }

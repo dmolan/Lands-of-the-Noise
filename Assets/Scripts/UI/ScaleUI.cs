@@ -1,5 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿/*
+ *  This code is executed only at the runtime.
+ *  Every frame checks if canvas scale is right, if not, changes it.
+*/
 using UnityEngine;
 
 public class ScaleUI : MonoBehaviour
@@ -48,15 +50,15 @@ public class ScaleUI : MonoBehaviour
         }
         else if (val == 2) 
         {
-            menuScale = defMenuScale*(5/4f);
-            appScale = defAppScale*(5/4f);
-            prefScale = defPrefScale*(5/4f);
+            menuScale = defMenuScale * (5/4f);
+            appScale = defAppScale * (5/4f);
+            prefScale = defPrefScale * (5/4f);
         }
         else if (val == 3) 
         {
-            menuScale = defMenuScale*(3/2f);
-            appScale = defAppScale*(3/2f);
-            prefScale = defPrefScale*(3/2f);
+            menuScale = defMenuScale * (3/2f);
+            appScale = defAppScale * (3/2f);
+            prefScale = defPrefScale * (3/2f);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿/*
- *  Functions used by the buttons in MainMenu: "Run" and "Exit".
+ *  This code is executed only at the runtime.
+ *  Functions used by the buttons in the MainMenu: "Run" and "Exit".
 */
 using UnityEngine;
 

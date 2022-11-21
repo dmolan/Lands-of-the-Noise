@@ -1,5 +1,5 @@
 ﻿/*
- *  These are the functions which do the rendering with given texture.
+ *  Does the rendering with given texture.
 */
 using UnityEngine;
 
@@ -8,6 +8,8 @@ public class MapDisplay : MonoBehaviour
     public Renderer textureRenderer;
     public MeshFilter meshFilter;
     public MeshRenderer meshRenderer;
+
+
 
     public void DrawTexture(Texture2D texture)
     {

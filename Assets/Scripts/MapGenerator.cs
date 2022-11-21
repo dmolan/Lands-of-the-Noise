@@ -1,5 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿/*
+ *  By the given Noise Map generates Color Map, calls Texture- and Mesh Generators and
+ *  gives results to MapDisplay.
+ *  Also manages map parameters changing.
+*/
 using UnityEngine;
 using TMPro;
 
@@ -36,14 +39,16 @@ public class MapGenerator : MonoBehaviour
 
     public float[,] getNoiseMap()
     {
-        float[,] noiseMap = Noise.GenerateNoiseMap(mapWidth, mapHeight, seed, noiseScale, octaves, persistance, lacunarity, offset);
+        float[,] noiseMap = Noise.GenerateNoiseMap(seed, mapWidth, mapHeight, 
+        octaves, persistance, lacunarity, noiseScale, offset);
         
         return noiseMap;
     }
 
     public void generateMap()
     {
-        float[,] noiseMap = Noise.GenerateNoiseMap(mapWidth, mapHeight, seed, noiseScale, octaves, persistance, lacunarity, offset);
+        float[,] noiseMap = Noise.GenerateNoiseMap(seed, mapWidth, mapHeight, 
+        octaves, persistance, lacunarity, noiseScale, offset);
 
         Color[] colorMap = new Color[mapWidth * mapHeight];
         for (int y = 0; y < mapHeight; ++y)
@@ -99,7 +104,11 @@ public class MapGenerator : MonoBehaviour
         }
         else 
         {
-            display.DrawMesh(MeshGenerator.GenerateTerrainMesh(noiseMap, meshHeightMultiplier, meshHeightCurve), TextureGenerator.TextureFromColorMap(colorMap, mapWidth, mapHeight));
+            display.DrawMesh
+            (
+                MeshGenerator.GenerateTerrainMesh(noiseMap, meshHeightMultiplier, meshHeightCurve), 
+                TextureGenerator.TextureFromColorMap(colorMap, mapWidth, mapHeight)
+            );
         }
     }
 

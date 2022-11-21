@@ -1,5 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿/*
+ *  This code is executed only at the runtime.
+ *  It's purpose is to get input from mouse and rotate camera in accordance.
+*/
 using UnityEngine;
 
 public class CameraControls : MonoBehaviour
