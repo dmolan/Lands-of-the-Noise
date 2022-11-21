@@ -35,6 +35,9 @@ public class MapGenerator : MonoBehaviour
 
     public TerrainType[] regions;
 
+    public GameObject Plane;
+    public GameObject Mesh;
+
     
 
     public float[,] getNoiseMap()
@@ -102,7 +105,7 @@ public class MapGenerator : MonoBehaviour
             }
             display.DrawTexture(TextureGenerator.TextureFromColorMap(colorMap, mapWidth, mapHeight));
         }
-        else 
+        else
         {
             display.DrawMesh
             (
@@ -175,10 +178,24 @@ public class MapGenerator : MonoBehaviour
 
     public void changeDrawMode(int val)
     {
-        if (val == 0) drawMode = DrawMode.NoiseMap;
-        else if (val == 1) drawMode = DrawMode.ColorMap;
-        else if (val == 2) drawMode = DrawMode.Mesh;
-        else drawMode = DrawMode.ColorMap;
+        if (val == 0) 
+        {
+            drawMode = DrawMode.NoiseMap;
+            Plane.SetActive(true);
+            Mesh.SetActive(false);
+        }
+        else if (val == 1) 
+        {
+            drawMode = DrawMode.ColorMap;
+            Plane.SetActive(true);
+            Mesh.SetActive(false);
+        }
+        else 
+        {
+            drawMode = DrawMode.Mesh;
+            Plane.SetActive(false);
+            Mesh.SetActive(true);
+        }
 
         generateMap();
     }

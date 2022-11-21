@@ -71,10 +71,24 @@ public class SaveLoadMap : MonoBehaviour
             
             if (strNumbers[1] == "Default")
             {
-                if (strNumbers[4] == "NoiseMap") mapGen.drawMode = MapGenerator.DrawMode.NoiseMap;
-                else if (strNumbers[4] == "ColorMap") mapGen.drawMode = MapGenerator.DrawMode.ColorMap;
-                else if (strNumbers[4] == "Mesh") mapGen.drawMode = MapGenerator.DrawMode.Mesh;
-                else mapGen.drawMode = MapGenerator.DrawMode.NoiseMap;
+                if (strNumbers[4] == "NoiseMap") 
+                {
+                    // mapGen.drawMode = MapGenerator.DrawMode.NoiseMap;
+                    mapGen.changeDrawMode(0);
+                    DrawMode.SetValueWithoutNotify(0);
+                }
+                else if (strNumbers[4] == "ColorMap") 
+                {
+                    // mapGen.drawMode = MapGenerator.DrawMode.ColorMap;
+                    mapGen.changeDrawMode(1);
+                    DrawMode.SetValueWithoutNotify(1);
+                }
+                else
+                {
+                    // mapGen.drawMode = MapGenerator.DrawMode.Mesh;
+                    mapGen.changeDrawMode(2);
+                    DrawMode.SetValueWithoutNotify(2);
+                }
                 mapGen.seed = int.Parse(strNumbers[7]);
                 mapGen.mapWidth = int.Parse(strNumbers[10]);
                 mapGen.mapHeight = int.Parse(strNumbers[13]);

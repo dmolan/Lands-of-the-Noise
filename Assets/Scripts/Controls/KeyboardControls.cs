@@ -4,7 +4,7 @@
 */
 using UnityEngine;
 
-public class Runtime : MonoBehaviour
+public class KeyboardControls : MonoBehaviour
 {
     public MapGenerator mapGen;
     

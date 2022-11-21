@@ -1,17 +1,18 @@
 ﻿/*  
  *  This code is executed only in UnityEditor.
- *  It's purpose is to draw map on editor start and when DrawMode is changed in editor.
+ *  It's purpose is to draw map when
+ *  1) editor starts;
+ *  2) DrawMode is changed in editor.
 */
 using UnityEngine;
 
 [ExecuteInEditMode]
-public class InEditor : MonoBehaviour
+public class MapRedraw : MonoBehaviour
 {
     public MapGenerator mapGen;
-    public GameObject plane;
-    public GameObject mesh;
-
-    private MapGenerator.DrawMode prevDrawMode = MapGenerator.DrawMode.NoiseMap;
+    // public GameObject plane;
+    // public GameObject mesh;
+    // private MapGenerator.DrawMode prevDrawMode = MapGenerator.DrawMode.NoiseMap;
 
 
 
@@ -20,6 +21,8 @@ public class InEditor : MonoBehaviour
         mapGen.generateMap();
     }
     
+    // This part is removed for optimistaion reasons
+    /*
     void Update()
     {
         if (mapGen.drawMode != prevDrawMode)
@@ -38,4 +41,5 @@ public class InEditor : MonoBehaviour
             }
         }
     }
+    */
 }
