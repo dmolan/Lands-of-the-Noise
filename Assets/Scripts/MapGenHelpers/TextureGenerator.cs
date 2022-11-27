@@ -1,17 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿/*
+ * Constructs 2D texture by the given parameters
+*/
 using UnityEngine;
 
 public class TextureGenerator
 {
+    static Texture2D mapTexture2D;
+    static Color[] colorMap;
+
+
+
     public static Texture2D TextureFromColorMap(Color[] colorMap, int width, int height)
     {
-        Texture2D texture = new Texture2D (width, height);
-        texture.filterMode = FilterMode.Point;
-        texture.wrapMode = TextureWrapMode.Clamp;
-        texture.SetPixels(colorMap);
-        texture.Apply();
-        return texture;
+        mapTexture2D = new Texture2D (width, height);
+        mapTexture2D.filterMode = FilterMode.Point;
+        mapTexture2D.wrapMode = TextureWrapMode.Clamp;
+        mapTexture2D.SetPixels(colorMap);
+        mapTexture2D.Apply();
+        return mapTexture2D;
     }
 
     public static Texture2D TextureFromHeightMap(float[,] heightMap)
@@ -19,9 +25,7 @@ public class TextureGenerator
         int width = heightMap.GetLength(0);
         int height = heightMap.GetLength(1);
 
-        Texture2D texture = new Texture2D (width, height);
-
-        Color[] colorMap = new Color[width * height];
+        colorMap = new Color[width * height];
         for (int y = 0; y < height; ++y)
         {
             for (int x = 0; x < width; ++x)

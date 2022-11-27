@@ -48,23 +48,27 @@ public class MapGenerator : MonoBehaviour
         return noiseMap;
     }
 
+    static Color[] colorMap;
     public void generateMap()
     {
         float[,] noiseMap = Noise.GenerateNoiseMap(seed, mapWidth, mapHeight, 
         octaves, persistance, lacunarity, noiseScale, offset);
 
-        Color[] colorMap = new Color[mapWidth * mapHeight];
-        for (int y = 0; y < mapHeight; ++y)
+        if (drawMode != DrawMode.NoiseMap)
         {
-            for (int x = 0; x < mapWidth; ++x)
+            colorMap = new Color[mapWidth * mapHeight];
+            for (int y = 0; y < mapHeight; ++y)
             {
-                float currentHeight = noiseMap[x, y];
-                for (int i = 0; i < regions.Length; ++i)
+                for (int x = 0; x < mapWidth; ++x)
                 {
-                    if (currentHeight <= regions[i].height)
+                    float currentHeight = noiseMap[x, y];
+                    for (int i = 0; i < regions.Length; ++i)
                     {
-                        colorMap[y*mapWidth + x] = regions[i].color;
-                        break;
+                        if (currentHeight <= regions[i].height)
+                        {
+                            colorMap[y*mapWidth + x] = regions[i].color;
+                            break;
+                        }
                     }
                 }
             }
@@ -113,6 +117,7 @@ public class MapGenerator : MonoBehaviour
                 TextureGenerator.TextureFromColorMap(colorMap, mapWidth, mapHeight)
             );
         }
+        Resources.UnloadUnusedAssets();
     }
 
     public void changePersistance(float newPersistance)
