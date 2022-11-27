@@ -11,10 +11,12 @@ public class ScaleUI : MonoBehaviour
     public Canvas canvasPreferences;
     public Canvas canvasHowUse;
 
-    private float defMenuScale = 0.4f;
-    private float defAppScale = 0.7f;
-    private float defPrefScale = 0.45f;
-    private float defHowUseScale = 0.45f;
+    const float defaultDeltaScale = 0.25f;
+
+    private float defMenuScale = 0.4f + defaultDeltaScale;
+    private float defAppScale = 0.7f + defaultDeltaScale;
+    private float defPrefScale = 0.55f + defaultDeltaScale;
+    private float defHowUseScale = 0.35f + defaultDeltaScale;
 
     private float menuScale;
     private float appScale;

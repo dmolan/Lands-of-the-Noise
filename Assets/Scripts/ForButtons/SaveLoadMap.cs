@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEditor;
 using UnityEngine.UI;
 using TMPro;
+using SFB;
 
 public class SaveLoadMap : MonoBehaviour
 {
@@ -27,7 +28,13 @@ public class SaveLoadMap : MonoBehaviour
 
     public void saveCurrentMap()
     {
-        string savePath = EditorUtility.SaveFilePanel("Save map as TXT", "", "mapSave" + ".txt", "txt");
+        var extensionList = new [] {
+            new ExtensionFilter("Text", "txt"),
+        };
+
+        string savePath = StandaloneFileBrowser.SaveFilePanel("Save map as TXT", "", "mapSave", extensionList);
+        // string savePath = EditorUtility.SaveFilePanel("Save map as TXT", "", "mapSave" + ".txt", "txt");
+        
         if (savePath.Length != 0)
         {
             // LoadingCanvas.SetActive(true);
@@ -63,7 +70,9 @@ public class SaveLoadMap : MonoBehaviour
 
     public void loadMap()
     {
-        string loadPath = EditorUtility.OpenFilePanel("Load a map from TXT", "", "txt");
+        string loadPath = StandaloneFileBrowser.OpenFilePanel("Load a map from TXT", "", "", false)[0];
+        // string loadPath = EditorUtility.OpenFilePanel("Load a map from TXT", "", "txt");
+
         if (loadPath.Length != 0)
         {
             string mapData = System.IO.File.ReadAllText(loadPath);  
@@ -112,5 +121,6 @@ public class SaveLoadMap : MonoBehaviour
                 mapGen.generateMap();
             }
         }
+        
     }
 }
