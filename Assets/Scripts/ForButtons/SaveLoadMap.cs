@@ -3,7 +3,6 @@
  *  Functions used by the buttons in the App: "SaveFile" and "LoadFile".
 */
 using UnityEngine;
-using UnityEditor;
 using UnityEngine.UI;
 using TMPro;
 using SFB;
@@ -11,6 +10,8 @@ using SFB;
 public class SaveLoadMap : MonoBehaviour
 {
     public MapGenerator mapGen;
+    public AppUI appUI;
+
     public Slider sliderPersistance;
     public Slider sliderLacunarity;
     public Slider sliderScale;
@@ -22,7 +23,6 @@ public class SaveLoadMap : MonoBehaviour
     public TMP_Dropdown DrawMode;
 
     // TODO: resolve loading screen issue
-    // public GameObject LoadingCanvas;
 
 
 
@@ -33,12 +33,9 @@ public class SaveLoadMap : MonoBehaviour
         };
 
         string savePath = StandaloneFileBrowser.SaveFilePanel("Save map as TXT", "", "mapSave", extensionList);
-        // string savePath = EditorUtility.SaveFilePanel("Save map as TXT", "", "mapSave" + ".txt", "txt");
         
         if (savePath.Length != 0)
         {
-            // LoadingCanvas.SetActive(true);
-            
             float[,] noiseMap = mapGen.getNoiseMap();
 
             string mapData = 
@@ -64,38 +61,33 @@ public class SaveLoadMap : MonoBehaviour
                 mapData += "\r\n";
             }
             System.IO.File.WriteAllText(savePath, mapData);
-            // LoadingCanvas.SetActive(false);
         }
     }
 
     public void loadMap()
     {
         string loadPath = StandaloneFileBrowser.OpenFilePanel("Load a map from TXT", "", "", false)[0];
-        // string loadPath = EditorUtility.OpenFilePanel("Load a map from TXT", "", "txt");
 
         if (loadPath.Length != 0)
         {
-            string mapData = System.IO.File.ReadAllText(loadPath);  
+            string mapData = System.IO.File.ReadAllText(loadPath);
             string[] strNumbers = mapData.Split();
             
             if (strNumbers[1] == "Default")
             {
                 if (strNumbers[4] == "NoiseMap") 
                 {
-                    // mapGen.drawMode = MapGenerator.DrawMode.NoiseMap;
-                    mapGen.changeDrawMode(0);
+                    appUI.changeDrawMode(0);
                     DrawMode.SetValueWithoutNotify(0);
                 }
                 else if (strNumbers[4] == "ColorMap") 
                 {
-                    // mapGen.drawMode = MapGenerator.DrawMode.ColorMap;
-                    mapGen.changeDrawMode(1);
+                    appUI.changeDrawMode(1);
                     DrawMode.SetValueWithoutNotify(1);
                 }
                 else
                 {
-                    // mapGen.drawMode = MapGenerator.DrawMode.Mesh;
-                    mapGen.changeDrawMode(2);
+                    appUI.changeDrawMode(2);
                     DrawMode.SetValueWithoutNotify(2);
                 }
                 mapGen.seed = int.Parse(strNumbers[7]);
@@ -121,6 +113,5 @@ public class SaveLoadMap : MonoBehaviour
                 mapGen.generateMap();
             }
         }
-        
     }
 }

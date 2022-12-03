@@ -35,9 +35,6 @@ public class MapGenerator : MonoBehaviour
 
     public TerrainType[] regions;
 
-    public GameObject Plane;
-    public GameObject Mesh;
-
     
 
     public float[,] getNoiseMap()
@@ -120,118 +117,6 @@ public class MapGenerator : MonoBehaviour
         Resources.UnloadUnusedAssets();
     }
 
-    public void changePersistance(float newPersistance)
-    {
-        persistance = newPersistance;
-        generateMap();
-    }
-
-    public void changeLacunarity(float newLacunarity)
-    {
-        lacunarity = newLacunarity;
-        generateMap();
-    }
-
-    public void changeScale(float newNoiseScale)
-    {
-        noiseScale = newNoiseScale;
-        generateMap();
-    }
-
-    public void changeOctaves(float newOctaves)
-    {
-        octaves = (int)newOctaves;
-        generateMap();
-    }
-
-    public void changeWidth(string newMapWidth)
-    {
-        if (newMapWidth != "")
-        {
-            mapWidth = int.Parse(newMapWidth);
-            if (mapWidth > 300) mapWidth = 300;
-            if (mapWidth < 0) mapWidth = 1;
-            generateMap();
-        }
-    }
-
-    public void changeHeight(string newMapHeight)
-    {
-        if (newMapHeight != "")
-        {
-            mapHeight = int.Parse(newMapHeight);
-            if (mapHeight > 300) mapHeight = 300;
-            if (mapHeight < 0) mapHeight = 1;
-            generateMap();
-        }
-    }
-
-    public void changeMeshHeightMultiplier(string newMeshHeightMultiplier)
-    {
-        if (newMeshHeightMultiplier != "")
-        {
-            meshHeightMultiplier = float.Parse(newMeshHeightMultiplier);
-            if (meshHeightMultiplier < 0.0001) meshHeightMultiplier = 0.0001f;
-            generateMap();
-        }
-    }
-
-    public void changeOffsetSpeed(float newOffsetSpeed)
-    {
-        offsetSpeed = newOffsetSpeed;
-    }
-
-    public void changeDrawMode(int val)
-    {
-        if (val == 0) 
-        {
-            drawMode = DrawMode.NoiseMap;
-            Plane.SetActive(true);
-            Mesh.SetActive(false);
-        }
-        else if (val == 1) 
-        {
-            drawMode = DrawMode.ColorMap;
-            Plane.SetActive(true);
-            Mesh.SetActive(false);
-        }
-        else 
-        {
-            drawMode = DrawMode.Mesh;
-            Plane.SetActive(false);
-            Mesh.SetActive(true);
-        }
-
-        generateMap();
-    }
-
-    public TMP_InputField InputFieldSeed;
-    public void randomSeed()
-    {
-        seed = Random.Range(0, (int)1e9 - 1);
-        InputFieldSeed.text = seed.ToString();
-        generateMap();
-    }
-
-    public void changeSeed(string newSeed)
-    {
-        if (newSeed != "")
-        {
-            if (newSeed.Length > 9) seed = (int)1e9 - 1;
-            else seed = int.Parse(newSeed);
-
-            generateMap();
-        }
-    }
-
-    public void checkSeed(string seed)
-    {
-        if (seed.Length > 9) 
-        {
-            seed = seed.Substring(0, 9);
-            InputFieldSeed.text = seed;
-        }
-    }
 
     // Called every time one of public variables is changed
     void OnValidate()

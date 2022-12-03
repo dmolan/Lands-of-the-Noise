@@ -1463,7 +1463,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1983762809}
+      - m_Target: {fileID: 1983762812}
         m_MethodName: changeDrawMode
         m_Mode: 0
         m_Arguments:
@@ -1658,7 +1658,7 @@ MonoBehaviour:
   m_OnDeselect:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1983762809}
+      - m_Target: {fileID: 1983762812}
         m_MethodName: changeHeight
         m_Mode: 0
         m_Arguments:
@@ -1895,7 +1895,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &125392756
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3709,7 +3709,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1983762809}
+      - m_Target: {fileID: 1983762812}
         m_MethodName: changeScale
         m_Mode: 0
         m_Arguments:
@@ -4140,7 +4140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &253031965
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4750,7 +4750,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1983762809}
+      - m_Target: {fileID: 1983762812}
         m_MethodName: randomSeed
         m_Mode: 1
         m_Arguments:
@@ -7505,7 +7505,7 @@ MonoBehaviour:
   m_OnDeselect:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1983762809}
+      - m_Target: {fileID: 1983762812}
         m_MethodName: changeMeshHeightMultiplier
         m_Mode: 0
         m_Arguments:
@@ -7836,7 +7836,7 @@ MonoBehaviour:
   m_OnDeselect:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1983762809}
+      - m_Target: {fileID: 1983762812}
         m_MethodName: changeSeed
         m_Mode: 0
         m_Arguments:
@@ -7856,7 +7856,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1983762809}
+      - m_Target: {fileID: 1983762812}
         m_MethodName: checkSeed
         m_Mode: 0
         m_Arguments:
@@ -18092,7 +18092,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1392828404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20631,7 +20631,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1983762809}
+      - m_Target: {fileID: 1983762812}
         m_MethodName: changeLacunarity
         m_Mode: 0
         m_Arguments:
@@ -22523,7 +22523,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1983762809}
+      - m_Target: {fileID: 1983762812}
         m_MethodName: changeOctaves
         m_Mode: 0
         m_Arguments:
@@ -23700,7 +23700,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1983762809}
+      - m_Target: {fileID: 1983762812}
         m_MethodName: changeOffsetSpeed
         m_Mode: 0
         m_Arguments:
@@ -24100,6 +24100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapGen: {fileID: 1983762809}
+  appUI: {fileID: 1983762812}
   sliderPersistance: {fileID: 2106489868}
   sliderLacunarity: {fileID: 1546797007}
   sliderScale: {fileID: 227308901}
@@ -25199,7 +25200,7 @@ MonoBehaviour:
   m_OnDeselect:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1983762809}
+      - m_Target: {fileID: 1983762812}
         m_MethodName: changeWidth
         m_Mode: 0
         m_Arguments:
@@ -25286,6 +25287,7 @@ GameObject:
   - component: {fileID: 1983762809}
   - component: {fileID: 1983762808}
   - component: {fileID: 1983762811}
+  - component: {fileID: 1983762812}
   m_Layer: 0
   m_Name: MapGenerator
   m_TagString: Untagged
@@ -25403,9 +25405,6 @@ MonoBehaviour:
     height: 1
     color: {r: 1, g: 1, b: 1, a: 0}
     defaultHeight: 1
-  Plane: {fileID: 2078982146}
-  Mesh: {fileID: 276555997}
-  InputFieldSeed: {fileID: 579755502}
 --- !u!4 &1983762810
 Transform:
   m_ObjectHideFlags: 0
@@ -25437,6 +25436,22 @@ MonoBehaviour:
   mesh: {fileID: 276555997}
   canvasMenu: {fileID: 1392828403}
   canvasApp: {fileID: 893517518}
+--- !u!114 &1983762812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983762807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8101fcec1b781043a0718c6b4b3033f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Plane: {fileID: 2078982146}
+  Mesh: {fileID: 276555997}
+  mapGen: {fileID: 1983762809}
+  InputFieldSeed: {fileID: 579755502}
 --- !u!1 &1986591817
 GameObject:
   m_ObjectHideFlags: 0
@@ -27235,7 +27250,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1983762809}
+      - m_Target: {fileID: 1983762812}
         m_MethodName: changePersistance
         m_Mode: 0
         m_Arguments:
