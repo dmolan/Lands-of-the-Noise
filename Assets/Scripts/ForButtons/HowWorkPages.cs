@@ -8,9 +8,9 @@ using UnityEngine.UI;
 public class HowWorkPages : MonoBehaviour
 {
     public Button buttonFastBw, buttonBw, buttonFw, buttonFastFw;
-    public GameObject slide1, slide2, slide3, slide4, slide5, slide6;
+    public GameObject slide1, slide2, slide3, slide4, slide5, slide6, slide7, slide8, slide9, slide10;
 
-    private const int numOfSlides = 6;
+    private const int numOfSlides = 10;
     private int currSlide = 1;
 
     private void setSlide(int val)
@@ -21,6 +21,10 @@ public class HowWorkPages : MonoBehaviour
         slide4.SetActive(val == 4);
         slide5.SetActive(val == 5);
         slide6.SetActive(val == 6);
+        slide7.SetActive(val == 7);
+        slide8.SetActive(val == 8);
+        slide9.SetActive(val == 9);
+        slide10.SetActive(val == 10);
     }
 
     public void buttonFwPressed()

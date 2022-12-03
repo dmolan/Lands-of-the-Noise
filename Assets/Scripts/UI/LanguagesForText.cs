@@ -14,7 +14,6 @@ public class LanguagesForText : MonoBehaviour
     public TextMeshProUGUI textMainMenuExit;
 
     public TextMeshProUGUI textSettMenuTitle;
-    public TextMeshProUGUI textSettMenuVolume;
     public TextMeshProUGUI textSettMenuLanguage;
     public TMP_Dropdown textSettMenuDrodownLanguage;
     public TextMeshProUGUI textSettMenuScale;
@@ -45,7 +44,6 @@ public class LanguagesForText : MonoBehaviour
         textMainMenuExit.text = "Вихід";
 
         textSettMenuTitle.text = "Опції";
-        textSettMenuVolume.text = "Гучність";
         textSettMenuLanguage.text = "Мова";
         textSettMenuDrodownLanguage.options.Clear();
         textSettMenuDrodownLanguage.options.Add(new TMP_Dropdown.OptionData() {text = "Українська"});
@@ -87,7 +85,6 @@ public class LanguagesForText : MonoBehaviour
         textMainMenuExit.text = "Exit";
 
         textSettMenuTitle.text = "Settings";
-        textSettMenuVolume.text = "Volume";
         textSettMenuLanguage.text = "Language";
         textSettMenuDrodownLanguage.options.Clear();
         textSettMenuDrodownLanguage.options.Add(new TMP_Dropdown.OptionData() {text = "Ukrainian"});

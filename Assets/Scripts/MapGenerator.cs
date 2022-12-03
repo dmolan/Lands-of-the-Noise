@@ -4,7 +4,6 @@
  *  Also manages map parameters changing.
 */
 using UnityEngine;
-using TMPro;
 
 public class MapGenerator : MonoBehaviour
 {

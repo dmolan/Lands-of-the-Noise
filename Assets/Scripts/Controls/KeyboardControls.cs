@@ -13,6 +13,10 @@ public class KeyboardControls : MonoBehaviour
 
     public GameObject canvasMenu;
     public GameObject canvasApp;
+    public GameObject canvasPreferences;
+    public GameObject canvasHowToUse;
+    public GameObject canvasHowDoesItWork;
+    public GameObject canvasCredits;
 
 
 
@@ -38,10 +42,34 @@ public class KeyboardControls : MonoBehaviour
         if (Input.GetKey(KeyCode.Escape))
         {
             // Run pause screen
-            canvasMenu.SetActive(true);
-            canvasApp.SetActive(false);
-            plane.SetActive(false);
-            mesh.SetActive(false);
+            if (canvasApp.activeSelf)
+            {
+                canvasMenu.SetActive(true);
+                canvasApp.SetActive(false);
+                plane.SetActive(false);
+                mesh.SetActive(false);
+            }
+        
+            if (canvasPreferences.activeSelf)
+            {
+                canvasApp.SetActive(true);
+                canvasPreferences.SetActive(false);
+            }
+            if (canvasHowToUse.activeSelf)
+            {
+                canvasMenu.SetActive(true);
+                canvasHowToUse.SetActive(false);
+            }
+            if (canvasHowDoesItWork.activeSelf)
+            {
+                canvasMenu.SetActive(true);
+                canvasHowDoesItWork.SetActive(false);
+            }
+            if (canvasCredits.activeSelf)
+            {
+                canvasMenu.SetActive(true);
+                canvasCredits.SetActive(false);
+            }
         }
         if (Input.GetKey(KeyCode.RightArrow))
         {
