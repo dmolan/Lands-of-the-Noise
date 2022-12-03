@@ -14,7 +14,9 @@ public class MapDisplay : MonoBehaviour
     public void DrawTexture(Texture2D texture)
     {
         textureRenderer.sharedMaterial.mainTexture = texture;
-        textureRenderer.transform.localScale = new Vector3 (texture.width, 1, texture.height);
+
+        // -1 is needed because otherwise the Mesh is mirrored by the X axis
+        textureRenderer.transform.localScale = new Vector3(-1 * texture.width, 1, texture.height);
     }
 
     public void DrawMesh(MeshData meshData, Texture2D texture)

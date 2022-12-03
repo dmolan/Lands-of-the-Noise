@@ -10,6 +10,7 @@ public class ScaleUI : MonoBehaviour
     public Canvas canvasApp;
     public Canvas canvasPreferences;
     public Canvas canvasHowUse;
+    public Canvas canvasHowWork;
 
     const float defaultDeltaScale = 0.25f;
 
@@ -17,12 +18,13 @@ public class ScaleUI : MonoBehaviour
     private float defAppScale = 0.7f + defaultDeltaScale;
     private float defPrefScale = 0.55f + defaultDeltaScale;
     private float defHowUseScale = 0.35f + defaultDeltaScale;
+    private float defHowWorkScale = 0.35f + defaultDeltaScale;
 
     private float menuScale;
     private float appScale;
     private float prefScale;
     private float howUseScale;
-
+    private float howWorkScale;
 
 
 
@@ -32,6 +34,7 @@ public class ScaleUI : MonoBehaviour
         appScale = defAppScale;
         prefScale = defPrefScale;
         howUseScale = defHowUseScale;
+        howWorkScale = defHowWorkScale;
     }
 
     void Update()
@@ -40,6 +43,7 @@ public class ScaleUI : MonoBehaviour
         if (canvasApp.scaleFactor != appScale) canvasApp.scaleFactor = appScale;
         if (canvasPreferences.scaleFactor != prefScale) canvasPreferences.scaleFactor = prefScale;
         if (canvasHowUse.scaleFactor != howUseScale) canvasHowUse.scaleFactor = howUseScale;
+        if (canvasHowWork.scaleFactor != howWorkScale) canvasHowWork.scaleFactor = howWorkScale;
     }
 
     public void changeCanvasScale(int val)
@@ -50,6 +54,7 @@ public class ScaleUI : MonoBehaviour
             appScale = defAppScale * (3/4f);
             prefScale = defPrefScale * (3/4f);
             howUseScale = defHowUseScale * (3/4f);
+            howWorkScale = defHowWorkScale * (3/4f);
         }
         else if (val == 1)
         {
@@ -57,6 +62,7 @@ public class ScaleUI : MonoBehaviour
             appScale = defAppScale;
             prefScale = defPrefScale;
             howUseScale = defHowUseScale;
+            howWorkScale = defHowWorkScale;
         }
         else if (val == 2)
         {
@@ -64,6 +70,7 @@ public class ScaleUI : MonoBehaviour
             appScale = defAppScale * (5/4f);
             prefScale = defPrefScale * (5/4f);
             howUseScale = defHowUseScale * (5/4f);
+            howWorkScale = defHowWorkScale * (5/4f);
         }
         else if (val == 3)
         {
@@ -71,6 +78,7 @@ public class ScaleUI : MonoBehaviour
             appScale = defAppScale * (3/2f);
             prefScale = defPrefScale * (3/2f);
             howUseScale = defHowUseScale*(3/2f);
+            howWorkScale = defHowWorkScale * (3/2f);
         }
     }
 }

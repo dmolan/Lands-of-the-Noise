@@ -17,6 +17,7 @@ public class TextureGenerator
         mapTexture2D.wrapMode = TextureWrapMode.Clamp;
         mapTexture2D.SetPixels(colorMap);
         mapTexture2D.Apply();
+        
         return mapTexture2D;
     }
 

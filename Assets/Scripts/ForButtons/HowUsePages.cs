@@ -10,6 +10,7 @@ public class HowUsePages : MonoBehaviour
     public Button buttonFastBw, buttonBw, buttonFw, buttonFastFw;
     public GameObject slide1, slide2, slide3, slide4, slide5;
 
+    private const int numOfSlides = 5;
     private int currSlide = 1;
 
     private void setSlide(int val)
@@ -24,7 +25,7 @@ public class HowUsePages : MonoBehaviour
     public void buttonFwPressed()
     {
         currSlide += 1;
-        if (currSlide > 5) currSlide = 5;
+        if (currSlide > numOfSlides) currSlide = numOfSlides;
         setSlide(currSlide);
     }
     public void buttonBwPressed()
@@ -35,7 +36,7 @@ public class HowUsePages : MonoBehaviour
     }
     public void buttonFastFwPressed()
     {
-        currSlide = 5;
+        currSlide = numOfSlides;
         setSlide(currSlide);
     }
     public void buttonFastBwPressed()

@@ -210,7 +210,6 @@ public class MapGenerator : MonoBehaviour
     {
         seed = Random.Range(0, (int)1e9 - 1);
         InputFieldSeed.text = seed.ToString();
-        // InputFieldSeed.
         generateMap();
     }
 
@@ -248,7 +247,6 @@ public class MapGenerator : MonoBehaviour
 public struct TerrainType 
 {
     public string name;
-    //[@HideInInspector]
     public float height;
     public Color color;
 
