@@ -9,114 +9,336 @@ using TMPro;
 
 public class LanguagesForText : MonoBehaviour
 {
-    public TextMeshProUGUI textMainMenuRun;
-    public TextMeshProUGUI textMainMenuOptions;
-    public TextMeshProUGUI textMainMenuExit;
+    // Main Menu
+    public TextMeshProUGUI mainMenuRun, mainMenuOptions, mainMenuExit,
+    mainMenuHowUse, mainMenuHowUseInfo, mainMenuHowWork, mainMenuHowWorkInfo, mainMenuCredits;
 
-    public TextMeshProUGUI textSettMenuTitle;
-    public TextMeshProUGUI textSettMenuLanguage;
-    public TMP_Dropdown textSettMenuDrodownLanguage;
-    public TextMeshProUGUI textSettMenuScale;
-    public TMP_Dropdown textSettMenuDrodownScale;
-    public TextMeshProUGUI textSettMenuBack;
+    // Settings Menu
+    public TextMeshProUGUI settMenuTitle, settMenuLanguage, settMenuScale, settMenuBack;
+    public TMP_Dropdown settMenuDropdownLanguage, settMenuDropdownScale;
 
-    public TextMeshProUGUI textAppSeed;
-    public TextMeshProUGUI textAppLacunarity;
-    public TextMeshProUGUI textAppPersistance;
-    public TextMeshProUGUI textAppScale;
-    public TextMeshProUGUI textAppOffsetSpeed;
+    // App
+    public TextMeshProUGUI appSeed, appLacunarity, appPersistance, appScale, appOffsetSpeed;
 
-    public TextMeshProUGUI textPrefTitle;
-    public TextMeshProUGUI textPrefWidth;
-    public TextMeshProUGUI textPrefHeight;
-    public TextMeshProUGUI textPrefMultiplier; 
-    public TextMeshProUGUI textPrefOctaves; 
-    public TextMeshProUGUI textPrefDrawMode;
-    public TMP_Dropdown textPrefDrodown;
-    public TextMeshProUGUI textPrefBack; 
+    // Preferences
+    public TextMeshProUGUI prefTitle, prefWidth, prefHeight, prefMultiplier, prefOctaves, prefDrawMode, prefBack;
+    public TMP_Dropdown prefDropdown;
+
+    // Credits
+    public TextMeshProUGUI creditsTitle, creditsInfo, creditsBack;
+
+    // How To Use
+    public TextMeshProUGUI howUseBack;
+    public TextMeshProUGUI howUseTitle1, howUseTitle2, howUseTitle3, howUseTitle4, howUseTitle5;
+    public TextMeshProUGUI howUseInfo1, howUseInfo2, howUseInfo3, howUseInfo4, howUseInfo5;
+
+    // How Does It Work
+    public TextMeshProUGUI howWorkBack;
+    public TextMeshProUGUI howWorkTitle1, howWorkTitle2, howWorkTitle3, howWorkTitle4, howWorkTitle5, 
+        howWorkTitle6, howWorkTitle7, howWorkTitle8, howWorkTitle9, howWorkTitle10;
+    public TextMeshProUGUI howWorkInfo1, howWorkInfo2, howWorkInfo3, howWorkInfo4, howWorkInfo5,
+        howWorkInfo6, howWorkInfo7, howWorkInfo8, howWorkInfo9, howWorkInfo10;
 
 
 
     private void changeLanguageToUkr()
     {
-        textMainMenuRun.text = "Запуск";
-        textMainMenuOptions.text = "Опції";
-        textMainMenuExit.text = "Вихід";
+        // Main Menu
+        {
+        mainMenuRun.text = "Запуск";
+        mainMenuOptions.text = "Опції";
+        mainMenuExit.text = "Вихід";
+        mainMenuHowUse.text = "Документація";
+        mainMenuHowUseInfo.text = "Детальні інструкції для користувача";
+        mainMenuHowWork.text = "Як це працює?"; 
+        mainMenuHowWorkInfo.text = "Пояснення щодо роботи процедурної генерації";
+        mainMenuCredits.text = "Подяки";
+        }
 
-        textSettMenuTitle.text = "Опції";
-        textSettMenuLanguage.text = "Мова";
-        textSettMenuDrodownLanguage.options.Clear();
-        textSettMenuDrodownLanguage.options.Add(new TMP_Dropdown.OptionData() {text = "Українська"});
-        textSettMenuDrodownLanguage.options.Add(new TMP_Dropdown.OptionData() {text = "Англійська"}); 
-        textSettMenuDrodownLanguage.captionText.text = "Українська";
-        textSettMenuScale.text = "Масштаб";
-        textSettMenuDrodownScale.options.Clear();
-        textSettMenuDrodownScale.options.Add(new TMP_Dropdown.OptionData() {text = "50%"});
-        textSettMenuDrodownScale.options.Add(new TMP_Dropdown.OptionData() {text = "100%"}); 
-        textSettMenuDrodownScale.options.Add(new TMP_Dropdown.OptionData() {text = "150%"}); 
-        textSettMenuDrodownScale.options.Add(new TMP_Dropdown.OptionData() {text = "200%"}); 
-        textSettMenuDrodownScale.captionText.text = "100%";
-        textSettMenuBack.text = "Назад";
+        // Settings Menu
+        {
+        settMenuTitle.text = "Опції";
+        settMenuLanguage.text = "Мова";
+        settMenuDropdownLanguage.options.Clear();
+        settMenuDropdownLanguage.options.Add(new TMP_Dropdown.OptionData() {text = "Українська"});
+        settMenuDropdownLanguage.options.Add(new TMP_Dropdown.OptionData() {text = "Англійська"}); 
+        settMenuDropdownLanguage.captionText.text = "Українська";
+        settMenuScale.text = "Масштаб";
+        settMenuDropdownScale.options.Clear();
+        settMenuDropdownScale.options.Add(new TMP_Dropdown.OptionData() {text = "50%"});
+        settMenuDropdownScale.options.Add(new TMP_Dropdown.OptionData() {text = "100%"}); 
+        settMenuDropdownScale.options.Add(new TMP_Dropdown.OptionData() {text = "150%"}); 
+        settMenuDropdownScale.options.Add(new TMP_Dropdown.OptionData() {text = "200%"}); 
+        settMenuDropdownScale.captionText.text = "100%";
+        settMenuBack.text = "Назад";
+        }
 
-        textAppSeed.text = "Зерно";
-        textAppLacunarity.text = "Лакунарність";
-        textAppPersistance.text = "Наполегливість";
-        textAppScale.text = "Масштаб";
-        textAppOffsetSpeed.text = "Швидкість зсуву";
+        // App
+        {
+        appSeed.text = "Зерно";
+        appLacunarity.text = "Лакунарність";
+        appPersistance.text = "Деталізованість";
+        appScale.text = "Масштаб";
+        appOffsetSpeed.text = "Швидкість зсуву";
+        }
 
-        textPrefTitle.text = "Налаштування";
-        textPrefWidth.text = "Ширина";
-        textPrefHeight.text = "Висота";
-        textPrefMultiplier.text = "Множник висоти";
-        textPrefOctaves.text = "Октави";
-        textPrefDrawMode.text = "Тип візулізації";
-        textPrefDrodown.options.Clear();
-        textPrefDrodown.options.Add(new TMP_Dropdown.OptionData() {text = "Шум"});
-        textPrefDrodown.options.Add(new TMP_Dropdown.OptionData() {text = "Колір"}); 
-        textPrefDrodown.options.Add(new TMP_Dropdown.OptionData() {text = "Сітка"}); 
-        textPrefDrodown.captionText.text = "Сітка";
-        textPrefBack.text = "Назад";
+        // Preferences
+        {
+        prefTitle.text = "Уподобання";
+        prefWidth.text = "Ширина";
+        prefHeight.text = "Висота";
+        prefMultiplier.text = "Множник висоти";
+        prefOctaves.text = "Октави";
+        prefDrawMode.text = "Тип візулізації";
+        prefDropdown.options.Clear();
+        prefDropdown.options.Add(new TMP_Dropdown.OptionData() {text = "Шум"});
+        prefDropdown.options.Add(new TMP_Dropdown.OptionData() {text = "Колір"}); 
+        prefDropdown.options.Add(new TMP_Dropdown.OptionData() {text = "Сітка"}); 
+        prefDropdown.captionText.text = "Сітка";
+        prefBack.text = "Назад";
+        }
+
+        // Credits
+        {
+        creditsTitle.text = "Подяка";
+        creditsInfo.text = @"Спеціальна подяка
+    1) Sebastian Lague - за чудові ютюб-уроки та ключову механіку: використання шуму Перлина для генерації Кольорової та Сіткової карт 
+    2) Deniz Simsek - за гарний ютюб урок з повертання камери
+    3) Gökhan Gökçe - за неймовірний ""Автономний Файловий Переглядач"" у відкритому доступі
+    4) Avionx - за прекрасні текстури, використані на задньому плані в програмі
+    5) Derrick Taylor з ""The Taylor Series"" - за зрозумілі та чіткі ілюстрації для ""Як це працює"" меню
+    6) Craig Perko - за корисне ютюб відео про витоки пам'яті";
+        creditsBack.text = "Назад";
+        }
+    
+        // How To Use
+        {
+        howUseBack.text = "Назад";        
+        howUseTitle1.text = "Документація";
+        howUseTitle2.text = "1. Головне меню";
+        howUseTitle3.text = "2. Опції";
+        howUseTitle4.text = "3. Програма";
+        howUseTitle5.text = "4. Уподобання";
+        howUseInfo1.text = @"Є чотири найважливіші меню в програмі:
+1) Головне меню;
+2) Опції;
+3) Програма;
+4) Уподобання.
+
+Усі вони будуть детально описані на наступних слайдах.";
+        howUseInfo2.text = @"У Головному меню є шість кнопок:
+1) Запуск - відкриває головну частину програми;
+2) Опції - відкриває меню Опцій (див. слайд 2);
+3) Вихід - закриє програму;
+4) Як використовувати? - веде до меню, де можна навчитися користуванню інтерфейсом;
+5) Як це працює? - веде до меню, де можна зрозуміти як працює процедурна генерація;
+6) Подяки - відкриває слайд з подяками.";
+        howUseInfo3.text = @"В Опціях є декілька елементів:
+1) ""Мова"" спадний список - можна вибрати мову;
+2) ""Масштаб"" спадний список - можна змінювати масштаб карти.";
+        howUseInfo4.text = @"У Програмі є декілька елементів:
+1) Поле вводу ""Зерно"" у лівому-верхньому куті - сюди можна ввести зерно для карти (див. ""Як це працює?"");
+2) Чотири позунки в правому-верхньому куті - змінюють параметри генерації карти (див. ""Як це працює?"");
+3) Кнопки з символами стрілочка вгору/вниз в лівому-нижньому куті - зберігають усі нинішні параметри карти та повні значення висот або завантажити інуючу карту за параметрами (не значеннями);
+4) Кнопка з символом коліщатка в правому нижньому куті - відкриває меню ""Уподобання"".
+
+Примітка: у цьому меню щоб обертати камеру горизонтально, потрібно затиснути Праву Кнопку Миші, а щоб обертати камеру вертикально - ""Ctrl"" + Праву Кнопку Миші.";
+        howUseInfo5.text = @"В ""Уподобаннях"" є декілька елементів:
+1) Поля вводу ""Ширина""/""Висота"" - встановлюють ширину/висоту, не більшу ніж 300 через технічні причини;
+2) Повзунок ""Октави"" - змінює кількість октав (див. ""Як це працює?"");
+3) Спадний список ""Тип візулізації"" - змінює тип візуалізації (значення в кожній точці ті ж, але відображаються через Чорний/Білий, Різні кольори або Обє'мну фігуру);
+4) Кнопка ""Назад"" - вертає в головне меню.";
+        }
+    
+        // How Does It Work
+        {
+        howWorkBack.text = "Назад";
+        howWorkTitle1.text = @"Пояснення ""Процедурної генерації""";
+        howWorkTitle2.text = "1. Використання зерна";
+        howWorkTitle3.text = "2. Блоки й Перетини";
+        howWorkTitle4.text = @"3. Отримання чотирьох ""шорстких"" карт";
+        howWorkTitle5.text = "4. Лінійна інтерполяція";
+        howWorkTitle6.text = @"5. Метод ""Плавного кроку""";
+        howWorkTitle7.text = "6. Перша октава";
+        howWorkTitle8.text = "7. Лакунарність";
+        howWorkTitle9.text = "8. Деталізованість";
+        howWorkTitle10.text = "9. Кінець";
+        howWorkInfo1.text = @"У Процедурній генерації методом шуму Перлина (Фрактального) є п'ять ключових кроків:
+1) Отримання безперервного Потоку чисел із зерна;
+2) Поділ карти на Блоки уявними лініями, присвоєння кожному перетину ліній випадково повернутого одничного вектора;
+3) Отримання чотирьох шорстких карт;
+4) Використання Лінійної інтерполяції та методу ""Плавного кроку"" на двох парах карт;
+5) Додавання наступних октав.
+
+Кожен з кроків буде детально пояснено на наступних слайдах. 
+
+Приклад багатооктавної карти можна бачити на pic. 1.";
+        howWorkInfo2.text = @"Щоб отримати випадкові значення із заданого зерна, використаймо Генератор ПсевдоВипадкових Чисел (ГПВЧ): за заданим зерном завжди повертає однаковий набір цифр.
+
+Примітка: називається ""ПсевдоВипадкових Чисел"", бо насправді є алгоритм, але для наших цілей його випадковості достатньо.";
+        howWorkInfo3.text = @"Намалюймо уявну сітку на нашій карті (роздільна здатність визначає її розмір), кожній точці перетину ліній присвоймо одиничний повернутий на кут із зерна вектор. Наприклад, якщо будемо брати двоцифрові числа з Потоку, матимемо 32 варінти повороту для кожного вектора (pic. 1). 
+
+Варто додати, що присвоювати числа рекомендовано по спіралі, що глядач бачив ""свіжі"" блоки в кожному напряку (див. pic. 2).";
+        howWorkInfo4.text = @"Присвоймо кожному Блоку чотири скаляри (числа) використовуючи скалярний векторний добуток (see pic. 1), таким чином отримавши чотири клітинчасті карти (див. pic. 2). Для візулізації, присвоймо чорний колір мінімальному знаяенню, білий - максимальному.";
+        howWorkInfo5.text = @"Змішаймо дві пари карт між собою горизонтально, а результати - вертикально. Перша частина змішування є ""Лінійна інтерполяція"" - процес побудови кривої між двома відрізками (див. pic. 1). Інтерполюваваши між кожними двома відповідними відрізками на зрізі карти, отримуємо дещо зглажену версію-нащадок попередньої пари карт (див. pic. 2).";
+        howWorkInfo6.text = @"Проте там, де криві сходяться, виникають гострі куточки (див pic. 1 і pic. 2). Щоб їх згладити, використаймо метод ""Плавного кроку"" (див. pic. 3) й отримаймо згладжену криву-нащадок двох кривих з минулих карт (див. pic. 4). Як наслідок, отримуємо карту, згладжену в одному напрямку (див. pic. 5).";
+        howWorkInfo7.text = @"Тепер можемо змішати дві пари з чотирьох карт (див. pic. 1), а їхні результати - між собою вертикально й отримати те, що називають ""Перша Октава"" шуму Перлина (див. pic. 2)";
+        howWorkInfo8.text = @"Для того щоб підвищити деталізованість карти, згенеруймо нові Октави з щільнішими сітками, а наскільки щільнішими визначає параметр ""Лакунарність"". Наприклад, якщо Лакунарність дорівнює 2, сітка другої октави вдвічі більша (див. pic. 1 і pic. 2) і т.д. Але якщо ми просто додамо нові Октави до старої, отримаємо щось схоже на Білий шум (див. pic. 3).";
+        howWorkInfo9.text = @"Рішенням до попередньої проблеми є введенення парамерта ""Деталізованість"", який визначає ваговий множник, з яким октава додається до першої. Так, якщо Деталізованість дорівнює ""0.5"", вплив кожної нової октави вдвічі менше ніж вплив попередньої (див. pic. 1). Отож, маємо фінальний результат (див. pic. 2).
+
+Примітка: потрібно знайти новий мінімум і максимум та переприсвоїти кольори після цього.";
+        howWorkInfo10.text = @"Маючи Шумову карту (див. pic. 1), можемо присвоїти різним діапазонам в межах 0-1 різні кольори (див. pic. 2), або навіть сконструювати об'ємну фігуру - Сітку (див. pic. 3). А наскільки високою буде Сітка, визначає множник у меню ""Уподобання"". Оскільки ми використовуємо ГПВЧ, можемо змінювати масштаб карти, рухати її тощо.";     
+        }
     }
 
     private void changeLanguageToEng()
     {
-        textMainMenuRun.text = "Run";
-        textMainMenuOptions.text = "Options";
-        textMainMenuExit.text = "Exit";
+        // Main Menu
+        {
+        mainMenuRun.text = "Run";
+        mainMenuOptions.text = "Options";
+        mainMenuExit.text = "Exit";
+        mainMenuHowUse.text = "How to use?";
+        mainMenuHowUseInfo.text = "See detailed instructions for Graphical User Interface";
+        mainMenuHowWork.text = "How does it work?"; 
+        mainMenuHowWorkInfo.text = "See explanation on how does procedural generation works";
+        mainMenuCredits.text = "Credits";
+        }
 
-        textSettMenuTitle.text = "Settings";
-        textSettMenuLanguage.text = "Language";
-        textSettMenuDrodownLanguage.options.Clear();
-        textSettMenuDrodownLanguage.options.Add(new TMP_Dropdown.OptionData() {text = "Ukrainian"});
-        textSettMenuDrodownLanguage.options.Add(new TMP_Dropdown.OptionData() {text = "English"});
-        textSettMenuDrodownLanguage.captionText.text = "English";
-        textSettMenuBack.text = "Back";
+        // Settings Menu
+        {
+        settMenuTitle.text = "Settings";
+        settMenuLanguage.text = "Language";
+        settMenuDropdownLanguage.options.Clear();
+        settMenuDropdownLanguage.options.Add(new TMP_Dropdown.OptionData() {text = "Ukrainian"});
+        settMenuDropdownLanguage.options.Add(new TMP_Dropdown.OptionData() {text = "English"});
+        settMenuDropdownLanguage.captionText.text = "English";
+        settMenuBack.text = "Back";
+        }
 
-        textAppSeed.text = "Seed";
-        textAppLacunarity.text = "Lacunarity";
-        textAppPersistance.text = "Persistance";
-        textAppScale.text = "Scale";
-        textAppOffsetSpeed.text = "Offset Speed";
+        // App
+        {
+        appSeed.text = "Seed";
+        appLacunarity.text = "Lacunarity";
+        appPersistance.text = "Persistance";
+        appScale.text = "Scale";
+        appOffsetSpeed.text = "Offset Speed";
+        }
 
-        textPrefTitle.text = "Preferences";
-        textPrefWidth.text = "Width";
-        textPrefHeight.text = "Height";
-        textPrefMultiplier.text = "Mesh Height Multiplier";
-        textPrefOctaves.text = "Octaves";
-        textPrefDrawMode.text = "Draw Mode";
-        textPrefDrodown.options.Clear();
-        textPrefDrodown.options.Add(new TMP_Dropdown.OptionData() {text = "Noise"});
-        textPrefDrodown.options.Add(new TMP_Dropdown.OptionData() {text = "Color"}); 
-        textPrefDrodown.options.Add(new TMP_Dropdown.OptionData() {text = "Mesh"}); 
-        textPrefDrodown.captionText.text = "Mesh";
-        textSettMenuScale.text = "Scale";
-        textSettMenuDrodownScale.options.Clear();
-        textSettMenuDrodownScale.options.Add(new TMP_Dropdown.OptionData() {text = "50%"});
-        textSettMenuDrodownScale.options.Add(new TMP_Dropdown.OptionData() {text = "100%"}); 
-        textSettMenuDrodownScale.options.Add(new TMP_Dropdown.OptionData() {text = "150%"}); 
-        textSettMenuDrodownScale.options.Add(new TMP_Dropdown.OptionData() {text = "200%"}); 
-        textSettMenuDrodownScale.captionText.text = "100%";
-        textPrefBack.text = "Back";
+        // Preferences
+        {
+        prefTitle.text = "Preferences";
+        prefWidth.text = "Width";
+        prefHeight.text = "Height";
+        prefMultiplier.text = "Mesh Height Multiplier";
+        prefOctaves.text = "Octaves";
+        prefDrawMode.text = "Draw Mode";
+        prefDropdown.options.Clear();
+        prefDropdown.options.Add(new TMP_Dropdown.OptionData() {text = "Noise"});
+        prefDropdown.options.Add(new TMP_Dropdown.OptionData() {text = "Color"}); 
+        prefDropdown.options.Add(new TMP_Dropdown.OptionData() {text = "Mesh"}); 
+        prefDropdown.captionText.text = "Mesh";
+        settMenuScale.text = "Scale";
+        settMenuDropdownScale.options.Clear();
+        settMenuDropdownScale.options.Add(new TMP_Dropdown.OptionData() {text = "50%"});
+        settMenuDropdownScale.options.Add(new TMP_Dropdown.OptionData() {text = "100%"}); 
+        settMenuDropdownScale.options.Add(new TMP_Dropdown.OptionData() {text = "150%"}); 
+        settMenuDropdownScale.options.Add(new TMP_Dropdown.OptionData() {text = "200%"}); 
+        settMenuDropdownScale.captionText.text = "100%";
+        prefBack.text = "Back";
+        }
+
+        // Credits
+        {
+        creditsTitle.text = "Credits";
+        creditsInfo.text = @"Special thanks to 
+    1) Sebastian Lague - for wonderful YouTube tutorials and core feature of using Perlin Noise for Color and Mesh Maps generation;
+    2) Deniz Simsek - for great camera-rotation tutorial on YouTube;
+    3) Gökhan Gökçe - for amazing Standalone File Browser project on GitHub;
+    4) Avionx - for gorgeus assets used in app background;
+    5) Derrick Taylor from ""The Taylor Series"" - for clear illustrations used in ""How Does It Work"" menu;
+    6) Craig Perko - for helpful YouTube video on memory leaks.";
+        creditsBack.text = "Back";
+        }
+    
+        // How To Use
+        {
+        howUseBack.text = "Back";
+        howUseTitle1.text = "How to use?";
+        howUseTitle2.text = "1. Main Menu";
+        howUseTitle3.text = "2. Options Menu";
+        howUseTitle4.text = "3. App";
+        howUseTitle5.text = "4. Preferences";
+        howUseInfo1.text = @"There are four most important menus in the app:
+1) Main Menu;
+2) Options Menu;
+3) App;
+4) Preferences.
+
+Each of them will be covered in details on the following slides.";
+        howUseInfo2.text = @"There are six buttons in the Main Menu:
+1) Run - this button will start main part: the App;
+2) Options - this button will open Options Menu (see Options Menu slide);
+3) Exit - this button will close application;
+4) HowToUse - this button is leading to the tutorial menu, where you can learn what each button do;
+5) HowDoesItWork - this button is leading to the tutorial menu, where you will learn how does procedural generation works
+6) Credits - this button will open Credits Slide";
+        howUseInfo3.text = @"There are several elements in the Options Menu:
+1) ""Language"" Dropdown - here you can choose which language suits you best;
+2) ""Scale"" Dropdown - here you can choose the scale of all elements in app;";
+        howUseInfo4.text = @"There are several elements in the App:
+1) ""Seed"" input field in the left-up corner - here you can write number which will give you a unique map
+2) Four sliders in the right-up corner - with these you can change map generaitng values (see ""How Does It Work"" for more)
+3) Save/Load buttons in the left-bottom corner - with these you can save map by current parametrs (including full map with values) or load existing map by parametrs (not values)
+4) Preferences button in the right-down corner - will lead you to the Preferences menu
+
+Note: in this menu you can hold Right Mouse Button to rotate camera horizontally and hold Control+Right Mouse Button to rotate camera vertically.";
+        howUseInfo5.text = @"There are several elements in the Preferences:
+1) ""Width""/""Height"" input fields - here you can write desired map width/height (note: you cant write numbers bigger than 300 for technical reasons);
+2) ""Octaves"" sliders - with this you can change amount of octaves for map;
+3) ""Draw mode"" dropdown - you can choose options of displaying the map (the values are the same, but numbers are given color and height in ""Color Map"" and ""Mesh"" respectively);
+4) ""Back"" button - will lead you back to the App.";
+        }
+
+        // How Does It Work
+        {
+        howWorkBack.text = "Back";
+        howWorkTitle1.text = "An overview of Procedural Generation";
+        howWorkTitle2.text = "1. Using seed";
+        howWorkTitle3.text = "2. Chunks and interceptions";
+        howWorkTitle4.text = "3. Getting four non-smooth maps";
+        howWorkTitle5.text = "4. Lerping";
+        howWorkTitle6.text = "5. Smooth Stepping";
+        howWorkTitle7.text = "6. First Octave";
+        howWorkTitle8.text = "7. Lacunarity";
+        howWorkTitle9.text = "8. Persistance";
+        howWorkTitle10.text = "9. The End";
+        howWorkInfo1.text = @"There are four most important steps in procedural generation using Perlin (Fractal) noise:
+1) Getting continious stream of numbers from seed;
+2) Dividing map into chunks, assigning each borders interception a vector;
+3) Getting four non-smooth maps;
+4) Lerping and Smooth stepping two pairs of maps.
+5) Adding octaves
+
+Each of them will be covered in details on the following slides. 
+
+The example of several-octave map can be seen on pic. 1.";
+        howWorkInfo2.text = @"In order to get random values by the given seed, we can use Pseudo-Random Number Generator (PRNG): by the given seed it will always return same Stream of digits.
+
+Note: it's called ""Pseudo-Random"" because there's an algorithm behind it, but for our purposes it's randomnes is good enough.";
+        howWorkInfo3.text = @"We will draw an imaginary grid over the map and on each point of interception assing vector of length 1, each rotated by the number from seed. For example, if we will take a 2-digit numbers from the Stream, we will have 32 rotations for vectors (pic. 1). 
+
+It is worth noting that we should assign values in a spiral, so that in whatever direction the viewer goes, there will be a fresh chunk (pic. 2).";
+        howWorkInfo4.text = @"Now we will assign to each chunk 4 scalar values (a numbers) using dot product (see pic. 1) thus getting 4 tiled maps (see pic. 2). For the visualisation purposes we can assign minimal value to black, maximum - to white.";
+        howWorkInfo5.text = @"We will blend two pairs of maps horizontaly and then resulting maps - vertically. First part of blending is Lerping (lineary interpolating) - process of drawing curve between two lines (see pic. 1). And so we lerp between every curve in the cross section of the map getting smoothed in one direction (horizontal or vertical) map (see pic. 2).";
+        howWorkInfo6.text = @"We still have some problem - there are sharp corners where lerped curves meet (see pic. 1 and pic. 2), those are called ""kinks"" in calculus. To smooth them we will use Smooth Stepping function (see pic. 3) and get smoothed curve (see pic. 4). As a result of Lepring and Smooth Stepping we get a smoothed in one direction map (see pic. 5) from the two tiled maps.";
+        howWorkInfo7.text = @"Now we can blend 2 pairs of maps horizontaly (see pic. 1), and do the same thing with results - blend them vertically, which will result in One octave of Perlin Noise (see pic. 2)";
+        howWorkInfo8.text = @"In order to make more details on the map, we can generate new map (new octave) with bigger grid, and how much bigger is determined by ""Lacunarity"". So if Lacunarity equals 2, the grid of the second map will be two times bigger (see pic. 1 and pic. 2) and so on. But if we will simply add those additional octaves, we will get something similar white noise (see pic. 3).";
+        howWorkInfo9.text = @"The solution to previous problem is making parameter ""Persistance"". So if the Persistance is set to 0.5, every octave will be half smaller (see pic. 1). Then we can simply add those diminished octaves and get final result (see pic. 2).
+
+Note: you will need to find minimum and maximum values of the map, and reassign colors.";
+        howWorkInfo10.text = @"Now that we have the Noise Map (see pic. 1), we can assign different colors to different values (see pic. 2), or even make Height Map (Mesh) from Noise Map (see pic. 3). How high the Mesh will be controls ""Mesh Height Multiplier"". Because we are using PRNG, we can scale our map, change it's size, and move it.";        
+        }
     }
 
     public void changeLanguage(int val)
