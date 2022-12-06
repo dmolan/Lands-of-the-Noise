@@ -8,6 +8,7 @@ public class AppUI : MonoBehaviour
 {
     public GameObject Plane;
     public GameObject Mesh;
+    public GameObject meshHeightMultiplier;
 
     public MapGenerator mapGen;
 
@@ -81,18 +82,21 @@ public class AppUI : MonoBehaviour
             mapGen.drawMode = MapGenerator.DrawMode.NoiseMap;
             Plane.SetActive(true);
             Mesh.SetActive(false);
+            meshHeightMultiplier.SetActive(false);
         }
         else if (val == 1) 
         {
             mapGen.drawMode = MapGenerator.DrawMode.ColorMap;
             Plane.SetActive(true);
             Mesh.SetActive(false);
+            meshHeightMultiplier.SetActive(false);
         }
         else 
         {
             mapGen.drawMode = MapGenerator.DrawMode.Mesh;
             Plane.SetActive(false);
             Mesh.SetActive(true);
+            meshHeightMultiplier.SetActive(true);
         }
 
         mapGen.generateMap();

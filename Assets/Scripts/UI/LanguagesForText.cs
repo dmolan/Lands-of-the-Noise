@@ -156,7 +156,7 @@ public class LanguagesForText : MonoBehaviour
         howWorkTitle1.text = @"Пояснення ""Процедурної генерації""";
         howWorkTitle2.text = "1. Використання зерна";
         howWorkTitle3.text = "2. Блоки й Перетини";
-        howWorkTitle4.text = @"3. Отримання чотирьох ""шорстких"" карт";
+        howWorkTitle4.text = @"3. Отримання ""шорстких"" карт";
         howWorkTitle5.text = "4. Лінійна інтерполяція";
         howWorkTitle6.text = @"5. Метод ""Плавного кроку""";
         howWorkTitle7.text = "6. Перша октава";
@@ -172,22 +172,22 @@ public class LanguagesForText : MonoBehaviour
 
 Кожен з кроків буде детально пояснено на наступних слайдах. 
 
-Приклад багатооктавної карти можна бачити на pic. 1.";
+Приклад багатооктавної карти можна бачити на #1.";
         howWorkInfo2.text = @"Щоб отримати випадкові значення із заданого зерна, використаймо Генератор ПсевдоВипадкових Чисел (ГПВЧ): за заданим зерном завжди повертає однаковий набір цифр.
 
 Примітка: називається ""ПсевдоВипадкових Чисел"", бо насправді є алгоритм, але для наших цілей його випадковості достатньо.";
-        howWorkInfo3.text = @"Намалюймо уявну сітку на нашій карті (роздільна здатність визначає її розмір), кожній точці перетину ліній присвоймо одиничний повернутий на кут із зерна вектор. Наприклад, якщо будемо брати двоцифрові числа з Потоку, матимемо 32 варінти повороту для кожного вектора (pic. 1). 
+        howWorkInfo3.text = @"Намалюймо уявну сітку на нашій карті (роздільна здатність визначає її розмір), кожній точці перетину ліній присвоймо одиничний повернутий на кут із зерна вектор. Наприклад, якщо будемо брати двоцифрові числа з Потоку, матимемо 32 варінти повороту для кожного вектора (див. #1). 
 
-Варто додати, що присвоювати числа рекомендовано по спіралі, що глядач бачив ""свіжі"" блоки в кожному напряку (див. pic. 2).";
-        howWorkInfo4.text = @"Присвоймо кожному Блоку чотири скаляри (числа) використовуючи скалярний векторний добуток (see pic. 1), таким чином отримавши чотири клітинчасті карти (див. pic. 2). Для візулізації, присвоймо чорний колір мінімальному знаяенню, білий - максимальному.";
-        howWorkInfo5.text = @"Змішаймо дві пари карт між собою горизонтально, а результати - вертикально. Перша частина змішування є ""Лінійна інтерполяція"" - процес побудови кривої між двома відрізками (див. pic. 1). Інтерполюваваши між кожними двома відповідними відрізками на зрізі карти, отримуємо дещо зглажену версію-нащадок попередньої пари карт (див. pic. 2).";
-        howWorkInfo6.text = @"Проте там, де криві сходяться, виникають гострі куточки (див pic. 1 і pic. 2). Щоб їх згладити, використаймо метод ""Плавного кроку"" (див. pic. 3) й отримаймо згладжену криву-нащадок двох кривих з минулих карт (див. pic. 4). Як наслідок, отримуємо карту, згладжену в одному напрямку (див. pic. 5).";
-        howWorkInfo7.text = @"Тепер можемо змішати дві пари з чотирьох карт (див. pic. 1), а їхні результати - між собою вертикально й отримати те, що називають ""Перша Октава"" шуму Перлина (див. pic. 2)";
-        howWorkInfo8.text = @"Для того щоб підвищити деталізованість карти, згенеруймо нові Октави з щільнішими сітками, а наскільки щільнішими визначає параметр ""Лакунарність"". Наприклад, якщо Лакунарність дорівнює 2, сітка другої октави вдвічі більша (див. pic. 1 і pic. 2) і т.д. Але якщо ми просто додамо нові Октави до старої, отримаємо щось схоже на Білий шум (див. pic. 3).";
-        howWorkInfo9.text = @"Рішенням до попередньої проблеми є введенення парамерта ""Деталізованість"", який визначає ваговий множник, з яким октава додається до першої. Так, якщо Деталізованість дорівнює ""0.5"", вплив кожної нової октави вдвічі менше ніж вплив попередньої (див. pic. 1). Отож, маємо фінальний результат (див. pic. 2).
+Варто додати, що присвоювати числа рекомендовано по спіралі, що глядач бачив ""свіжі"" блоки в кожному напряку (див. #2).";
+        howWorkInfo4.text = @"Присвоймо кожному Блоку чотири скаляри (числа) використовуючи скалярний векторний добуток (див. #1), таким чином отримавши чотири клітинчасті карти (див. #2). Для візулізації, присвоймо чорний колір мінімальному значенню, білий - максимальному.";
+        howWorkInfo5.text = @"Змішаймо дві пари карт між собою горизонтально, а результати - вертикально. Перша частина змішування є ""Лінійна інтерполяція"" - процес побудови кривої між двома відрізками (див. #1). Інтерполюваваши між кожними двома відповідними відрізками на зрізі карти, отримуємо дещо зглажену версію-нащадок попередньої пари карт (див. #2).";
+        howWorkInfo6.text = @"Проте там, де криві сходяться, виникають гострі куточки (див #1 і #2). Щоб їх згладити, використаймо метод ""Плавного кроку"" (див. #3) й отримаймо згладжену криву-нащадок двох кривих з минулих карт (див. #4). Як наслідок, отримуємо карту, згладжену в одному напрямку (див. #5).";
+        howWorkInfo7.text = @"Тепер можемо змішати дві пари з чотирьох карт (див. #1), а їхні результати - між собою вертикально й отримати те, що називають ""Перша Октава"" шуму Перлина (див. #2)";
+        howWorkInfo8.text = @"Для того щоб підвищити деталізованість карти, згенеруймо нові Октави з щільнішими сітками, а наскільки щільнішими визначає параметр ""Лакунарність"". Наприклад, якщо Лакунарність дорівнює 2, сітка другої октави вдвічі більша (див. #1 і #2) і т.д. Але якщо ми просто додамо нові Октави до старої, отримаємо щось схоже на Білий шум (див. #3).";
+        howWorkInfo9.text = @"Рішенням до попередньої проблеми є введенення парамерта ""Деталізованість"", який визначає ваговий множник, з яким октава додається до першої. Так, якщо Деталізованість дорівнює ""0.5"", вплив кожної нової октави вдвічі менше ніж вплив попередньої (див. #1). Отож, маємо фінальний результат (див. #2).
 
 Примітка: потрібно знайти новий мінімум і максимум та переприсвоїти кольори після цього.";
-        howWorkInfo10.text = @"Маючи Шумову карту (див. pic. 1), можемо присвоїти різним діапазонам в межах 0-1 різні кольори (див. pic. 2), або навіть сконструювати об'ємну фігуру - Сітку (див. pic. 3). А наскільки високою буде Сітка, визначає множник у меню ""Уподобання"". Оскільки ми використовуємо ГПВЧ, можемо змінювати масштаб карти, рухати її тощо.";     
+        howWorkInfo10.text = @"Маючи Шумову карту (див. #1), можемо присвоїти різним діапазонам в межах 0-1 різні кольори (див. #2), або навіть сконструювати об'ємну фігуру - Сітку (див. #3). А наскільки високою буде Сітка, визначає множник у меню ""Уподобання"". Оскільки ми використовуємо ГПВЧ, можемо змінювати масштаб карти, рухати її тощо.";     
         }
     }
 
@@ -322,22 +322,22 @@ Note: in this menu you can hold Right Mouse Button to rotate camera horizontally
 
 Each of them will be covered in details on the following slides. 
 
-The example of several-octave map can be seen on pic. 1.";
+The example of several-octave map can be seen on #1.";
         howWorkInfo2.text = @"In order to get random values by the given seed, we can use Pseudo-Random Number Generator (PRNG): by the given seed it will always return same Stream of digits.
 
 Note: it's called ""Pseudo-Random"" because there's an algorithm behind it, but for our purposes it's randomnes is good enough.";
-        howWorkInfo3.text = @"We will draw an imaginary grid over the map and on each point of interception assing vector of length 1, each rotated by the number from seed. For example, if we will take a 2-digit numbers from the Stream, we will have 32 rotations for vectors (pic. 1). 
+        howWorkInfo3.text = @"We will draw an imaginary grid over the map and on each point of interception assing vector of length 1, each rotated by the number from seed. For example, if we will take a 2-digit numbers from the Stream, we will have 32 rotations for vectors (see #1). 
 
-It is worth noting that we should assign values in a spiral, so that in whatever direction the viewer goes, there will be a fresh chunk (pic. 2).";
-        howWorkInfo4.text = @"Now we will assign to each chunk 4 scalar values (a numbers) using dot product (see pic. 1) thus getting 4 tiled maps (see pic. 2). For the visualisation purposes we can assign minimal value to black, maximum - to white.";
-        howWorkInfo5.text = @"We will blend two pairs of maps horizontaly and then resulting maps - vertically. First part of blending is Lerping (lineary interpolating) - process of drawing curve between two lines (see pic. 1). And so we lerp between every curve in the cross section of the map getting smoothed in one direction (horizontal or vertical) map (see pic. 2).";
-        howWorkInfo6.text = @"We still have some problem - there are sharp corners where lerped curves meet (see pic. 1 and pic. 2), those are called ""kinks"" in calculus. To smooth them we will use Smooth Stepping function (see pic. 3) and get smoothed curve (see pic. 4). As a result of Lepring and Smooth Stepping we get a smoothed in one direction map (see pic. 5) from the two tiled maps.";
-        howWorkInfo7.text = @"Now we can blend 2 pairs of maps horizontaly (see pic. 1), and do the same thing with results - blend them vertically, which will result in One octave of Perlin Noise (see pic. 2)";
-        howWorkInfo8.text = @"In order to make more details on the map, we can generate new map (new octave) with bigger grid, and how much bigger is determined by ""Lacunarity"". So if Lacunarity equals 2, the grid of the second map will be two times bigger (see pic. 1 and pic. 2) and so on. But if we will simply add those additional octaves, we will get something similar white noise (see pic. 3).";
-        howWorkInfo9.text = @"The solution to previous problem is making parameter ""Persistance"". So if the Persistance is set to 0.5, every octave will be half smaller (see pic. 1). Then we can simply add those diminished octaves and get final result (see pic. 2).
+It is worth noting that we should assign values in a spiral, so that in whatever direction the viewer goes, there will be a fresh chunk (see #2).";
+        howWorkInfo4.text = @"Now we will assign to each chunk 4 scalar values (a numbers) using dot product (see #1) thus getting 4 tiled maps (see #2). For the visualisation purposes we can assign minimal value to black, maximum - to white.";
+        howWorkInfo5.text = @"We will blend two pairs of maps horizontaly and then resulting maps - vertically. First part of blending is Lerping (lineary interpolating) - process of drawing curve between two lines (see #1). And so we lerp between every curve in the cross section of the map getting smoothed in one direction (horizontal or vertical) map (see #2).";
+        howWorkInfo6.text = @"We still have some problem - there are sharp corners where lerped curves meet (see #1 and #2), those are called ""kinks"" in calculus. To smooth them we will use Smooth Stepping function (see #3) and get smoothed curve (see #4). As a result of Lepring and Smooth Stepping we get a smoothed in one direction map (see #5) from the two tiled maps.";
+        howWorkInfo7.text = @"Now we can blend 2 pairs of maps horizontaly (see #1), and do the same thing with results - blend them vertically, which will result in One octave of Perlin Noise (see #2)";
+        howWorkInfo8.text = @"In order to make more details on the map, we can generate new map (new octave) with bigger grid, and how much bigger is determined by ""Lacunarity"". So if Lacunarity equals 2, the grid of the second map will be two times bigger (see #1 and #2) and so on. But if we will simply add those additional octaves, we will get something similar white noise (see #3).";
+        howWorkInfo9.text = @"The solution to previous problem is making parameter ""Persistance"". So if the Persistance is set to 0.5, every octave will be half smaller (see #1). Then we can simply add those diminished octaves and get final result (see #2).
 
 Note: you will need to find minimum and maximum values of the map, and reassign colors.";
-        howWorkInfo10.text = @"Now that we have the Noise Map (see pic. 1), we can assign different colors to different values (see pic. 2), or even make Height Map (Mesh) from Noise Map (see pic. 3). How high the Mesh will be controls ""Mesh Height Multiplier"". Because we are using PRNG, we can scale our map, change it's size, and move it.";        
+        howWorkInfo10.text = @"Now that we have the Noise Map (see #1), we can assign different colors to different values (see #2), or even make Height Map (Mesh) from Noise Map (see #3). How high the Mesh will be controls ""Mesh Height Multiplier"". Because we are using PRNG, we can scale our map, change it's size, and move it.";        
         }
     }
 
