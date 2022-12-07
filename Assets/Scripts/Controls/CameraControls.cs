@@ -29,7 +29,66 @@ public class CameraControls : MonoBehaviour
 
     private bool isMousePressed = false;
 
+    public void changeMouseSensitivity(string newMouseSensitivity)
+    {
+        if (newMouseSensitivity != "")
+        {
+            mouseSensitivity = float.Parse(newMouseSensitivity);
+            if (mouseSensitivity > 99) mouseSensitivity = 99;
+            if (mouseSensitivity < 0) mouseSensitivity = 0;
+        }
+    }
 
+    public void changeScrollingSpeed(string newScrollingSpeed)
+    {
+        if (newScrollingSpeed != "")
+        {
+            scrollingSpeed = float.Parse(newScrollingSpeed);
+            if (scrollingSpeed > 9999) scrollingSpeed = 9999;
+            if (scrollingSpeed < 0) scrollingSpeed = 0;
+        }
+    }
+
+    public void changeAngleOfView(string newAngleOfView)
+    {
+        if (newAngleOfView != "")
+        {
+            rotationX = float.Parse(newAngleOfView);
+            if (rotationX > 360) rotationX = 360;
+            if (rotationX < 0) rotationX = 0;
+        }
+    }
+
+    public void changeCurrentDistance(string newCurrentDistance)
+    {
+        if (newCurrentDistance != "")
+        {
+            nextDistance = float.Parse(newCurrentDistance);
+            if (nextDistance > 9999) nextDistance = 9999;
+            if (nextDistance < 0) nextDistance = 0;
+        }
+    }
+
+    public void changeRotationSmoothTime(string newRotationSmoothTime)
+    {
+        if (newRotationSmoothTime != "")
+        {
+            rotationSmoothTime = float.Parse(newRotationSmoothTime);
+            if (rotationSmoothTime > 999) rotationSmoothTime = 999;
+            if (rotationSmoothTime < 0) rotationSmoothTime = 0;
+        }
+    }
+
+    public void changeDistanceLerpTime(string newDistanceLerpTime)
+    {
+        if (newDistanceLerpTime != "")
+        {
+            distanceLerpTime = float.Parse(newDistanceLerpTime);
+            if (distanceLerpTime > 99) distanceLerpTime = 99;
+            if (distanceLerpTime < 0) distanceLerpTime = 0;
+        }
+    }
+    
 
     void Start()
     {

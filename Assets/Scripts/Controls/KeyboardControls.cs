@@ -3,6 +3,7 @@
  *  Waits for key and mouse input, if there are such, calls "generateMap()"
 */
 using UnityEngine;
+using UnityEngine.UI;
 
 public class KeyboardControls : MonoBehaviour
 {
@@ -20,7 +21,27 @@ public class KeyboardControls : MonoBehaviour
     public GameObject canvasHowDoesItWork;
     public GameObject canvasCredits;
 
+    public GameObject settingsMenu;
+    public GameObject mainMenu;
 
+    public Button butRun, butOpt, butExit, butHowUse, butHowWork, butCredits;
+    private int currButton = -1;
+
+
+
+    // private void settCurrButton()
+    // {
+    //     if (currButton == 0) 
+    //     {
+    //         canvasMenu.SetActive(false); 
+    //         canvasApp.SetActive(true);
+    //     }
+    //     if (currButton == 1) 
+    //     {
+    //         mainMenu.SetActive(false); 
+    //         settingsMenu.SetActive(true);
+    //     }
+    // }
 
     void Start()
     {
@@ -51,6 +72,11 @@ public class KeyboardControls : MonoBehaviour
                 plane.SetActive(false);
                 mesh.SetActive(false);
             }
+            if (settingsMenu.activeSelf)
+            {
+                mainMenu.SetActive(true);
+                settingsMenu.SetActive(false);
+            }
         
             if (canvasPreferences.activeSelf)
             {
@@ -74,6 +100,12 @@ public class KeyboardControls : MonoBehaviour
             }
         }
         
+        // if (Input.GetKeyDown(KeyCode.Tab))
+        // {
+        //     ++currButton;
+        //     settCurrButton();
+        // }
+
         // For tutorial menu arrows
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
