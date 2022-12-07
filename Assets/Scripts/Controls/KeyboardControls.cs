@@ -25,7 +25,7 @@ public class KeyboardControls : MonoBehaviour
     public GameObject mainMenu;
 
     public Button butRun, butOpt, butExit, butHowUse, butHowWork, butCredits;
-    private int currButton = -1;
+    // private int currButton = -1;
 
 
 

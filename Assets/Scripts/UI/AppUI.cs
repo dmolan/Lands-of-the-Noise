@@ -11,6 +11,7 @@ public class AppUI : MonoBehaviour
     public GameObject meshHeightMultiplier;
 
     public MapGenerator mapGen;
+    public TMP_InputField inputMapWidth, inputMapHeight, inputMeshHeightMultiplier;
 
 
 
@@ -41,10 +42,16 @@ public class AppUI : MonoBehaviour
     public void changeWidth(string newMapWidth)
     {
         if (newMapWidth != "")
-        {
-            mapGen.mapWidth = int.Parse(newMapWidth);
-            if (mapGen.mapWidth > 300) mapGen.mapWidth = 300;
-            if (mapGen.mapWidth < 0) mapGen.mapWidth = 1;
+        {  
+            if (int.Parse(newMapWidth) > 300)
+            {
+                mapGen.mapWidth = 300;
+                inputMapWidth.text = "300";
+            }
+            else
+            {
+                mapGen.mapWidth = int.Parse(newMapWidth);
+            }
             mapGen.generateMap();
         }
     }
@@ -53,9 +60,15 @@ public class AppUI : MonoBehaviour
     {
         if (newMapHeight != "")
         {
-            mapGen.mapHeight = int.Parse(newMapHeight);
-            if (mapGen.mapHeight > 300) mapGen.mapHeight = 300;
-            if (mapGen.mapHeight < 0) mapGen.mapHeight = 1;
+            if (int.Parse(newMapHeight) > 300)
+            {
+                mapGen.mapHeight = 300;
+                inputMapHeight.text = "300";
+            }
+            else
+            {
+                mapGen.mapHeight = int.Parse(newMapHeight);
+            }
             mapGen.generateMap();
         }
     }
@@ -65,7 +78,16 @@ public class AppUI : MonoBehaviour
         if (newMeshHeightMultiplier != "")
         {
             mapGen.meshHeightMultiplier = float.Parse(newMeshHeightMultiplier);
-            if (mapGen.meshHeightMultiplier < 0.0001) mapGen.meshHeightMultiplier = 0.0001f;
+            if (mapGen.meshHeightMultiplier < 0.01) 
+            {
+                mapGen.meshHeightMultiplier = 0.01f;
+                inputMeshHeightMultiplier.text = "0.01";
+            }
+            if (mapGen.meshHeightMultiplier > 1000) 
+            {
+                mapGen.meshHeightMultiplier = 1000;
+                inputMeshHeightMultiplier.text = "1000";
+            }
             mapGen.generateMap();
         }
     }

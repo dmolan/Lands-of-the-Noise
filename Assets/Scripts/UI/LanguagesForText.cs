@@ -9,12 +9,17 @@ using TMPro;
 
 public class LanguagesForText : MonoBehaviour
 {
+    public enum LanguageNow {Ukrainian, English};
+    public LanguageNow languageNow = LanguageNow.Ukrainian;
+
     // Main Menu
-    public TextMeshProUGUI mainMenuRun, mainMenuOptions, mainMenuExit,
-    mainMenuHowUse, mainMenuHowUseInfo, mainMenuHowWork, mainMenuHowWorkInfo, mainMenuCredits;
+    public TextMeshProUGUI mainMenuRun, mainMenuOptions, mainMenuExit, mainMenuHowUse, 
+        mainMenuHowUseInfo, mainMenuHowWork, mainMenuHowWorkInfo, mainMenuCredits;
 
     // Settings Menu
-    public TextMeshProUGUI settMenuTitle, settMenuLanguage, settMenuScale, settMenuBack;
+    public TextMeshProUGUI settMenuTitle, settMenuLanguage, settMenuScale, settMenuBack, 
+        settMenuRotationSensitivity, settMenuZoomingSpeed, settMenuAngleOfView, 
+        settMenuCurrentDistance, settMenuRotationSmoothTime, settMenuDistanceLerpTime;
     public TMP_Dropdown settMenuDropdownLanguage, settMenuDropdownScale;
 
     // App
@@ -38,6 +43,7 @@ public class LanguagesForText : MonoBehaviour
         howWorkTitle6, howWorkTitle7, howWorkTitle8, howWorkTitle9, howWorkTitle10;
     public TextMeshProUGUI howWorkInfo1, howWorkInfo2, howWorkInfo3, howWorkInfo4, howWorkInfo5,
         howWorkInfo6, howWorkInfo7, howWorkInfo8, howWorkInfo9, howWorkInfo10;
+
 
 
 
@@ -70,6 +76,14 @@ public class LanguagesForText : MonoBehaviour
         settMenuDropdownScale.options.Add(new TMP_Dropdown.OptionData() {text = "150%"}); 
         settMenuDropdownScale.options.Add(new TMP_Dropdown.OptionData() {text = "200%"}); 
         settMenuDropdownScale.captionText.text = "100%";
+
+        settMenuRotationSensitivity.text = "Чутливість миші";
+        settMenuZoomingSpeed.text = "Чутливість зуму";
+        settMenuAngleOfView.text = "Кут огляду";
+        settMenuCurrentDistance.text = "Відстань до камери";
+        settMenuRotationSmoothTime.text = "Плавність обертання";
+        settMenuDistanceLerpTime.text = "Плавність зуму";
+
         settMenuBack.text = "Назад";
         }
 
@@ -213,6 +227,14 @@ public class LanguagesForText : MonoBehaviour
         settMenuDropdownLanguage.options.Add(new TMP_Dropdown.OptionData() {text = "Ukrainian"});
         settMenuDropdownLanguage.options.Add(new TMP_Dropdown.OptionData() {text = "English"});
         settMenuDropdownLanguage.captionText.text = "English";
+
+        settMenuRotationSensitivity.text = "Mouse Sensitivity";
+        settMenuZoomingSpeed.text = "Zooming Speed";
+        settMenuAngleOfView.text = "Angle Of View";
+        settMenuCurrentDistance.text = "Camera Distance";
+        settMenuRotationSmoothTime.text = "Rotation Smoothing";
+        settMenuDistanceLerpTime.text = "Distance Smoothing";
+
         settMenuBack.text = "Back";
         }
 
@@ -343,12 +365,15 @@ Note: you will need to find minimum and maximum values of the map, and reassign 
 
     public void changeLanguage(int val)
     {
-        if (val == 0) changeLanguageToUkr();
-        else if (val == 1) changeLanguageToEng();
-    }
-
-    void Start()
-    {
-        changeLanguageToUkr();
+        if (val == 0) 
+        {
+            changeLanguageToUkr();
+            languageNow = LanguageNow.Ukrainian;
+        }
+        else if (val == 1) 
+        {
+            changeLanguageToEng();
+            languageNow = LanguageNow.English;
+        }
     }
 }

@@ -14,6 +14,7 @@ public class MainMenu : MonoBehaviour
     public GameObject objectCanvasMenu;
     public GameObject objectCanvasApp;
 
+    public Config config;
 
 
     public void RunApp()
@@ -35,6 +36,7 @@ public class MainMenu : MonoBehaviour
 
     public void QuitApp()
     {
+        config.saveData();
         Application.Quit();
     }
 }

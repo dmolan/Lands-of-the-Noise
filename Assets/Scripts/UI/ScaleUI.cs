@@ -15,31 +15,21 @@ public class ScaleUI : MonoBehaviour
 
     const float defaultDeltaScale = 0.25f;
 
-    private float defMenuScale = 0.4f + defaultDeltaScale;
-    private float defAppScale = 0.7f + defaultDeltaScale;
-    private float defPrefScale = 0.55f + defaultDeltaScale;
-    private float defHowUseScale = 0.35f + defaultDeltaScale;
-    private float defHowWorkScale = 0.35f + defaultDeltaScale;
-    private float defCreditsScale = 0.35f + defaultDeltaScale;
+    public float defMenuScale = 0.4f + defaultDeltaScale;
+    public float defAppScale = 0.7f + defaultDeltaScale;
+    public float defPrefScale = 0.55f + defaultDeltaScale;
+    public float defHowUseScale = 0.35f + defaultDeltaScale;
+    public float defHowWorkScale = 0.35f + defaultDeltaScale;
+    public float defCreditsScale = 0.35f + defaultDeltaScale;
 
-    private float menuScale;
-    private float appScale;
-    private float prefScale;
-    private float howUseScale;
-    private float howWorkScale;
-    private float creditsScale;
+    public float menuScale;
+    public float appScale;
+    public float prefScale;
+    public float howUseScale;
+    public float howWorkScale;
+    public float creditsScale;
 
-
-
-    void Start()
-    {
-        menuScale = defMenuScale;
-        appScale = defAppScale;
-        prefScale = defPrefScale;
-        howUseScale = defHowUseScale;
-        howWorkScale = defHowWorkScale;
-        creditsScale = defCreditsScale;
-    }
+    public int scaleIndexNow;
 
     void Update()
     {
@@ -53,6 +43,8 @@ public class ScaleUI : MonoBehaviour
 
     public void changeCanvasScale(int val)
     {
+        scaleIndexNow = val;
+
         if (val == 0)
         {
             menuScale = defMenuScale * (3/4f);
