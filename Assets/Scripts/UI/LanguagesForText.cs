@@ -77,7 +77,7 @@ public class LanguagesForText : MonoBehaviour
         settMenuDropdownScale.options.Add(new TMP_Dropdown.OptionData() {text = "200%"}); 
         settMenuDropdownScale.captionText.text = "100%";
 
-        settMenuRotationSensitivity.text = "Чутливість миші";
+        settMenuRotationSensitivity.text = "Чутливість обертання";
         settMenuZoomingSpeed.text = "Чутливість зуму";
         settMenuAngleOfView.text = "Кут огляду";
         settMenuCurrentDistance.text = "Відстань до камери";
@@ -147,9 +147,15 @@ public class LanguagesForText : MonoBehaviour
 4) Як використовувати? - веде до меню, де можна навчитися користуванню інтерфейсом;
 5) Як це працює? - веде до меню, де можна зрозуміти як працює процедурна генерація;
 6) Подяки - відкриває слайд з подяками.";
-        howUseInfo3.text = @"В Опціях є декілька елементів:
+    howUseInfo3.text = @"В Опціях є декілька елементів:
 1) ""Мова"" спадний список - можна вибрати мову;
-2) ""Масштаб"" спадний список - можна змінювати масштаб карти.";
+2) ""Масштаб"" спадний список - можна змінювати масштаб карти.;
+3) ""Чутливість обертання"" - на скільки камера повертається при русі мишки
+4) ""Чутливість зуму"" - наскільки швидко карта наближаться/віддаляється
+5) ""Плавність обертання"" - наскільки скоро камера перестане обертатися (більше чило - довше)
+6) ""Плавність зуму"" - наскільки скоро камера перестане наближатися/віддалятися (більше чило - довше)
+7) ""Відстань до камери"" - змінює стандартну відстань від камери до центру карти
+8) ""Кут огляду"" - змінєю кут між картою й камерою (від 0 до 90 градусів)";
         howUseInfo4.text = @"У Програмі є декілька елементів:
 1) Поле вводу ""Зерно"" у лівому-верхньому куті - сюди можна ввести зерно для карти (див. ""Як це працює?"");
 2) Чотири позунки в правому-верхньому куті - змінюють параметри генерації карти (див. ""Як це працює?"");
@@ -307,7 +313,13 @@ Each of them will be covered in details on the following slides.";
 6) Credits - this button will open Credits Slide";
         howUseInfo3.text = @"There are several elements in the Options Menu:
 1) ""Language"" Dropdown - here you can choose which language suits you best;
-2) ""Scale"" Dropdown - here you can choose the scale of all elements in app;";
+2) ""Scale"" Dropdown - here you can choose the scale of all elements in app;
+3) ""Rotation Sensitivity"" - changes how much will camera rotate on mouse movement
+4) ""Zooming Speed"" - changes how fast will mouse wheel zoom in/out
+5) ""Rotation Smoothing"" - how fast will camera stop rotating (bigger number - more time)
+6) ""Distance Smoothing"" - how fast wil camera stop zooming in/out (bigger number - more time)
+7) ""Camera Distance"" - changes default camera distance to the map center
+8) ""Angle Of View"" - changes angle between map plane and camera (0 to 90 degrees)";
         howUseInfo4.text = @"There are several elements in the App:
 1) ""Seed"" input field in the left-up corner - here you can write number which will give you a unique map
 2) Four sliders in the right-up corner - with these you can change map generaitng values (see ""How Does It Work"" for more)

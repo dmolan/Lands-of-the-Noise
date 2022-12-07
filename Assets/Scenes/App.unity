@@ -6487,7 +6487,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &382779179
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6891,8 +6891,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -256.6, y: 199.3}
-  m_SizeDelta: {x: 2337.3079, y: 947.3241}
+  m_AnchoredPosition: {x: 467.5, y: -80.7}
+  m_SizeDelta: {x: 3785.6086, y: 1507.3336}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &428215740
 MonoBehaviour:
@@ -6919,7 +6919,25 @@ MonoBehaviour:
     - here you can choose which language suits you best;
 
     2) "Scale" Dropdown
-    - here you can choose the scale of all elements in app;'
+    - here you can choose the scale of all elements in app;
+
+    3) "Rotation Sensitivity"
+    - changes how much will camera rotate on mouse movement
+
+    4) "Zooming Speed"
+    - changes how fast will mouse wheel zoom in/out
+
+    5) "Rotation Smoothing"
+    - how fast will camera stop rotating (bigger number - more time)
+
+    6) Distance
+    Smoothing - how fast wil camera stop zooming in/out (bigger number - more time)
+
+    7)
+    "Camera Distance" - changes default camera distance to the map center
+
+    8)
+    "Angle Of View" - changes angle between map plane and camera (0 to 90 degrees)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -26964,7 +26982,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1708468832
 RectTransform:
   m_ObjectHideFlags: 0
@@ -27308,8 +27326,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -326.17352, y: 110.18024}
-  m_SizeDelta: {x: 313.06256, y: 45.88501}
+  m_AnchoredPosition: {x: -306.26, y: 101.04}
+  m_SizeDelta: {x: 352.888, y: 47.601593}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1746102367
 MonoBehaviour:
