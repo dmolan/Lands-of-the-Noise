@@ -8,8 +8,8 @@ using UnityEngine.UI;
 public class KeyboardControls : MonoBehaviour
 {
     public MapGenerator mapGenerator;
-    public HowWorkPages pagesHowWork;
-    public HowUsePages pagesHowUse;
+    public HowDoesItWorkPages pagesHowWork;
+    public HowToUsePages pagesHowUse;
     
     public GameObject plane;
     public GameObject mesh;

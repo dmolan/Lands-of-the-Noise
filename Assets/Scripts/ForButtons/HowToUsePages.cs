@@ -5,7 +5,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HowUsePages : MonoBehaviour
+public class HowToUsePages : MonoBehaviour
 {
     public Button buttonFastBw, buttonBw, buttonFw, buttonFastFw;
     public GameObject slide1, slide2, slide3, slide4, slide5;

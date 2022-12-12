@@ -9,14 +9,13 @@ public class CameraControls : MonoBehaviour
 {
     public Transform target;
 
-    public float currentDistance;
-    public float defaultDistance = 800f;
-    public float angleOfView;
+    public float currentDistanceToMap;
+    public float defaultDistanceToMap = 800f;
     public float deafultAngleOfView = 50f;
 
     // Mouse controls
     public float rotationSensitivity = 5f;
-    public float zoomingSpeed = 500f;
+    public float zoomingSensitivity = 500f;
 
     // Parameters for smoothly changing camera rotation/zoom
     public float rotationSmoothTime = 60f;
@@ -36,6 +35,56 @@ public class CameraControls : MonoBehaviour
         inputCurrentDistance, InputRotationSmoothTime, inputDistanceLerpTime;
 
 
+
+    void Update()
+    {
+        if (Input.GetAxis("Mouse ScrollWheel") != 0f)
+        {
+            nextDistance = currentDistanceToMap - Input.GetAxis("Mouse ScrollWheel") * zoomingSensitivity;
+        }
+
+        // If Right Mouse Button is UNPRESSED, stop calculating which rotation to make
+        if (Input.GetMouseButtonUp(1))
+        {
+            isMousePressed = false;
+        }
+        // If Right Mouse Button is PRESSED, start calculating which rotation to make
+        else if (Input.GetMouseButtonDown(1) || isMousePressed)
+        {
+            isMousePressed = true;
+
+            float mouseX = 0, mouseY = 0;
+            // If Control is pressed rotate vertically, else horizontally
+            if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
+            {
+                mouseY = Input.GetAxis("Mouse Y") * rotationSensitivity;
+            }
+            else
+            {
+                mouseX = Input.GetAxis("Mouse X") * rotationSensitivity;
+            }
+
+            rotationY += mouseX;
+            rotationX += mouseY;
+            if (rotationX < 10) rotationX = 10;
+            if (rotationX > 90) rotationX = 90;
+        }
+
+        Vector3 nextRotation = new Vector3(rotationX, rotationY);
+
+        // Apply damping between rotation changes
+        currentRotation = Vector3.SmoothDamp(currentRotation, nextRotation, ref smoothVelocity, Time.deltaTime*rotationSmoothTime);
+        transform.localEulerAngles = currentRotation;
+
+        // Substract forward vector of the GameObject to point its forward vector to the target
+        transform.position = target.position - transform.forward * currentDistanceToMap;
+
+        // Lineary interpolate distance from target
+        if (nextDistance > 0)
+        {
+            currentDistanceToMap = Mathf.Lerp(currentDistanceToMap, nextDistance, Time.deltaTime*distanceLerpTime);
+        }
+    }
 
     public void changeMouseSensitivity(string newMouseSensitivity)
     {
@@ -59,15 +108,15 @@ public class CameraControls : MonoBehaviour
     {
         if (newScrollingSpeed != "")
         {
-            zoomingSpeed = float.Parse(newScrollingSpeed);
-            if (zoomingSpeed > 9999) 
+            zoomingSensitivity = float.Parse(newScrollingSpeed);
+            if (zoomingSensitivity > 9999) 
             {
-                zoomingSpeed = 9999;
+                zoomingSensitivity = 9999;
                 inputZoomingSpeed.text = "9999";
             }
-            if (zoomingSpeed < 0) 
+            if (zoomingSensitivity < 0) 
             {
-                zoomingSpeed = 0;
+                zoomingSensitivity = 0;
                 inputZoomingSpeed.text = "0";
             }
         }
@@ -96,7 +145,7 @@ public class CameraControls : MonoBehaviour
     {
         if (newCurrentDistance != "")
         {
-            defaultDistance = float.Parse(newCurrentDistance);
+            defaultDistanceToMap = float.Parse(newCurrentDistance);
             nextDistance = float.Parse(newCurrentDistance);
             if (nextDistance > 9999) 
             {
@@ -144,52 +193,6 @@ public class CameraControls : MonoBehaviour
                 distanceLerpTime = 0;
                 inputDistanceLerpTime.text = "0";
             }
-        }
-    }
-
-    void Update()
-    {
-        if (Input.GetAxis("Mouse ScrollWheel") != 0f)
-        {
-            nextDistance = currentDistance - Input.GetAxis("Mouse ScrollWheel") * zoomingSpeed;
-        }
-        if (Input.GetMouseButtonUp(1))
-        {
-            isMousePressed = false;
-        }
-        else if (Input.GetMouseButtonDown(1) || isMousePressed)
-        {
-            isMousePressed = true;
-
-            float mouseX = 0, mouseY = 0;
-            if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
-            {
-                mouseY = Input.GetAxis("Mouse Y") * rotationSensitivity;
-            }
-            else
-            {
-                mouseX = Input.GetAxis("Mouse X") * rotationSensitivity;
-            }
-
-            rotationY += mouseX;
-            rotationX += mouseY;
-            if (rotationX < 10) rotationX = 10;
-            if (rotationX > 90) rotationX = 90;
-        }
-
-        Vector3 nextRotation = new Vector3(rotationX, rotationY);
-
-        // Apply damping between rotation changes
-        currentRotation = Vector3.SmoothDamp(currentRotation, nextRotation, ref smoothVelocity, Time.deltaTime * rotationSmoothTime);
-        transform.localEulerAngles = currentRotation;
-
-        // Substract forward vector of the GameObject to point its forward vector to the target
-        transform.position = target.position - transform.forward * currentDistance;
-
-        // Lineary interpolate distance from target
-        if (nextDistance > 0)
-        {
-            currentDistance = Mathf.Lerp(currentDistance, nextDistance, Time.deltaTime*distanceLerpTime);
         }
     }
 }
