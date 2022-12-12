@@ -91,7 +91,7 @@ public class LanguagesForText : MonoBehaviour
         {
         appSeed.text = "Зерно";
         appLacunarity.text = "Лакунарність";
-        appPersistance.text = "Деталізованість";
+        appPersistance.text = "Посіченість";
         appScale.text = "Масштаб";
         appOffsetSpeed.text = "Швидкість зсуву";
         }

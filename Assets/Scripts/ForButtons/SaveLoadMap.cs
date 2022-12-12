@@ -22,8 +22,6 @@ public class SaveLoadMap : MonoBehaviour
     public TMP_InputField InputFieldMultiplier;
     public TMP_Dropdown DrawMode;
 
-    // TODO: resolve loading screen issue
-
 
 
     public void saveCurrentMap()
@@ -32,10 +30,11 @@ public class SaveLoadMap : MonoBehaviour
             new ExtensionFilter("Text", "txt"),
         };
 
-        string savePath = StandaloneFileBrowser.SaveFilePanel("Save map as TXT", "", "mapSave", extensionList);
+        string saveFilePath = StandaloneFileBrowser.SaveFilePanel("Save map as TXT", "", "mapSave", extensionList);
         
-        if (savePath.Length != 0)
+        if (saveFilePath.Length != 0)
         {
+            // Regenerating Noise Map to save it
             float[,] noiseMap = mapGen.getNoiseMap();
 
             string mapData = 
@@ -60,17 +59,17 @@ public class SaveLoadMap : MonoBehaviour
                 }
                 mapData += "\r\n";
             }
-            System.IO.File.WriteAllText(savePath, mapData);
+            System.IO.File.WriteAllText(saveFilePath, mapData);
         }
     }
 
     public void loadMap()
     {
-        string loadPath = StandaloneFileBrowser.OpenFilePanel("Load a map from TXT", "", "", false)[0];
+        string loadFilePath = StandaloneFileBrowser.OpenFilePanel("Load a map from TXT", "", "", false)[0];
 
-        if (loadPath.Length != 0)
+        if (loadFilePath.Length != 0)
         {
-            string mapData = System.IO.File.ReadAllText(loadPath);
+            string mapData = System.IO.File.ReadAllText(loadFilePath);
             string[] strNumbers = mapData.Split();
             
             if (strNumbers[1] == "Default")

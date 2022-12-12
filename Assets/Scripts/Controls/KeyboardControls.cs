@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class KeyboardControls : MonoBehaviour
 {
-    public MapGenerator mapGen;
+    public MapGenerator mapGenerator;
     public HowWorkPages pagesHowWork;
     public HowUsePages pagesHowUse;
     
@@ -25,29 +25,14 @@ public class KeyboardControls : MonoBehaviour
     public GameObject mainMenu;
 
     public Button butRun, butOpt, butExit, butHowUse, butHowWork, butCredits;
-    // private int currButton = -1;
+    
 
-
-
-    // private void settCurrButton()
-    // {
-    //     if (currButton == 0) 
-    //     {
-    //         canvasMenu.SetActive(false); 
-    //         canvasApp.SetActive(true);
-    //     }
-    //     if (currButton == 1) 
-    //     {
-    //         mainMenu.SetActive(false); 
-    //         settingsMenu.SetActive(true);
-    //     }
-    // }
 
     void Start()
     {
-        mapGen.generateMap();
+        mapGenerator.generateMap();
 
-        if (mapGen.drawMode == MapGenerator.DrawMode.Mesh)
+        if (mapGenerator.drawMode == MapGenerator.DrawMode.Mesh)
         {
             plane.SetActive(false); 
             mesh.SetActive(true); 
@@ -59,7 +44,7 @@ public class KeyboardControls : MonoBehaviour
         }
     }
 
-    private bool changeMade = false;
+    private bool isChangesMade = false;
     void Update()
     {
         if (Input.GetKey(KeyCode.Escape))
@@ -99,14 +84,8 @@ public class KeyboardControls : MonoBehaviour
                 canvasCredits.SetActive(false);
             }
         }
-        
-        // if (Input.GetKeyDown(KeyCode.Tab))
-        // {
-        //     ++currButton;
-        //     settCurrButton();
-        // }
 
-        // For tutorial menu arrows
+        // Arrows for tutorial menu and App
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             if (canvasHowDoesItWork.activeSelf)
@@ -156,32 +135,33 @@ public class KeyboardControls : MonoBehaviour
         {
             if (canvasApp.activeSelf)
             {
-                mapGen.offset.x += mapGen.offsetSpeed;
-                changeMade = true;
+                mapGenerator.offset.x += mapGenerator.offsetSpeed;
+                isChangesMade = true;
             }
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
             if (canvasApp.activeSelf)
             {
-                mapGen.offset.x -= mapGen.offsetSpeed;
-                changeMade = true;
+                mapGenerator.offset.x -= mapGenerator.offsetSpeed;
+                isChangesMade = true;
             }
         }
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            mapGen.offset.y += mapGen.offsetSpeed;
-            changeMade = true;
+            mapGenerator.offset.y += mapGenerator.offsetSpeed;
+            isChangesMade = true;
         }
         else if (Input.GetKey(KeyCode.DownArrow))
         {
-            mapGen.offset.y -= mapGen.offsetSpeed;
-            changeMade = true;
+            mapGenerator.offset.y -= mapGenerator.offsetSpeed;
+            isChangesMade = true;
         }
-        if (changeMade) 
+        if (isChangesMade) 
         {
-            mapGen.generateMap();
-            changeMade = false;
+            mapGenerator.generateMap();
+
+            isChangesMade = false;
         }
     }
 }
