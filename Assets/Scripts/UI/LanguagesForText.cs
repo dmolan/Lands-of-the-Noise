@@ -159,8 +159,9 @@ public class LanguagesForText : MonoBehaviour
         howUseInfo4.text = @"У Програмі є декілька елементів:
 1) Поле вводу ""Зерно"" у лівому-верхньому куті - сюди можна ввести зерно для карти (див. ""Як це працює?"");
 2) Чотири позунки в правому-верхньому куті - змінюють параметри генерації карти (див. ""Як це працює?"");
-3) Кнопки з символами стрілочка вгору/вниз в лівому-нижньому куті - зберігають усі нинішні параметри карти та повні значення висот або завантажити інуючу карту за параметрами (не значеннями);
-4) Кнопка з символом коліщатка в правому нижньому куті - відкриває меню ""Уподобання"".
+3) Кнопки з символами стрілочка вгору/вниз в правому-нижньому куті - зберегти усі нинішні параметри карти та повні значення висот / завантажити існуючу карту за параметрами;
+4) Кнопка з символом коліщатка в правому нижньому куті - відкриває меню ""Уподобання"";
+5) Кнопка ""Назад"" - вертає в головне меню.
 
 Примітка: у цьому меню щоб обертати камеру горизонтально, потрібно затиснути Праву Кнопку Миші, а щоб обертати камеру вертикально - ""Ctrl"" + Праву Кнопку Миші.";
         howUseInfo5.text = @"В ""Уподобаннях"" є декілька елементів:
@@ -309,28 +310,29 @@ Each of them will be covered in details on the following slides.";
 2) Options - this button will open Options Menu (see Options Menu slide);
 3) Exit - this button will close application;
 4) HowToUse - this button is leading to the tutorial menu, where you can learn what each button do;
-5) HowDoesItWork - this button is leading to the tutorial menu, where you will learn how does procedural generation works
-6) Credits - this button will open Credits Slide";
+5) HowDoesItWork - this button is leading to the tutorial menu, where you will learn how does procedural generation works;
+6) Credits - this button will open Credits Slide.";
         howUseInfo3.text = @"There are several elements in the Options Menu:
 1) ""Language"" Dropdown - here you can choose which language suits you best;
 2) ""Scale"" Dropdown - here you can choose the scale of all elements in app;
-3) ""Rotation Sensitivity"" - changes how much will camera rotate on mouse movement
-4) ""Zooming Speed"" - changes how fast will mouse wheel zoom in/out
-5) ""Rotation Smoothing"" - how fast will camera stop rotating (bigger number - more time)
-6) ""Distance Smoothing"" - how fast wil camera stop zooming in/out (bigger number - more time)
-7) ""Camera Distance"" - changes default camera distance to the map center
-8) ""Angle Of View"" - changes angle between map plane and camera (0 to 90 degrees)";
+3) ""Rotation Sensitivity"" - changes how much will camera rotate on mouse movement;
+4) ""Zooming Sensitivity"" - changes how fast will mouse wheel zoom in/out;
+5) ""Rotation Smoothing"" - how fast will camera stop rotating (bigger number - more time);
+6) ""Distance Smoothing"" - how fast will camera stop zooming in/out (bigger number - more time);
+7) ""Camera Distance"" - changes default camera distance to the map center;
+8) ""Angle Of View"" - changes angle between the map's plane and camera (0 to 90 degrees).";
         howUseInfo4.text = @"There are several elements in the App:
-1) ""Seed"" input field in the left-up corner - here you can write number which will give you a unique map
-2) Four sliders in the right-up corner - with these you can change map generaitng values (see ""How Does It Work"" for more)
-3) Save/Load buttons in the left-bottom corner - with these you can save map by current parametrs (including full map with values) or load existing map by parametrs (not values)
-4) Preferences button in the right-down corner - will lead you to the Preferences menu
+1) ""Seed"" input field in the left-up corner - here you can write number which will give you a unique map (see ""How Does It Work"" for more);
+2) Four sliders in the right-up corner - with these you can change map generaitng values (see ""How Does It Work"" for more);
+3) Save/Load buttons in the left-bottom corner - with these you can save map by current parametrs (including full map with values) or load existing map by parametrs;
+4) Preferences button in the right-down corner - will lead you to the Preferences menu;
+5) ""Back"" button in the left-down corner - will lead you back to the App.
 
 Note: in this menu you can hold Right Mouse Button to rotate camera horizontally and hold Control+Right Mouse Button to rotate camera vertically.";
         howUseInfo5.text = @"There are several elements in the Preferences:
-1) ""Width""/""Height"" input fields - here you can write desired map width/height (note: you cant write numbers bigger than 300 for technical reasons);
-2) ""Octaves"" sliders - with this you can change amount of octaves for map;
-3) ""Draw mode"" dropdown - you can choose options of displaying the map (the values are the same, but numbers are given color and height in ""Color Map"" and ""Mesh"" respectively);
+1) ""Width""/""Height"" input fields - here you can write desired map's width/height (note: you cant write numbers bigger than 300 for technical reasons);
+2) ""Octaves"" sliders - with this you can change amount of octaves for the map;
+3) ""Draw mode"" dropdown - you can choose options of displaying the map (same values, but numbers are given color and height in ""Color Map"" and ""Mesh"" respectively);
 4) ""Back"" button - will lead you back to the App.";
         }
 

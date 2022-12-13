@@ -43,10 +43,10 @@ public class AppUI : MonoBehaviour
     {
         if (newMapWidth != "")
         {  
-            if (int.Parse(newMapWidth) > 300)
+            if (int.Parse(newMapWidth) > 30000)
             {
-                mapGen.mapWidth = 300;
-                inputMapWidth.text = "300";
+                mapGen.mapWidth = 30000;
+                inputMapWidth.text = "30000";
             }
             else
             {
@@ -60,10 +60,10 @@ public class AppUI : MonoBehaviour
     {
         if (newMapHeight != "")
         {
-            if (int.Parse(newMapHeight) > 300)
+            if (int.Parse(newMapHeight) > 30000)
             {
-                mapGen.mapHeight = 300;
-                inputMapHeight.text = "300";
+                mapGen.mapHeight = 30000;
+                inputMapHeight.text = "30000";
             }
             else
             {

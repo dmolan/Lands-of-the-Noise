@@ -34,7 +34,7 @@ public class MapGenerator : MonoBehaviour
 
     public TerrainType[] regions;
 
-    
+
 
     public float[,] getNoiseMap()
     {
