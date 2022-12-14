@@ -31,8 +31,8 @@ public class CameraControls : MonoBehaviour
 
     private bool isMousePressed = false;
 
-    public TMP_InputField inputRotationSensitivity, inputZoomingSpeed, inputAngleOfView, 
-        inputCurrentDistance, InputRotationSmoothTime, inputDistanceLerpTime;
+    public TMP_InputField inputFieldDefaultDistanceToMap, inputFieldDefaultAngleOfView, inputFieldRotationSensitivity, 
+    inputFieldZoomingSensitivity, inputFieldRotationSmoothTime, inputFieldDistanceLerpTime;
 
 
 
@@ -94,12 +94,12 @@ public class CameraControls : MonoBehaviour
             if (rotationSensitivity > 99) 
             {
                 rotationSensitivity = 99;
-                inputRotationSensitivity.text = "99";
+                inputFieldRotationSensitivity.text = "99";
             }
             if (rotationSensitivity < 0) 
             {
                 rotationSensitivity = 0;
-                inputRotationSensitivity.text = "0";
+                inputFieldRotationSensitivity.text = "0";
             }
         }
     }
@@ -112,12 +112,12 @@ public class CameraControls : MonoBehaviour
             if (zoomingSensitivity > 9999) 
             {
                 zoomingSensitivity = 9999;
-                inputZoomingSpeed.text = "9999";
+                inputFieldZoomingSensitivity.text = "9999";
             }
             if (zoomingSensitivity < 0) 
             {
                 zoomingSensitivity = 0;
-                inputZoomingSpeed.text = "0";
+                inputFieldZoomingSensitivity.text = "0";
             }
         }
     }
@@ -131,12 +131,12 @@ public class CameraControls : MonoBehaviour
             if (rotationX > 90) 
             {
                 rotationX = 90;
-                inputAngleOfView.text = "90";
+                inputFieldDefaultAngleOfView.text = "90";
             }
             if (rotationX < 10) 
             {
                 rotationX = 0;
-                inputAngleOfView.text = "0";
+                inputFieldDefaultAngleOfView.text = "0";
             }
         }
     }
@@ -150,12 +150,12 @@ public class CameraControls : MonoBehaviour
             if (nextDistance > 9999) 
             {
                 nextDistance = 9999;
-                inputCurrentDistance.text = "9999";
+                inputFieldDefaultDistanceToMap.text = "9999";
             }
             if (nextDistance < 0) 
             {
                 nextDistance = 0;
-                inputCurrentDistance.text = "0";
+                inputFieldDefaultDistanceToMap.text = "0";
             }
         }
     }
@@ -168,12 +168,12 @@ public class CameraControls : MonoBehaviour
             if (rotationSmoothTime > 999) 
             {
                 rotationSmoothTime = 999;
-                InputRotationSmoothTime.text = "999";
+                inputFieldRotationSmoothTime.text = "999";
             }
             if (rotationSmoothTime < 0) 
             {
                 rotationSmoothTime = 0;
-                InputRotationSmoothTime.text = "0";
+                inputFieldRotationSmoothTime.text = "0";
             }
         }
     }
@@ -186,12 +186,12 @@ public class CameraControls : MonoBehaviour
             if (distanceLerpTime > 99) 
             {
                 distanceLerpTime = 99;
-                inputDistanceLerpTime.text = "99";
+                inputFieldDistanceLerpTime.text = "99";
             }
             if (distanceLerpTime < 0)
             {
                 distanceLerpTime = 0;
-                inputDistanceLerpTime.text = "0";
+                inputFieldDistanceLerpTime.text = "0";
             }
         }
     }
