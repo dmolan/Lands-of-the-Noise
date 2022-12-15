@@ -12,7 +12,7 @@ public class MapSaveLoad : MonoBehaviour
     public MapGenerator mapGenerator;
 
     public Slider sliderPersistance;
-    public TMP_InputField inputFieldMapWidth, inputFieldMapHeight;
+    public TMP_InputField inputFieldMapWidth, inputFieldMapHeight, inputFieldMinMapValue, inputFieldMaxMapValue;
 
 
 
@@ -29,16 +29,30 @@ public class MapSaveLoad : MonoBehaviour
         {
             // Regenerating Noise Map to save it
             float[,] noiseMap = mapGenerator.getNoiseMap();
-
             string mapData = "";
-            
-            for (short x = 0; x < mapGenerator.mapWidth; ++x)
+
+            if (mapGenerator.minMapValue != 0f || mapGenerator.maxMapValue != 1f)
             {
-                for (short y = 0; y < mapGenerator.mapHeight; ++y)
+                float deltaMinMax = mapGenerator.maxMapValue - mapGenerator.minMapValue;
+                for (short x = 0; x < mapGenerator.mapWidth; ++x)
                 {
-                    mapData += noiseMap[x, y] + " ";
+                    for (short y = 0; y < mapGenerator.mapHeight; ++y)
+                    {
+                        mapData += noiseMap[x, y] * deltaMinMax + mapGenerator.minMapValue + " ";
+                    }
+                    mapData += "\r\n";
                 }
-                mapData += "\r\n";
+            }
+            else
+            {
+                for (short x = 0; x < mapGenerator.mapWidth; ++x)
+                {
+                    for (short y = 0; y < mapGenerator.mapHeight; ++y)
+                    {
+                        mapData += noiseMap[x, y] + " ";
+                    }
+                    mapData += "\r\n";
+                }
             }
             System.IO.File.WriteAllText(saveFilePath, mapData);
         }
@@ -72,6 +86,8 @@ public class MapSaveLoad : MonoBehaviour
             {
                 mapGenerator.mapWidth = sizeX;
                 mapGenerator.mapHeight = sizeY;
+                mapGenerator.minMapValue = minZ;
+                mapGenerator.maxMapValue = maxZ;
                 
                 if (H < 0) H = Mathf.Abs(H);
                 if (H > 1) H = 1;
@@ -79,6 +95,8 @@ public class MapSaveLoad : MonoBehaviour
 
                 inputFieldMapWidth.text = mapGenerator.mapWidth.ToString();
                 inputFieldMapHeight.text = mapGenerator.mapHeight.ToString();
+                inputFieldMinMapValue.text = mapGenerator.minMapValue.ToString();
+                inputFieldMaxMapValue.text = mapGenerator.maxMapValue.ToString();
                 sliderPersistance.value = mapGenerator.persistance;
 
                 mapGenerator.generateMap();

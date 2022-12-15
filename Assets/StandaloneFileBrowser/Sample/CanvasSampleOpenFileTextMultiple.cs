@@ -1,3 +1,4 @@
+/*
 using System.Text;
 using System.Collections;
 using System.Collections.Generic;
@@ -60,3 +61,4 @@ public class CanvasSampleOpenFileTextMultiple : MonoBehaviour, IPointerDownHandl
         output.text = outputText;
     }
 }
+*/

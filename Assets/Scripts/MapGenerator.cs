@@ -32,8 +32,16 @@ public class MapGenerator : MonoBehaviour
     public bool autoUpdate;
 
     public TerrainType[] regions;
+    public float minMapValue, maxMapValue;
 
 
+
+    void Start()
+    {
+        // This is needed because for some reason Unity ignores default values assigned to variables
+        minMapValue = 0f;
+        maxMapValue = 1f;
+    }
 
     public float[,] getNoiseMap()
     {

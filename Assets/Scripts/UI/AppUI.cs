@@ -9,7 +9,8 @@ public class AppUI : MonoBehaviour
     public GameObject plane, mesh, meshHeightMultiplier;
 
     public MapGenerator mapGenerator;
-    public TMP_InputField inputMapWidth, inputMapHeight, inputMeshHeightMultiplier, inputFieldSeed;
+    public TMP_InputField inputFieldMapWidth, inputFieldMapHeight, inputFieldMeshHeightMultiplier, 
+    inputFieldSeed, inputFieldMinMapValue, inputFieldMaxMapValue;
 
 
 
@@ -44,7 +45,7 @@ public class AppUI : MonoBehaviour
             if (int.Parse(newMapWidth) > 30000)
             {
                 mapGenerator.mapWidth = 30000;
-                inputMapWidth.text = "30000";
+                inputFieldMapWidth.text = "30000";
             }
             else
             {
@@ -61,13 +62,45 @@ public class AppUI : MonoBehaviour
             if (int.Parse(newMapHeight) > 30000)
             {
                 mapGenerator.mapHeight = 30000;
-                inputMapHeight.text = "30000";
+                inputFieldMapHeight.text = "30000";
             }
             else
             {
                 mapGenerator.mapHeight = int.Parse(newMapHeight);
             }
             mapGenerator.generateMap();
+        }
+    }
+
+    public void changeMinMapValue(string newMinMapValue)
+    {
+        if (newMinMapValue != "")
+        {
+            if (int.Parse(newMinMapValue) > 1e9)
+            {
+                mapGenerator.minMapValue = 1000000000;
+                inputFieldMinMapValue.text = "1000000000";
+            }
+            else
+            {
+                mapGenerator.minMapValue = int.Parse(newMinMapValue);
+            }
+        }
+    }
+
+    public void changeMaxMapValue(string newMaxMapValue)
+    {
+        if (newMaxMapValue != "")
+        {
+            if (int.Parse(newMaxMapValue) > 1e9)
+            {
+                mapGenerator.maxMapValue = 1000000000;
+                inputFieldMaxMapValue.text = "1000000000";
+            }
+            else
+            {
+                mapGenerator.maxMapValue = int.Parse(newMaxMapValue);
+            }
         }
     }
 
@@ -79,12 +112,12 @@ public class AppUI : MonoBehaviour
             if (mapGenerator.meshHeightMultiplier < 0.01) 
             {
                 mapGenerator.meshHeightMultiplier = 0.01f;
-                inputMeshHeightMultiplier.text = "0.01";
+                inputFieldMeshHeightMultiplier.text = "0.01";
             }
             if (mapGenerator.meshHeightMultiplier > 1000) 
             {
                 mapGenerator.meshHeightMultiplier = 1000;
-                inputMeshHeightMultiplier.text = "1000";
+                inputFieldMeshHeightMultiplier.text = "1000";
             }
             mapGenerator.generateMap();
         }

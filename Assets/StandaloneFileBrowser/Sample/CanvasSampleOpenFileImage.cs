@@ -1,3 +1,4 @@
+/*
 using System.Text;
 using System.Collections;
 using System.Collections.Generic;
@@ -51,3 +52,4 @@ public class CanvasSampleOpenFileImage : MonoBehaviour, IPointerDownHandler {
         output.texture = loader.texture;
     }
 }
+*/
