@@ -12,8 +12,7 @@ public class MapSaveLoad : MonoBehaviour
     public MapGenerator mapGenerator;
 
     public Slider sliderPersistance;
-    public TMP_InputField inputFieldMapWidth;
-    public TMP_InputField inputFieldMapHeight;
+    public TMP_InputField inputFieldMapWidth, inputFieldMapHeight;
 
 
 

@@ -46,7 +46,6 @@ public class LanguagesForText : MonoBehaviour
 
 
 
-
     private void changeLanguageToUkr()
     {
         // Main Menu

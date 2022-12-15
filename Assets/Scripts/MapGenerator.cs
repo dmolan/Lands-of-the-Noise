@@ -12,8 +12,7 @@ public class MapGenerator : MonoBehaviour
 
     public int seed;
 
-    public int mapWidth;
-    public int mapHeight;
+    public int mapWidth, mapHeight;
     public float noiseScale;
 
     public int octaves;
@@ -78,6 +77,7 @@ public class MapGenerator : MonoBehaviour
         }
         else if (drawMode == DrawMode.ColorMap)
         {
+            // THIS "IF" IS DEPRECATED, WATER LEVEL ISN'T ACCESIBLE IN THE APP
             if (waterLevel > 0)
             {
                 for (int i = 0; i < regions.Length; ++i)

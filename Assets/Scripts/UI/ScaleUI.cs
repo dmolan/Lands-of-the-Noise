@@ -20,15 +20,11 @@ public class ScaleUI : MonoBehaviour
     public float defCreditsScale = 0.35f + defaultDeltaScale;
     public float defFilesScale = 0.55f + defaultDeltaScale;
 
-    public float menuScale;
-    public float appScale;
-    public float prefScale;
-    public float howUseScale;
-    public float howWorkScale;
-    public float creditsScale;
-    public float filesScale;
+    public float menuScale, appScale, prefScale, howUseScale, howWorkScale, creditsScale, filesScale;
 
     public int scaleIndexNow;
+
+
 
     void Update()
     {

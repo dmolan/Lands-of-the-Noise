@@ -1,4 +1,6 @@
-﻿
+﻿/*
+ *  This part of code contains functions used to save/load all settings from SettingsMenu when restarting app
+*/
 using UnityEngine;
 using TMPro;
 using System.IO;

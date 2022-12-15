@@ -8,17 +8,14 @@ public class MainMenu : MonoBehaviour
 {
     public MapGenerator mapGen;
 
-    public GameObject plane;
-    public GameObject mesh;
-
-    public GameObject objectCanvasMenu;
-    public GameObject objectCanvasApp;
+    public GameObject plane, mesh;
+    public GameObject objectCanvasMenu, objectCanvasApp;
 
     public Config config;
 
 
 
-    public void RunApp()
+    public void runApp()
     {
         objectCanvasMenu.SetActive(false);
         objectCanvasApp.SetActive(true);
@@ -35,7 +32,7 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    public void QuitApp()
+    public void quitApp()
     {
         config.saveData();
         Application.Quit();

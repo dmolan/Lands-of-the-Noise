@@ -1,6 +1,6 @@
 ﻿/*
  *  This code is executed only at the runtime.
- *  Waits for key and mouse input, if there are such, calls "generateMap()"
+ *  Waits for key and mouse input, if there are such, does what shortcuts should do
 */
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,18 +11,10 @@ public class KeyboardControls : MonoBehaviour
     public HowDoesItWorkPages pagesHowWork;
     public HowToUsePages pagesHowUse;
     
-    public GameObject plane;
-    public GameObject mesh;
+    public GameObject plane, mesh;
 
-    public GameObject canvasMenu;
-    public GameObject canvasApp;
-    public GameObject canvasPreferences;
-    public GameObject canvasHowToUse;
-    public GameObject canvasHowDoesItWork;
-    public GameObject canvasCredits;
-
-    public GameObject settingsMenu;
-    public GameObject mainMenu;
+    public GameObject canvasMenu, canvasApp, canvasPreferences, canvasHowToUse, canvasHowDoesItWork, canvasCredits, canvasFiles;
+    public GameObject settingsMenu, mainMenu;
 
     public Button butRun, butOpt, butExit, butHowUse, butHowWork, butCredits;
     
@@ -62,7 +54,6 @@ public class KeyboardControls : MonoBehaviour
                 mainMenu.SetActive(true);
                 settingsMenu.SetActive(false);
             }
-        
             if (canvasPreferences.activeSelf)
             {
                 canvasApp.SetActive(true);
@@ -82,6 +73,11 @@ public class KeyboardControls : MonoBehaviour
             {
                 canvasMenu.SetActive(true);
                 canvasCredits.SetActive(false);
+            }
+            if (canvasFiles.activeSelf)
+            {
+                canvasApp.SetActive(true);
+                canvasFiles.SetActive(false);
             }
         }
 
