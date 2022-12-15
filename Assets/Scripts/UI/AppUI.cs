@@ -80,10 +80,20 @@ public class AppUI : MonoBehaviour
             {
                 mapGenerator.minMapValue = 1000000000;
                 inputFieldMinMapValue.text = "1000000000";
+                if (mapGenerator.minMapValue > mapGenerator.maxMapValue) 
+                {
+                    mapGenerator.maxMapValue = mapGenerator.minMapValue;
+                    inputFieldMaxMapValue.text = mapGenerator.minMapValue.ToString();
+                }
             }
             else
             {
                 mapGenerator.minMapValue = int.Parse(newMinMapValue);
+                if (mapGenerator.minMapValue > mapGenerator.maxMapValue) 
+                {
+                    mapGenerator.maxMapValue = mapGenerator.minMapValue;
+                    inputFieldMaxMapValue.text = mapGenerator.minMapValue.ToString();
+                }
             }
         }
     }
@@ -92,14 +102,25 @@ public class AppUI : MonoBehaviour
     {
         if (newMaxMapValue != "")
         {
+            
             if (int.Parse(newMaxMapValue) > 1e9)
             {
                 mapGenerator.maxMapValue = 1000000000;
                 inputFieldMaxMapValue.text = "1000000000";
+                if (mapGenerator.maxMapValue < mapGenerator.minMapValue) 
+                {
+                    mapGenerator.minMapValue = mapGenerator.maxMapValue;
+                    inputFieldMinMapValue.text = mapGenerator.maxMapValue.ToString();
+                }
             }
             else
             {
                 mapGenerator.maxMapValue = int.Parse(newMaxMapValue);
+                if (mapGenerator.maxMapValue < mapGenerator.minMapValue) 
+                {
+                    mapGenerator.minMapValue = mapGenerator.maxMapValue;
+                    inputFieldMinMapValue.text = mapGenerator.maxMapValue.ToString();
+                }
             }
         }
     }
