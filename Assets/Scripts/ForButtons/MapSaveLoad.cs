@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿/*
+ *  This code is executed only at the runtime.
+ *  Functions used by the buttons in the "File" Canvas: "Save" from Map submenu and "Load" from Map submenu.
+*/
+using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using SFB;
@@ -13,7 +17,8 @@ public class MapSaveLoad : MonoBehaviour
 
 
 
-    public void saveCurrentMap()
+    // Saves Map values to ".txt" file via regenerating it by current parameters
+    public void saveMap()
     {
         var extensionList = new [] {
             new ExtensionFilter("Text", "txt"),
@@ -40,6 +45,7 @@ public class MapSaveLoad : MonoBehaviour
         }
     }
 
+    // Loads Map parametrs from ".txt" file (those, which are given in the problem)
     public void loadMap()
     {
         string loadFilePath = "";
@@ -55,11 +61,15 @@ public class MapSaveLoad : MonoBehaviour
             int sizeX = 0, sizeY = 0, minZ = 0, maxZ = 0;
             float H = 0;
 
-            if (int.TryParse(arrayOfParametrs[0], out sizeX) == true &&
+            bool isAllParsed = 
+            int.TryParse(arrayOfParametrs[0], out sizeX) == true &&
             int.TryParse(arrayOfParametrs[2], out sizeY) == true &&
             int.TryParse(arrayOfParametrs[4], out minZ) == true &&
             int.TryParse(arrayOfParametrs[6], out maxZ) == true &&
-            float.TryParse(arrayOfParametrs[8], out H) == true)
+            float.TryParse(arrayOfParametrs[8], out H) == true;
+
+            // If all values are succesfully parsed, set values and UI to new values
+            if (isAllParsed)
             {
                 mapGenerator.mapWidth = sizeX;
                 mapGenerator.mapHeight = sizeY;

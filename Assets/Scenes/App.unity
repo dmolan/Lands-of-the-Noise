@@ -7764,7 +7764,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1813856527}
-        m_MethodName: saveCurrentMap
+        m_MethodName: saveMap
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -17621,7 +17621,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1813856526}
-        m_MethodName: loadMap
+        m_MethodName: loadPreset
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -21881,7 +21881,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1813856526}
-        m_MethodName: saveCurrentMap
+        m_MethodName: savePreset
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
