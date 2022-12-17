@@ -107,6 +107,7 @@ public class LanguagesForText : MonoBehaviour
         prefDropdown.options.Add(new TMP_Dropdown.OptionData() {text = "Шум"});
         prefDropdown.options.Add(new TMP_Dropdown.OptionData() {text = "Колір"}); 
         prefDropdown.options.Add(new TMP_Dropdown.OptionData() {text = "Сітка"}); 
+        prefDropdown.options.Add(new TMP_Dropdown.OptionData() {text = "Таблиця"}); 
         prefDropdown.captionText.text = "Сітка";
         prefBack.text = "Назад";
         }
@@ -265,6 +266,7 @@ public class LanguagesForText : MonoBehaviour
         prefDropdown.options.Add(new TMP_Dropdown.OptionData() {text = "Noise"});
         prefDropdown.options.Add(new TMP_Dropdown.OptionData() {text = "Color"}); 
         prefDropdown.options.Add(new TMP_Dropdown.OptionData() {text = "Mesh"}); 
+        prefDropdown.options.Add(new TMP_Dropdown.OptionData() {text = "Table"}); 
         prefDropdown.captionText.text = "Mesh";
         settMenuScale.text = "Scale";
         settMenuDropdownScale.options.Clear();

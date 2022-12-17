@@ -6,12 +6,13 @@ using TMPro;
 
 public class AppUI : MonoBehaviour
 {
-    public GameObject plane, mesh, meshHeightMultiplier;
+    public TableUI tableUI;
+    public GameObject plane, mesh, table, meshHeightMultiplier;
 
     public MapGenerator mapGenerator;
     public TMP_InputField inputFieldMapWidth, inputFieldMapHeight, inputFieldMeshHeightMultiplier, 
     inputFieldSeed, inputFieldMinMapValue, inputFieldMaxMapValue;
-
+    
 
 
     public void changePersistance(float newPersistance)
@@ -38,7 +39,7 @@ public class AppUI : MonoBehaviour
         mapGenerator.generateMap();
     }
 
-    public void changeWidth(string newMapWidth)
+    public void changeMapWidth(string newMapWidth)
     {
         if (newMapWidth != "")
         {  
@@ -55,7 +56,7 @@ public class AppUI : MonoBehaviour
         }
     }
 
-    public void changeHeight(string newMapHeight)
+    public void changeMapHeight(string newMapHeight)
     {
         if (newMapHeight != "")
         {
@@ -95,6 +96,7 @@ public class AppUI : MonoBehaviour
                     inputFieldMaxMapValue.text = mapGenerator.minMapValue.ToString();
                 }
             }
+            mapGenerator.generateMap();
         }
     }
 
@@ -102,7 +104,6 @@ public class AppUI : MonoBehaviour
     {
         if (newMaxMapValue != "")
         {
-            
             if (int.Parse(newMaxMapValue) > 1e9)
             {
                 mapGenerator.maxMapValue = 1000000000;
@@ -122,6 +123,7 @@ public class AppUI : MonoBehaviour
                     inputFieldMinMapValue.text = mapGenerator.maxMapValue.ToString();
                 }
             }
+            mapGenerator.generateMap();
         }
     }
 
@@ -156,6 +158,7 @@ public class AppUI : MonoBehaviour
             mapGenerator.drawMode = MapGenerator.DrawMode.NoiseMap;
             plane.SetActive(true);
             mesh.SetActive(false);
+            table.SetActive(false);
             meshHeightMultiplier.SetActive(false);
         }
         else if (val == 1) 
@@ -163,14 +166,24 @@ public class AppUI : MonoBehaviour
             mapGenerator.drawMode = MapGenerator.DrawMode.ColorMap;
             plane.SetActive(true);
             mesh.SetActive(false);
+            table.SetActive(false);
             meshHeightMultiplier.SetActive(false);
         }
-        else 
+        else if (val == 2)
         {
             mapGenerator.drawMode = MapGenerator.DrawMode.Mesh;
             plane.SetActive(false);
             mesh.SetActive(true);
+            table.SetActive(false);
             meshHeightMultiplier.SetActive(true);
+        }
+        else
+        {
+            mapGenerator.drawMode = MapGenerator.DrawMode.Table;
+            plane.SetActive(false);
+            mesh.SetActive(false);
+            table.SetActive(true);
+            meshHeightMultiplier.SetActive(false);
         }
 
         mapGenerator.generateMap();
@@ -201,5 +214,21 @@ public class AppUI : MonoBehaviour
             seed = seed.Substring(0, 9);
             inputFieldSeed.text = seed;
         }
+    }
+
+    // For Table UI
+    public void changeScrollbarHorizontal(float newValue)
+    {
+        tableUI.upperLeftX = (int)(newValue * mapGenerator.mapHeight);
+        if (tableUI.upperLeftX + tableUI.columnsNow > mapGenerator.mapHeight) tableUI.upperLeftX = mapGenerator.mapHeight - tableUI.columnsNow;
+        if (mapGenerator.mapHeight - tableUI.columnsNow < 0) tableUI.upperLeftX = 0;
+        tableUI.assignValuesToCells(tableUI.noiseMapNow);
+    }
+    public void changeScrollbarVertical(float newValue)
+    {
+        tableUI.upperLeftY = (int)(newValue * mapGenerator.mapWidth);
+        if (tableUI.upperLeftY + tableUI.rowsNow > mapGenerator.mapWidth) tableUI.upperLeftY = mapGenerator.mapWidth - tableUI.rowsNow;
+        if (mapGenerator.mapWidth - tableUI.rowsNow < 0) tableUI.upperLeftY = 0;
+        tableUI.assignValuesToCells(tableUI.noiseMapNow);
     }
 }

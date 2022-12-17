@@ -20,45 +20,34 @@ public class KeyboardControls : MonoBehaviour
     
 
 
-    void Start()
-    {
-        mapGenerator.generateMap();
-
-        if (mapGenerator.drawMode == MapGenerator.DrawMode.Mesh)
-        {
-            plane.SetActive(false); 
-            mesh.SetActive(true); 
-        }
-        else
-        {
-            plane.SetActive(true);
-            mesh.SetActive(false);
-        }
-    }
-
     private bool isChangesMade = false;
     void Update()
     {
-        if (Input.GetKey(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             // Run pause screen
-            if (canvasApp.activeSelf)
-            {
-                canvasMenu.SetActive(true);
-                canvasApp.SetActive(false);
-                plane.SetActive(false);
-                mesh.SetActive(false);
-            }
-            if (settingsMenu.activeSelf)
-            {
-                mainMenu.SetActive(true);
-                settingsMenu.SetActive(false);
-            }
             if (canvasPreferences.activeSelf)
             {
                 canvasApp.SetActive(true);
                 canvasPreferences.SetActive(false);
             }
+            else if (canvasFiles.activeSelf)
+            {
+                canvasApp.SetActive(true);
+                canvasFiles.SetActive(false);
+            }
+            else if (canvasApp.activeSelf)
+            {
+                canvasMenu.SetActive(true);
+                canvasApp.SetActive(false);
+            }
+
+            if (settingsMenu.activeSelf)
+            {
+                mainMenu.SetActive(true);
+                settingsMenu.SetActive(false);
+            }
+            
             if (canvasHowToUse.activeSelf)
             {
                 canvasMenu.SetActive(true);
@@ -73,11 +62,6 @@ public class KeyboardControls : MonoBehaviour
             {
                 canvasMenu.SetActive(true);
                 canvasCredits.SetActive(false);
-            }
-            if (canvasFiles.activeSelf)
-            {
-                canvasApp.SetActive(true);
-                canvasFiles.SetActive(false);
             }
         }
 

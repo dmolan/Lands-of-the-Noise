@@ -6,11 +6,13 @@ using UnityEngine;
 
 public class ScaleUI : MonoBehaviour
 {
+    public TableUI tableUI;
+
     public Canvas canvasMenu, canvasApp, canvasPreferences, 
     canvasHowUse, canvasHowWork, canvasCredits, canvasFiles;
 
     // This variable might be changed to better fit the screens
-    const float defaultDeltaScale = 0.25f;
+    const float defaultDeltaScale = -0.25f;
 
     public float defMenuScale = 0.4f + defaultDeltaScale;
     public float defAppScale = 0.7f + defaultDeltaScale;
@@ -40,6 +42,11 @@ public class ScaleUI : MonoBehaviour
     public void changeCanvasScale(int val)
     {
         scaleIndexNow = val;
+
+        // For table to show right amount of columns
+        if (val == 0 || val == 1) tableUI.setAmountOfColumns(8);
+        else if (val == 2) tableUI.setAmountOfColumns(6);
+        else if (val == 3) tableUI.setAmountOfColumns(4);
 
         if (val == 0)
         {

@@ -7,7 +7,10 @@ using UnityEngine;
 
 public class MapGenerator : MonoBehaviour
 {
-    public enum DrawMode {NoiseMap, ColorMap, Mesh};
+    public AppUI appUI;
+    public TableUI tableUI;
+
+    public enum DrawMode {NoiseMap, ColorMap, Mesh, Table};
     public DrawMode drawMode;
 
     public int seed;
@@ -38,6 +41,8 @@ public class MapGenerator : MonoBehaviour
 
     void Start()
     {
+        appUI.changeDrawMode(3);
+
         // This is needed because for some reason Unity ignores default values assigned to variables
         minMapValue = 0f;
         maxMapValue = 1f;
@@ -57,7 +62,7 @@ public class MapGenerator : MonoBehaviour
         float[,] noiseMap = Noise.GenerateNoiseMap(seed, mapWidth, mapHeight, 
         octaves, persistance, lacunarity, noiseScale, offset);
 
-        if (drawMode != DrawMode.NoiseMap)
+        if (drawMode == DrawMode.ColorMap || drawMode == DrawMode.Mesh)
         {
             colorMap = new Color[mapWidth * mapHeight];
             for (int y = 0; y < mapHeight; ++y)
@@ -113,7 +118,7 @@ public class MapGenerator : MonoBehaviour
             }
             display.DrawTexture(TextureGenerator.TextureFromColorMap(colorMap, mapWidth, mapHeight));
         }
-        else
+        else if (drawMode == DrawMode.Mesh)
         {
             display.DrawMesh
             (
@@ -121,9 +126,14 @@ public class MapGenerator : MonoBehaviour
                 TextureGenerator.TextureFromColorMap(colorMap, mapWidth, mapHeight)
             );
         }
+        else if (drawMode == DrawMode.Table)
+        {
+            tableUI.scrollbarHorizontal.value = 0;
+            tableUI.scrollbarVertical.value = 0;
+            tableUI.assignValuesToCells(noiseMap);
+        }
         Resources.UnloadUnusedAssets();
     }
-
 
     // Called every time one of public variables is changed
     void OnValidate()

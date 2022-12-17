@@ -1,8 +1,8 @@
-Language: English
-Scale: 3
+Language: Ukrainian
+Scale: 1
 MouseSensitivity: 5
 ScrollingSpeed: 1000
 AngleOfView: 20
 CameraDistance: 1000
-RotationSmoothing: 99
-DistanceSmoothing: 57
+RotationSmoothing: 100
+DistanceSmoothing: 60
