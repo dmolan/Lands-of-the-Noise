@@ -7,6 +7,7 @@ using UnityEngine;
 public class ScaleUI : MonoBehaviour
 {
     public TableUI tableUI;
+    public GameObject table;
 
     public Canvas canvasMenu, canvasApp, canvasPreferences, 
     canvasHowUse, canvasHowWork, canvasCredits, canvasFiles;
@@ -22,9 +23,12 @@ public class ScaleUI : MonoBehaviour
     public float defCreditsScale = 0.35f + defaultDeltaScale;
     public float defFilesScale = 0.55f + defaultDeltaScale;
 
+    public float defTableScale = 1.25f - defaultDeltaScale;
+
     public float menuScale, appScale, prefScale, howUseScale, howWorkScale, creditsScale, filesScale;
 
     public int scaleIndexNow;
+    Vector3 tableScaleVector3 = new Vector3();
 
 
 
@@ -37,16 +41,13 @@ public class ScaleUI : MonoBehaviour
         if (canvasHowWork.scaleFactor != howWorkScale) canvasHowWork.scaleFactor = howWorkScale;
         if (canvasCredits.scaleFactor != creditsScale) canvasCredits.scaleFactor = creditsScale;
         if (canvasFiles.scaleFactor != filesScale) canvasFiles.scaleFactor = filesScale;
+
+        if (table.transform.localScale != tableScaleVector3) table.transform.localScale = tableScaleVector3;
     }
 
     public void changeCanvasScale(int val)
     {
         scaleIndexNow = val;
-
-        // For table to show right amount of columns
-        if (val == 0 || val == 1) tableUI.setAmountOfColumns(8);
-        else if (val == 2) tableUI.setAmountOfColumns(6);
-        else if (val == 3) tableUI.setAmountOfColumns(4);
 
         if (val == 0)
         {
@@ -57,6 +58,8 @@ public class ScaleUI : MonoBehaviour
             howWorkScale = defHowWorkScale * (3/4f);
             creditsScale = defCreditsScale * (3/4f);
             filesScale = defFilesScale * (3/4f);
+
+            tableScaleVector3 = new Vector3(defTableScale * (3/4f), defTableScale * (3/4f), 0);
         }
         else if (val == 1)
         {
@@ -67,6 +70,8 @@ public class ScaleUI : MonoBehaviour
             howWorkScale = defHowWorkScale;
             creditsScale = defCreditsScale;
             filesScale = defFilesScale;
+
+            tableScaleVector3 = new Vector3(defTableScale, defTableScale, 0);
         }
         else if (val == 2)
         {
@@ -77,16 +82,22 @@ public class ScaleUI : MonoBehaviour
             howWorkScale = defHowWorkScale * (5/4f);
             creditsScale = defCreditsScale * (5/4f);
             filesScale = defFilesScale * (5/4f);
+
+            // App Scale is too strong for table, so downscaling is needed
+            tableScaleVector3 = new Vector3(defTableScale * 0.8f, defTableScale * 0.8f, 0);
         }
         else if (val == 3)
         {
             menuScale = defMenuScale * (3/2f);
             appScale = defAppScale * (3/2f);
             prefScale = defPrefScale * (3/2f);
-            howUseScale = defHowUseScale*(3/2f);
+            howUseScale = defHowUseScale * (3/2f);
             howWorkScale = defHowWorkScale * (3/2f);
             creditsScale = defCreditsScale * (3/2f);
             filesScale = defFilesScale * (3/2f);
+
+            // App Scale is too strong for table, so downscaling is needed
+            tableScaleVector3 = new Vector3(defTableScale * 0.75f, defTableScale * 0.75f, 0);
         }
     }
 }

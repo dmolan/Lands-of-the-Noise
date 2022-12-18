@@ -130,6 +130,10 @@ public class MapGenerator : MonoBehaviour
         {
             tableUI.scrollbarHorizontal.value = 0;
             tableUI.scrollbarVertical.value = 0;
+
+            tableUI.scrollbarHorizontal.numberOfSteps = 5000;
+            tableUI.scrollbarVertical.numberOfSteps = 5000;
+
             tableUI.assignValuesToCells(noiseMap);
         }
         Resources.UnloadUnusedAssets();

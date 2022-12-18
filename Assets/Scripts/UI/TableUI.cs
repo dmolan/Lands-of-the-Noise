@@ -1,5 +1,6 @@
 ﻿/*
-    TODO: FIX ISSUE WITH SLIDERS WHEN VALUES ARE LESS THEN 8
+ *  This code is executed only at the runtime.
+ *  Controls values of the cells of the Table (type of Map visualisation)
 */
 using UnityEngine;
 using UnityEngine.UI;
@@ -31,19 +32,6 @@ public class TableUI : MonoBehaviour
     public float[,] noiseMapNow;
 
 
-
-    public void setAmountOfColumns(int amountOfColumns)
-    {
-        columnsNow = amountOfColumns;
-        column1.SetActive(amountOfColumns >= 1);
-        column2.SetActive(amountOfColumns >= 2);
-        column3.SetActive(amountOfColumns >= 3);
-        column4.SetActive(amountOfColumns >= 4);
-        column5.SetActive(amountOfColumns >= 5);
-        column6.SetActive(amountOfColumns >= 6);
-        column7.SetActive(amountOfColumns >= 7);
-        column8.SetActive(amountOfColumns >= 8);
-    }
 
     public void assignValuesToCells(float[,] noiseMap)
     {
