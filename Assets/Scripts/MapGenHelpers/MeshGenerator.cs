@@ -64,6 +64,7 @@ public class MeshData
 
         // (meshWidth-1)*(meshHeight-1) - amount of squares, 6 - triangle sides in square        
         triangles = new int[(meshWidth-1)*(meshHeight-1)*6];
+        triangleIndex = 0;
     }
 
     public void AddTriangle(int a, int b, int c)
@@ -77,6 +78,7 @@ public class MeshData
     public Mesh CreateMesh()
     {
         Mesh mesh = new Mesh();
+        mesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
         mesh.vertices = vertices;
         mesh.triangles = triangles;
         mesh.uv = uvs;

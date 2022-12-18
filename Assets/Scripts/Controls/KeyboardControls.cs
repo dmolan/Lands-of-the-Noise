@@ -115,7 +115,7 @@ public class KeyboardControls : MonoBehaviour
         {
             if (canvasApp.activeSelf)
             {
-                mapGenerator.offset.x += mapGenerator.offsetSpeed;
+                mapGenerator.offset.x -= mapGenerator.offsetSpeed;
                 isChangesMade = true;
             }
         }
@@ -123,7 +123,7 @@ public class KeyboardControls : MonoBehaviour
         {
             if (canvasApp.activeSelf)
             {
-                mapGenerator.offset.x -= mapGenerator.offsetSpeed;
+                mapGenerator.offset.x += mapGenerator.offsetSpeed;
                 isChangesMade = true;
             }
         }
