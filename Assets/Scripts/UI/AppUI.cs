@@ -6,6 +6,9 @@ using TMPro;
 
 public class AppUI : MonoBehaviour
 {
+    // If InputField Max/Min Map value string is longer then this const, it is replaced with shorter substring
+    const int INPUT_FIELD_MAP_VALUE_MAX_LENGTH = 6;
+
     public TableUI tableUI;
     public GameObject plane, mesh, table, meshHeightMultiplier;
 
@@ -75,55 +78,71 @@ public class AppUI : MonoBehaviour
 
     public void changeMinMapValue(string newMinMapValue)
     {
-        if (newMinMapValue != "")
+        float tmpMinMapValue;
+        
+        // Check if parsing is succesful, assign value only after success
+        if (newMinMapValue != "" && float.TryParse(newMinMapValue, out tmpMinMapValue) == true)
         {
-            if (int.Parse(newMinMapValue) > 1e9)
+            mapGenerator.minMapValue = tmpMinMapValue;
+
+            // Check if Min value is less then Max value, equalize them otherwise
+            if (mapGenerator.minMapValue >= mapGenerator.maxMapValue) 
             {
-                mapGenerator.minMapValue = 1000000000;
-                inputFieldMinMapValue.text = "1000000000";
-                if (mapGenerator.minMapValue > mapGenerator.maxMapValue) 
-                {
-                    mapGenerator.maxMapValue = mapGenerator.minMapValue;
-                    inputFieldMaxMapValue.text = mapGenerator.minMapValue.ToString();
-                }
-            }
-            else
-            {
-                mapGenerator.minMapValue = int.Parse(newMinMapValue);
-                if (mapGenerator.minMapValue > mapGenerator.maxMapValue) 
-                {
-                    mapGenerator.maxMapValue = mapGenerator.minMapValue;
-                    inputFieldMaxMapValue.text = mapGenerator.minMapValue.ToString();
-                }
+                mapGenerator.maxMapValue = mapGenerator.minMapValue;
+                inputFieldMaxMapValue.text = mapGenerator.minMapValue.ToString();
+
+                mapGenerator.minMapValue -= 1;
+                inputFieldMinMapValue.text = mapGenerator.minMapValue.ToString();
             }
             mapGenerator.generateMap();
+        }
+        else
+        {
+            // Reassign old value in case of invalid input
+            inputFieldMinMapValue.text = mapGenerator.minMapValue.ToString();
+        }
+    }
+
+    public void checkMinMapValue(string newMinMapValue)
+    {   
+        if (newMinMapValue.Length > INPUT_FIELD_MAP_VALUE_MAX_LENGTH)
+        {
+            inputFieldMinMapValue.text = newMinMapValue.Substring(0, INPUT_FIELD_MAP_VALUE_MAX_LENGTH); 
         }
     }
 
     public void changeMaxMapValue(string newMaxMapValue)
     {
-        if (newMaxMapValue != "")
+        float tmpMaxMapValue;
+
+        // Check if parsing is succesful, assign value only after success
+        if (newMaxMapValue != "" && float.TryParse(newMaxMapValue, out tmpMaxMapValue) == true)
         {
-            if (int.Parse(newMaxMapValue) > 1e9)
+            mapGenerator.maxMapValue = tmpMaxMapValue;
+
+            // Check if Max value is bigger then Min value, equalize them otherwise
+            if (mapGenerator.maxMapValue <= mapGenerator.minMapValue) 
             {
-                mapGenerator.maxMapValue = 1000000000;
-                inputFieldMaxMapValue.text = "1000000000";
-                if (mapGenerator.maxMapValue < mapGenerator.minMapValue) 
-                {
-                    mapGenerator.minMapValue = mapGenerator.maxMapValue;
-                    inputFieldMinMapValue.text = mapGenerator.maxMapValue.ToString();
-                }
-            }
-            else
-            {
-                mapGenerator.maxMapValue = int.Parse(newMaxMapValue);
-                if (mapGenerator.maxMapValue < mapGenerator.minMapValue) 
-                {
-                    mapGenerator.minMapValue = mapGenerator.maxMapValue;
-                    inputFieldMinMapValue.text = mapGenerator.maxMapValue.ToString();
-                }
+                mapGenerator.minMapValue = mapGenerator.maxMapValue;
+                inputFieldMinMapValue.text = mapGenerator.maxMapValue.ToString();
+
+                mapGenerator.maxMapValue += 1;
+                inputFieldMaxMapValue.text = mapGenerator.maxMapValue.ToString();
             }
             mapGenerator.generateMap();
+        }
+        else
+        {
+            // Reassign old value in case of invalid input
+            inputFieldMaxMapValue.text = mapGenerator.maxMapValue.ToString();
+        }
+    }
+
+    public void checkMaxMapValue(string newMaxMapValue)
+    {   
+        if (newMaxMapValue.Length > INPUT_FIELD_MAP_VALUE_MAX_LENGTH)
+        {
+            inputFieldMaxMapValue.text = newMaxMapValue.Substring(0, INPUT_FIELD_MAP_VALUE_MAX_LENGTH); 
         }
     }
 

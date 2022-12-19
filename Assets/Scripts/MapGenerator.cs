@@ -41,7 +41,7 @@ public class MapGenerator : MonoBehaviour
 
     void Start()
     {
-        appUI.changeDrawMode(3);
+        appUI.changeDrawMode(2);
 
         // This is needed because for some reason Unity ignores default values assigned to variables
         minMapValue = 0f;

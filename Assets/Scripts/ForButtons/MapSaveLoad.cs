@@ -2,6 +2,7 @@
  *  This code is executed only at the runtime.
  *  Functions used by the buttons in the "File" Canvas: "Save" from Map submenu and "Load" from Map submenu.
 */
+using System.Globalization;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -9,12 +10,24 @@ using SFB;
 
 public class MapSaveLoad : MonoBehaviour
 {
+    const string SPACES = "                    ";
+
     public MapGenerator mapGenerator;
 
     public Slider sliderPersistance;
     public TMP_InputField inputFieldMapWidth, inputFieldMapHeight, inputFieldMinMapValue, inputFieldMaxMapValue;
 
 
+
+    private string convertFloatToStrForFile(float num)
+    {
+        // Max Num: -123456789.12345678
+        // "321.123456" -> "321.12345600"
+        string s = num.ToString("F8");
+        s += SPACES.Substring(0, 19 - s.Length);
+
+        return s;
+    }
 
     // Saves Map values to ".txt" file via regenerating it by current parameters
     public void saveMap()
@@ -38,7 +51,7 @@ public class MapSaveLoad : MonoBehaviour
                 {
                     for (short y = 0; y < mapGenerator.mapHeight; ++y)
                     {
-                        mapData += noiseMap[x, y] * deltaMinMax + mapGenerator.minMapValue + " ";
+                        mapData += convertFloatToStrForFile(noiseMap[x, y] * deltaMinMax + mapGenerator.minMapValue) + '\t';
                     }
                     mapData += "\r\n";
                 }
@@ -49,7 +62,7 @@ public class MapSaveLoad : MonoBehaviour
                 {
                     for (short y = 0; y < mapGenerator.mapHeight; ++y)
                     {
-                        mapData += noiseMap[x, y] + " ";
+                        mapData += convertFloatToStrForFile(noiseMap[x, y]) + '\t';
                     }
                     mapData += "\r\n";
                 }
