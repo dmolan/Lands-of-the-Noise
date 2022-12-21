@@ -2,7 +2,8 @@
  *  This code is executed only at the runtime.
  *  Functions used by the buttons in the "File" Canvas: "Save" from Map submenu and "Load" from Map submenu.
 */
-using System.Globalization;
+// using System.Drawing;
+// using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -10,6 +11,7 @@ using SFB;
 
 public class MapSaveLoad : MonoBehaviour
 {
+    // For fast addition of spaces by substringing from here
     const string SPACES = "                    ";
 
     public MapGenerator mapGenerator;
@@ -21,8 +23,9 @@ public class MapSaveLoad : MonoBehaviour
 
     private string convertFloatToStrForFile(float num)
     {
-        // Max Num: -123456789.12345678
-        // "321.123456" -> "321.12345600"
+        // Max "num": -123456789.12345678
+        // "F8" parameter sets fixed number of digits after floating point 
+        // e.g. "321.123456" -> "321.12345600"
         string s = num.ToString("F8");
         s += SPACES.Substring(0, 19 - s.Length);
 
@@ -118,6 +121,123 @@ public class MapSaveLoad : MonoBehaviour
             {
                 Debug.Log("Wrong file format!");
             }
+        }
+    }
+
+    public void saveMapToPNG()
+    {
+        // Might not be used, but must be assigned in this scope for "MapGenerator.TextureFromColorMap()"
+        UnityEngine.Color[] colorMap = new UnityEngine.Color[mapGenerator.mapWidth * mapGenerator.mapHeight];
+
+        var extensionList = new [] {
+            new ExtensionFilter("Image", "png"),
+        };
+
+        string saveFilePath = StandaloneFileBrowser.SaveFilePanel("Save Map as PNG", "", "ImageOfMapPNG", extensionList);
+
+        if (string.IsNullOrEmpty(saveFilePath) == false)
+        {
+            // By default the texture is white
+            Texture2D texture = Texture2D.whiteTexture;
+            float[,] noiseMap = mapGenerator.getNoiseMap();
+
+            // Fill ColorMap if needed
+            if (mapGenerator.drawMode == MapGenerator.DrawMode.ColorMap || mapGenerator.drawMode == MapGenerator.DrawMode.Mesh)
+            {
+                for (int y = 0; y < mapGenerator.mapHeight; ++y)
+                {
+                    for (int x = 0; x < mapGenerator.mapWidth; ++x)
+                    {
+                        float currentHeight = noiseMap[x, y];
+                        for (int i = 0; i < mapGenerator.regions.Length; ++i)
+                        {
+                            if (currentHeight <= mapGenerator.regions[i].height)
+                            {
+                                colorMap[y*mapGenerator.mapWidth + x] = mapGenerator.regions[i].color;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (mapGenerator.drawMode == MapGenerator.DrawMode.NoiseMap || mapGenerator.drawMode == MapGenerator.DrawMode.Table)
+            {
+                texture = TextureGenerator.TextureFromHeightMap(noiseMap);
+            }
+            else if (mapGenerator.drawMode == MapGenerator.DrawMode.ColorMap || mapGenerator.drawMode == MapGenerator.DrawMode.Mesh)
+            {
+                texture = TextureGenerator.TextureFromColorMap(colorMap, mapGenerator.mapWidth, mapGenerator.mapHeight);
+            }
+
+            byte[] imageData = texture.EncodeToPNG();
+            System.IO.File.WriteAllBytes(saveFilePath, imageData);
+
+            // Deletes the texture after usage
+            Resources.UnloadUnusedAssets();
+        }
+    }
+
+    public void saveMapToBMP()
+    {
+        // Might not be used, but must be assigned in this scope for "MapGenerator.TextureFromColorMap()"
+        UnityEngine.Color[] colorMap = new UnityEngine.Color[mapGenerator.mapWidth * mapGenerator.mapHeight];
+
+        var extensionList = new [] {
+            new ExtensionFilter("Image", "bmp"),
+        };
+
+        string saveFilePath = StandaloneFileBrowser.SaveFilePanel("Save Map as BMP", "", "ImageOfMapBMP", extensionList);
+
+        if (string.IsNullOrEmpty(saveFilePath) == false)
+        {
+            // By default the texture is white
+            Texture2D texture = Texture2D.whiteTexture;
+            float[,] noiseMap = mapGenerator.getNoiseMap();
+
+            // Fill ColorMap if needed
+            if (mapGenerator.drawMode == MapGenerator.DrawMode.ColorMap || mapGenerator.drawMode == MapGenerator.DrawMode.Mesh)
+            {
+                for (int y = 0; y < mapGenerator.mapHeight; ++y)
+                {
+                    for (int x = 0; x < mapGenerator.mapWidth; ++x)
+                    {
+                        float currentHeight = noiseMap[x, y];
+                        for (int i = 0; i < mapGenerator.regions.Length; ++i)
+                        {
+                            if (currentHeight <= mapGenerator.regions[i].height)
+                            {
+                                colorMap[y*mapGenerator.mapWidth + x] = mapGenerator.regions[i].color;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (mapGenerator.drawMode == MapGenerator.DrawMode.NoiseMap || mapGenerator.drawMode == MapGenerator.DrawMode.Table)
+            {
+                texture = TextureGenerator.TextureFromHeightMap(noiseMap);
+            }
+            else if (mapGenerator.drawMode == MapGenerator.DrawMode.ColorMap || mapGenerator.drawMode == MapGenerator.DrawMode.Mesh)
+            {
+                texture = TextureGenerator.TextureFromColorMap(colorMap, mapGenerator.mapWidth, mapGenerator.mapHeight);
+            }
+
+            // byte[] imageData = texture.EncodeToPNG();
+
+            // TODO: IMPLEMENT BMP FILE SAVING!
+            /*
+            Bitmap bmp;
+            using (var ms = new MemoryStream(imageData))
+            {
+                bmp = new Bitmap(ms);
+                bmp.Save(saveFilePath);
+            }
+            */
+
+            // Deletes the texture after usage
+            // Resources.UnloadUnusedAssets();
         }
     }
 }
