@@ -15,6 +15,7 @@ public class MapSaveLoad : MonoBehaviour
     const string SPACES = "                    ";
 
     public MapGenerator mapGenerator;
+    public ConvertionToBMP convertionToBMP;
 
     public Slider sliderPersistance;
     public TMP_InputField inputFieldMapWidth, inputFieldMapHeight, inputFieldMinMapValue, inputFieldMaxMapValue;
@@ -224,20 +225,7 @@ public class MapSaveLoad : MonoBehaviour
                 texture = TextureGenerator.TextureFromColorMap(colorMap, mapGenerator.mapWidth, mapGenerator.mapHeight);
             }
 
-            // byte[] imageData = texture.EncodeToPNG();
-
-            // TODO: IMPLEMENT BMP FILE SAVING!
-            /*
-            Bitmap bmp;
-            using (var ms = new MemoryStream(imageData))
-            {
-                bmp = new Bitmap(ms);
-                bmp.Save(saveFilePath);
-            }
-            */
-
-            // Deletes the texture after usage
-            // Resources.UnloadUnusedAssets();
+            convertionToBMP.saveTextureToBMP(saveFilePath, texture);
         }
     }
 }
