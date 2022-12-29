@@ -3,6 +3,10 @@
  *  gives results to MapDisplay.
  *  Also manages map parameters changing.
 */
+using Boo.Lang.Runtime.DynamicDispatching;
+using System;
+using System.Xml;
+using UnityEditor;
 using UnityEngine;
 
 public class MapGenerator : MonoBehaviour
@@ -10,7 +14,7 @@ public class MapGenerator : MonoBehaviour
     public AppUI appUI;
     public TableUI tableUI;
 
-    public enum DrawMode {NoiseMap, ColorMap, Mesh, Table};
+    public enum DrawMode { NoiseMap, ColorMap, Mesh, Table };
     public DrawMode drawMode;
 
     public int seed;
@@ -37,10 +41,17 @@ public class MapGenerator : MonoBehaviour
     public TerrainType[] regions;
     public float minMapValue, maxMapValue;
 
+    public int staique_pointX;
+    public int staique_pointY;
+    public float staique_point_hight;
+    public int staique_point_radius; // radius of statice hill
+
 
 
     void Start()
     {
+
+
         appUI.changeDrawMode(2);
 
         // This is needed because for some reason Unity ignores default values assigned to variables
@@ -50,17 +61,69 @@ public class MapGenerator : MonoBehaviour
 
     public float[,] getNoiseMap()
     {
-        float[,] noiseMap = Noise.GenerateNoiseMap(seed, mapWidth, mapHeight, 
+        float[,] noiseMap = Noise.GenerateNoiseMap(seed, mapWidth, mapHeight,
         octaves, persistance, lacunarity, noiseScale, offset);
-        
+
+
+
+
         return noiseMap;
     }
 
     static Color[] colorMap;
+    public void Genarate_statique_point(float[,] noiseMap, int statice_point_x, int statice_point_y, float hight, int radius)
+    {
+        float cur_curv_val; //curent valu of parabola
+        float cur_map_val;  // curent valu on map befor chages
+        float cur_distance; // curent distance to the centr of aver popabola or to the statoce point
+
+        bool is_in_something = (noiseMap[statice_point_x, staique_pointY]>hight); // is true if statice point is in some hill
+
+
+        for(int y_ind = statice_point_y - radius; y_ind < statice_point_y + radius; y_ind++)
+            for (int x_ind = statice_point_x - radius; x_ind < statice_point_x + radius; x_ind++)
+            if (x_ind >= 0 && y_ind >= 0 && x_ind<= mapWidth && y_ind<=mapHeight)
+            {
+                    if (x_ind != statice_point_x || y_ind != statice_point_y) // if is not static point
+                    {
+                        if(!is_in_something)
+                        {
+                            cur_curv_val = hight - (hight / (radius * radius)) * ((x_ind - statice_point_x) * (x_ind - statice_point_x) + (y_ind - statice_point_y) * (y_ind - statice_point_y)); // value of parabola a-cx^2
+                            cur_map_val = noiseMap[x_ind, y_ind];
+                            cur_distance = (float)Math.Sqrt((x_ind - statice_point_x) * (x_ind - statice_point_x) + (y_ind - statice_point_y) * (y_ind - statice_point_y));
+
+                            if (cur_curv_val > cur_map_val) noiseMap[x_ind, y_ind] = cur_curv_val;
+                        }else
+                        {
+                            if(hight!= minMapValue)
+                            {
+                                cur_curv_val = hight + (hight / (radius * radius)) * ((x_ind - statice_point_x) * (x_ind - statice_point_x) + (y_ind - statice_point_y) * (y_ind - statice_point_y));
+                                cur_map_val = noiseMap[x_ind, y_ind];
+                                cur_distance = (float)Math.Sqrt((x_ind - statice_point_x) * (x_ind - statice_point_x) + (y_ind - statice_point_y) * (y_ind - statice_point_y));
+
+                                if (cur_curv_val < cur_map_val) noiseMap[x_ind, y_ind] = cur_curv_val;
+                            }else
+                            {
+                                cur_curv_val = hight + ((maxMapValue/1.5f-hight) / (radius * radius)) * ((x_ind - statice_point_x) * (x_ind - statice_point_x) + (y_ind - statice_point_y) * (y_ind - statice_point_y));
+                                cur_map_val = noiseMap[x_ind, y_ind];
+                                cur_distance = (float)Math.Sqrt((x_ind - statice_point_x) * (x_ind - statice_point_x) + (y_ind - statice_point_y) * (y_ind - statice_point_y));
+
+                                if (cur_curv_val < cur_map_val) noiseMap[x_ind, y_ind] = cur_curv_val;
+                            }
+                                                      
+                        }
+
+                    }
+            }
+
+        noiseMap[staique_pointX, staique_pointY] = hight;
+    }
     public void generateMap()
     {
         float[,] noiseMap = Noise.GenerateNoiseMap(seed, mapWidth, mapHeight, 
         octaves, persistance, lacunarity, noiseScale, offset);
+
+        Genarate_statique_point(noiseMap, staique_pointX, staique_pointY, staique_point_hight, staique_point_radius);
 
         if (drawMode == DrawMode.ColorMap || drawMode == DrawMode.Mesh)
         {
