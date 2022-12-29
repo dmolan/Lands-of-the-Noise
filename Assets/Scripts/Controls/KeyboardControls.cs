@@ -1,15 +1,16 @@
 ﻿/*
- *  This code is executed only at the runtime.
- *  Waits for key and mouse input, if there are such, does what shortcuts should do
-*/
+ * This code is executed only at the runtime.
+ * Waits for key and mouse input, if there are such, does what shortcuts should do
+ */
+
 using UnityEngine;
 using UnityEngine.UI;
 
 public class KeyboardControls : MonoBehaviour
 {
     public MapGenerator mapGenerator;
-    public HowDoesItWorkPages pagesHowWork;
-    public HowToUsePages pagesHowUse;
+    public HowToUsePages howToUsePages;
+    public HowDoesItWorkPages howDoesItWorkPages;
     
     public GameObject plane, mesh;
 
@@ -18,9 +19,10 @@ public class KeyboardControls : MonoBehaviour
 
     public Button butRun, butOpt, butExit, butHowUse, butHowWork, butCredits;
     
-
-
     private bool isChangesMade = false;
+
+
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -70,44 +72,44 @@ public class KeyboardControls : MonoBehaviour
         {
             if (canvasHowDoesItWork.activeSelf)
             {
-                pagesHowWork.buttonFastBwPressed();
+                howDoesItWorkPages.buttonFastBackwardPressed();
             }
             else if (canvasHowToUse.activeSelf)
             {
-                pagesHowUse.buttonFastBwPressed();
+                howToUsePages.buttonFastBackwardPressed();
             }
         }
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             if (canvasHowDoesItWork.activeSelf)
             {
-                pagesHowWork.buttonFwPressed();
+                howDoesItWorkPages.buttonForwardPressed();
             }
             if (canvasHowToUse.activeSelf)
             {
-                pagesHowUse.buttonFwPressed();
+                howToUsePages.buttonForwardPressed();
             }
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             if (canvasHowDoesItWork.activeSelf)
             {
-                pagesHowWork.buttonBwPressed();
+                howDoesItWorkPages.buttonBackwardPressed();
             }
             else if (canvasHowToUse.activeSelf)
             {
-                pagesHowUse.buttonBwPressed();
+                howToUsePages.buttonBackwardPressed();
             }
         }
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             if (canvasHowDoesItWork.activeSelf)
             {
-                pagesHowWork.buttonFastFwPressed();
+                howDoesItWorkPages.buttonFastForwardPressed();
             }
             else if (canvasHowToUse.activeSelf)
             {
-                pagesHowUse.buttonFastFwPressed();
+                howToUsePages.buttonFastForwardPressed();
             }
         }
 

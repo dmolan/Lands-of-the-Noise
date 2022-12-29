@@ -1,6 +1,7 @@
 ﻿/*
- *  Constructs Mesh Data (triangles, vertices, uvs) for the Map Display from Height Map
-*/
+ * Constructs Mesh Data (triangles, vertices, uvs) for the Map Display from Height Map
+ */
+
 using UnityEngine;
 
 public static class MeshGenerator 

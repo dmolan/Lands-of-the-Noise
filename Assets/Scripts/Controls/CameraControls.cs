@@ -1,15 +1,17 @@
 ﻿/*
- *  This code is executed only at the runtime.
- *  It's purpose is to get input from mouse and rotate camera in accordance.
-*/
+ * This code is executed only at the runtime.
+ * It's purpose is to get input from mouse and rotate camera in accordance.
+ */
+ 
 using UnityEngine;
 using TMPro;
 
 public class CameraControls : MonoBehaviour
 {
+    public Camera cameraObject;
     public MapGenerator mapGenerator;
     public Transform target;
-
+    
     public float currentDistanceToMap;
     public float defaultDistanceToMap = 800f;
     public float deafultAngleOfView = 50f;
@@ -77,10 +79,10 @@ public class CameraControls : MonoBehaviour
 
             // Apply damping between rotation changes
             currentRotation = Vector3.SmoothDamp(currentRotation, nextRotation, ref smoothVelocity, Time.deltaTime*rotationSmoothTime);
-            transform.localEulerAngles = currentRotation;
+            cameraObject.transform.localEulerAngles = currentRotation;
 
             // Substract forward vector of the GameObject to point its forward vector to the target
-            transform.position = target.position - transform.forward * currentDistanceToMap;
+            cameraObject.transform.position = target.position - cameraObject.transform.forward * currentDistanceToMap;
 
             // Lineary interpolate distance from target
             if (nextDistance > 0)

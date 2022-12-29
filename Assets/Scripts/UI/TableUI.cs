@@ -1,7 +1,8 @@
 ﻿/*
- *  This code is executed only at the runtime.
- *  Controls values of the cells of the Table (type of Map visualisation)
-*/
+ * This code is executed only at the runtime.
+ * Controls values of the cells of the Table (type of Map visualisation)
+ */
+
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;

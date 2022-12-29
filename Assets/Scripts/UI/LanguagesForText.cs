@@ -1,14 +1,17 @@
 ﻿/*
- *  This code is executed only at the runtime.
- *  Contains functions for translating all text:
- *  1) ukr -> eng;
- *  2) eng -> ukr.
-*/
+ * This code is executed only at the runtime.
+ * Contains functions for translating all text:
+ * 1) ukr -> eng;
+ * 2) eng -> ukr.
+ */
+
 using UnityEngine;
 using TMPro;
 
 public class LanguagesForText : MonoBehaviour
 {
+    public int DEFAULT_LANGUAGE = 0; // Ukrainian
+
     public enum LanguageNow {Ukrainian, English};
     public LanguageNow languageNow = LanguageNow.Ukrainian;
 

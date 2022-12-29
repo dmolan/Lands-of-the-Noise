@@ -1,7 +1,8 @@
 ﻿/*
- *  This code is executed only at the runtime.
- *  Functions used by the buttons in the "File" Canvas: "Save" from Preset submenu and "Load" from Preset submenu.
-*/
+ * This code is executed only at the runtime.
+ * Functions used by the buttons in the "File" Canvas: "Save" from Preset submenu and "Load" from Preset submenu.
+ */
+
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;

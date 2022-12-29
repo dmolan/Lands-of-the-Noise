@@ -1,6 +1,7 @@
 ﻿/*
- *  Does the rendering with given texture.
-*/
+ * Does the rendering with given texture.
+ */
+ 
 using UnityEngine;
 
 public class MapDisplay : MonoBehaviour

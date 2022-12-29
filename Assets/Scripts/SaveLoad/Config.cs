@@ -1,6 +1,7 @@
 ﻿/*
- *  This part of code contains functions used to save/load all settings from SettingsMenu when restarting app
-*/
+ * This part of code contains functions used to save/load all settings from SettingsMenu when restarting app
+ */
+
 using UnityEngine;
 using TMPro;
 using System.IO;
@@ -16,12 +17,11 @@ public class Config : MonoBehaviour
 
     public TMP_Dropdown dropdownLanguage, dropdownScale;
 
-    string pathToProjectFolder;
-    string pathToConfig;
+    string pathToProjectFolder, pathToConfig;
 
 
 
-    void Start()
+    public void configStart()
     {
         // Set default scale
         scaleUI.menuScale = scaleUI.defMenuScale;

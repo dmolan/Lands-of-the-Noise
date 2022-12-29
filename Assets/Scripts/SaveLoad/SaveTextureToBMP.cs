@@ -1,10 +1,11 @@
 ﻿/*
- *  Contains functions, needed for converting Texture2D to BMP image format
-*/
+ * Contains functions, needed for converting Texture2D to BMP image format
+ */
+
 using UnityEngine;
 using System.IO;
 
-public class ConvertionToBMP : MonoBehaviour
+public class SaveTextureToBMP : MonoBehaviour
 {
     const int BYTES_PER_PIXEL = 3; // red, green, blue
     const int FILE_HEADER_SIZE = 14;
@@ -12,6 +13,7 @@ public class ConvertionToBMP : MonoBehaviour
 
 
 
+    // By the given "Texture2D" object, saves ".bmp" file to path "imageFileName"
     public void saveTextureToBMP(string imageFileName, Texture2D texture)
     {
         int height = texture.width;
@@ -31,7 +33,8 @@ public class ConvertionToBMP : MonoBehaviour
         generateBitmapImage(image, height, width, imageFileName);
     }
 
-    public static void AppendAllBytes(string path, byte[] bytes)
+    // Not override as "WriteAllBytes", but add new bytes to the end of the file
+    public static void appendAllBytes(string path, byte[] bytes)
     {
         using (var stream = new FileStream(path, FileMode.Append))
         {
@@ -39,7 +42,7 @@ public class ConvertionToBMP : MonoBehaviour
         }
     }
 
-    void generateBitmapImage (byte[,,] image, int height, int width, string imageFileName)
+    void generateBitmapImage(byte[,,] image, int height, int width, string imageFileName)
     {
         int widthInBytes = width * BYTES_PER_PIXEL;
 
@@ -52,7 +55,7 @@ public class ConvertionToBMP : MonoBehaviour
         System.IO.File.WriteAllBytes(imageFileName, fileHeader);
 
         byte[] infoHeader = createBitmapInfoHeader(height, width);
-        AppendAllBytes(imageFileName, infoHeader);
+        appendAllBytes(imageFileName, infoHeader);
 
         byte[] pixelData = new byte[height * widthInBytes];
         int indexNow = 0;
@@ -67,18 +70,19 @@ public class ConvertionToBMP : MonoBehaviour
                 indexNow += 3;
             }
         }
-        AppendAllBytes(imageFileName, pixelData);
+        appendAllBytes(imageFileName, pixelData);
     }
 
-    byte[] createBitmapFileHeader (int height, int stride)
+    byte[] createBitmapFileHeader(int height, int stride)
     {
         int fileSize = FILE_HEADER_SIZE + INFO_HEADER_SIZE + (stride * height);
 
-        byte[] fileHeader = {
-            0,0,     /// signature
-            0,0,0,0, /// image file size in bytes
-            0,0,0,0, /// reserved
-            0,0,0,0, /// start of pixel array
+        byte[] fileHeader = 
+        {
+            0,0,     // signature
+            0,0,0,0, // image file size in bytes
+            0,0,0,0, // reserved
+            0,0,0,0, // start of pixel array
         };
 
         fileHeader[ 0] = (byte)('B');
@@ -92,20 +96,21 @@ public class ConvertionToBMP : MonoBehaviour
         return fileHeader;
     }
 
-    byte[] createBitmapInfoHeader (int height, int width)
+    byte[] createBitmapInfoHeader(int height, int width)
     {
-        byte[] infoHeader = {
-            0,0,0,0, /// header size
-            0,0,0,0, /// image width
-            0,0,0,0, /// image height
-            0,0,     /// number of color planes
-            0,0,     /// bits per pixel
-            0,0,0,0, /// compression
-            0,0,0,0, /// image size
-            0,0,0,0, /// horizontal resolution
-            0,0,0,0, /// vertical resolution
-            0,0,0,0, /// colors in color table
-            0,0,0,0, /// important color count
+        byte[] infoHeader = 
+        {
+            0,0,0,0, // header size
+            0,0,0,0, // image width
+            0,0,0,0, // image height
+            0,0,     // number of color planes
+            0,0,     // bits per pixel
+            0,0,0,0, // compression
+            0,0,0,0, // image size
+            0,0,0,0, // horizontal resolution
+            0,0,0,0, // vertical resolution
+            0,0,0,0, // colors in color table
+            0,0,0,0, // important color count
         };
 
         infoHeader[ 0] = (byte)(INFO_HEADER_SIZE);

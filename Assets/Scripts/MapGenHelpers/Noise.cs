@@ -1,11 +1,12 @@
 ﻿/*
- *  By the given parameters returns noiseMap (using built-in Perlin Noise)
-*/
+ * By the given parameters returns noiseMap (using built-in Perlin Noise)
+ */
+
 using UnityEngine;
 
 public static class Noise
 {
-    public static float[,] GenerateNoiseMap(int seed, int mapWidth, int mapHeight, int octaves,
+    public static float[,] generateNoiseMap(int seed, int mapWidth, int mapHeight, int octaves,
     float persistance, float lacunarity, float noiseScale, Vector2 offset) 
     {
         float[,] noiseMap = new float[mapWidth, mapHeight];

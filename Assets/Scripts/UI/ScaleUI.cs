@@ -1,7 +1,8 @@
 ﻿/*
- *  This code is executed only at the runtime.
- *  Every frame checks if canvas scale is right, if not, changes it.
-*/
+ * This code is executed only at the runtime.
+ * Every frame checks if canvas scale is right, if not, changes it.
+ */
+
 using UnityEngine;
 
 public class ScaleUI : MonoBehaviour

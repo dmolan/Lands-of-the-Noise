@@ -1,6 +1,7 @@
 ﻿/*
  * Constructs 2D texture by the given parameters
 */
+
 using UnityEngine;
 
 public class TextureGenerator

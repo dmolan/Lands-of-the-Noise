@@ -1,18 +1,20 @@
 ﻿/*
- *  By the given Noise Map generates Color Map, calls Texture- and Mesh Generators and
- *  gives results to MapDisplay.
- *  Also manages map parameters changing.
-*/
-using Boo.Lang.Runtime.DynamicDispatching;
+ * By the given Noise Map generates Color Map, calls Texture- and Mesh Generators and
+ * gives results to MapDisplay.
+ * Also manages map parameters changing.
+ */
+
 using System;
-using System.Xml;
-using UnityEditor;
 using UnityEngine;
 
 public class MapGenerator : MonoBehaviour
 {
     public AppUI appUI;
     public TableUI tableUI;
+    public HowDoesItWorkPages howDoesItWorkPages;
+    public HowToUsePages howToUsePages;
+    public LanguagesForText languagesForText;
+    public Config config;
 
     public enum DrawMode { NoiseMap, ColorMap, Mesh, Table };
     public DrawMode drawMode;
@@ -41,90 +43,89 @@ public class MapGenerator : MonoBehaviour
     public TerrainType[] regions;
     public float minMapValue, maxMapValue;
 
-    public int staique_pointX;
-    public int staique_pointY;
-    public float staique_point_hight;
-    public int staique_point_radius; // radius of statice hill
+    public int staticPointX, staticPointY; // Coordinates of static point
+    public float staticPointHeight; // Height of static point 
+    public int staticPointRadius; // Radius of static point's hill
+
+    static Color[] colorMap;
 
 
 
+    // Starting point of the App
     void Start()
     {
-
-
+        howToUsePages.setSlide(howToUsePages.currSlide);
+        howDoesItWorkPages.setSlide(howDoesItWorkPages.currentSlide);
+        
         appUI.changeDrawMode(2);
-
-        // This is needed because for some reason Unity ignores default values assigned to variables
-        minMapValue = 0f;
-        maxMapValue = 1f;
+        languagesForText.changeLanguage(languagesForText.DEFAULT_LANGUAGE);
+        config.configStart();
     }
 
     public float[,] getNoiseMap()
     {
-        float[,] noiseMap = Noise.GenerateNoiseMap(seed, mapWidth, mapHeight,
+        float[,] noiseMap = Noise.generateNoiseMap(seed, mapWidth, mapHeight,
         octaves, persistance, lacunarity, noiseScale, offset);
-
-
-
 
         return noiseMap;
     }
 
-    static Color[] colorMap;
-    public void Genarate_statique_point(float[,] noiseMap, int statice_point_x, int statice_point_y, float hight, int radius)
+    public void changeNoiseMapToFitStaticPoint(float[,] noiseMap, int staticPointX, int staticPointY, float height, int radius)
     {
-        float cur_curv_val; //curent valu of parabola
-        float cur_map_val;  // curent valu on map befor chages
-        float cur_distance; // curent distance to the centr of aver popabola or to the statoce point
+        float valueAfterChanges; // Current value of parabola
+        float valueBeforeChanges;  // Current value on map before chages
+        float currentDistanceToStaticPoint; // Current distance to the static point
 
-        bool is_in_something = (noiseMap[statice_point_x, staique_pointY]>hight); // is true if statice point is in some hill
+        // Is true if static point is in some hill
+        bool isPointInHill = (noiseMap[staticPointX, this.staticPointY] > height); 
 
-
-        for(int y_ind = statice_point_y - radius; y_ind < statice_point_y + radius; y_ind++)
-            for (int x_ind = statice_point_x - radius; x_ind < statice_point_x + radius; x_ind++)
-            if (x_ind >= 0 && y_ind >= 0 && x_ind<= mapWidth && y_ind<=mapHeight)
+        for (int y = staticPointY - radius; y < staticPointY + radius; y++)
+        {
+            for (int x = staticPointX - radius; x < staticPointX + radius; x++)
             {
-                    if (x_ind != statice_point_x || y_ind != statice_point_y) // if is not static point
+                if (x >= 0 && y >= 0 && x <= mapWidth && y <= mapHeight)
+                {
+                    if (x != staticPointX || y != staticPointY) // if is not static point
                     {
-                        if(!is_in_something)
+                        if (!isPointInHill)
                         {
-                            cur_curv_val = hight - (hight / (radius * radius)) * ((x_ind - statice_point_x) * (x_ind - statice_point_x) + (y_ind - statice_point_y) * (y_ind - statice_point_y)); // value of parabola a-cx^2
-                            cur_map_val = noiseMap[x_ind, y_ind];
-                            cur_distance = (float)Math.Sqrt((x_ind - statice_point_x) * (x_ind - statice_point_x) + (y_ind - statice_point_y) * (y_ind - statice_point_y));
+                            // Value of parabola calculated by formula "a - c * x^2"
+                            valueAfterChanges = height - (height / (radius * radius)) * ((x - staticPointX) * (x - staticPointX) + (y - staticPointY) * (y - staticPointY)); 
+                            valueBeforeChanges = noiseMap[x, y];
+                            currentDistanceToStaticPoint = (float)Math.Sqrt((x - staticPointX) * (x - staticPointX) + (y - staticPointY) * (y - staticPointY));
 
-                            if (cur_curv_val > cur_map_val) noiseMap[x_ind, y_ind] = cur_curv_val;
-                        }else
-                        {
-                            if(hight!= minMapValue)
-                            {
-                                cur_curv_val = hight + (hight / (radius * radius)) * ((x_ind - statice_point_x) * (x_ind - statice_point_x) + (y_ind - statice_point_y) * (y_ind - statice_point_y));
-                                cur_map_val = noiseMap[x_ind, y_ind];
-                                cur_distance = (float)Math.Sqrt((x_ind - statice_point_x) * (x_ind - statice_point_x) + (y_ind - statice_point_y) * (y_ind - statice_point_y));
-
-                                if (cur_curv_val < cur_map_val) noiseMap[x_ind, y_ind] = cur_curv_val;
-                            }else
-                            {
-                                cur_curv_val = hight + ((maxMapValue/1.5f-hight) / (radius * radius)) * ((x_ind - statice_point_x) * (x_ind - statice_point_x) + (y_ind - statice_point_y) * (y_ind - statice_point_y));
-                                cur_map_val = noiseMap[x_ind, y_ind];
-                                cur_distance = (float)Math.Sqrt((x_ind - statice_point_x) * (x_ind - statice_point_x) + (y_ind - statice_point_y) * (y_ind - statice_point_y));
-
-                                if (cur_curv_val < cur_map_val) noiseMap[x_ind, y_ind] = cur_curv_val;
-                            }
-                                                      
+                            if (valueAfterChanges > valueBeforeChanges) noiseMap[x, y] = valueAfterChanges;
                         }
+                        else
+                        {
+                            if (height != minMapValue)
+                            {
+                                valueAfterChanges = height + (height / (radius * radius)) * ((x - staticPointX) * (x - staticPointX) + (y - staticPointY) * (y - staticPointY));
+                                valueBeforeChanges = noiseMap[x, y];
+                                currentDistanceToStaticPoint = (float)Math.Sqrt((x - staticPointX) * (x - staticPointX) + (y - staticPointY) * (y - staticPointY));
 
+                                if (valueAfterChanges < valueBeforeChanges) noiseMap[x, y] = valueAfterChanges;
+                            }
+                            else
+                            {
+                                valueAfterChanges = height + ((maxMapValue / 1.5f - height) / (radius * radius)) * ((x - staticPointX) * (x - staticPointX) + (y - staticPointY) * (y - staticPointY));
+                                valueBeforeChanges = noiseMap[x, y];
+                                currentDistanceToStaticPoint = (float)Math.Sqrt((x - staticPointX) * (x - staticPointX) + (y - staticPointY) * (y - staticPointY));
+
+                                if (valueAfterChanges < valueBeforeChanges) noiseMap[x, y] = valueAfterChanges;
+                            }                            
+                        }
                     }
+                }
             }
+        }
 
-        noiseMap[staique_pointX, staique_pointY] = hight;
+        noiseMap[this.staticPointX, this.staticPointY] = height;
     }
-    public void generateMap()
+
+    // Fill array "colorMap" according to "noiseMap[,]" values and "regions[]" parameters
+    private void fillColorMap(float[,] noiseMap)
     {
-        float[,] noiseMap = Noise.GenerateNoiseMap(seed, mapWidth, mapHeight, 
-        octaves, persistance, lacunarity, noiseScale, offset);
-
-        Genarate_statique_point(noiseMap, staique_pointX, staique_pointY, staique_point_hight, staique_point_radius);
-
         if (drawMode == DrawMode.ColorMap || drawMode == DrawMode.Mesh)
         {
             colorMap = new Color[mapWidth * mapHeight];
@@ -144,6 +145,23 @@ public class MapGenerator : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void generateMap()
+    {
+        float[,] noiseMap = Noise.generateNoiseMap(seed, mapWidth, mapHeight, 
+        octaves, persistance, lacunarity, noiseScale, offset);
+
+        // Here you can assign values of static point by hand
+        /*
+        staticPointX = 10;
+        staticPointY = 10;
+        staticPointHeight = 0;
+        staticPointRadius = 10;
+        changeNoiseMapToFitStaticPoint(noiseMap, staticPointX, staticPointY, staticPointHeight, staticPointRadius);
+        */
+
+        fillColorMap(noiseMap);
 
         MapDisplay display = FindObjectOfType<MapDisplay>();
 
@@ -153,32 +171,6 @@ public class MapGenerator : MonoBehaviour
         }
         else if (drawMode == DrawMode.ColorMap)
         {
-            // THIS "IF" IS DEPRECATED, WATER LEVEL ISN'T ACCESIBLE IN THE APP
-            if (waterLevel > 0)
-            {
-                for (int i = 0; i < regions.Length; ++i)
-                { 
-                    regions[i].height = regions[i].defaultHeight + waterLevel;
-                    if (regions[i].height > 1) regions[i].height = 1; 
-                    if (regions[i].height < 0) regions[i].height = 0;   
-                }
-            }
-            else
-            {
-                for (int i = 0; i < regions.Length; ++i)
-                {
-                    regions[i].height = (regions[i].defaultHeight + waterLevel);
-                }
-
-                for (int i = 0; i < regions.Length-1; ++i)
-                {
-                    if (regions[regions.Length-1].height == 0) regions[i].height = 1;
-                    else regions[i].height *= (1 / (float)regions[regions.Length-1].height);
-                    if (regions[i].height > 1) regions[i].height = 1; 
-                    if (regions[i].height < 0) regions[i].height = 0; 
-                }
-                regions[regions.Length-1].height = 1;
-            }
             display.DrawTexture(TextureGenerator.TextureFromColorMap(colorMap, mapWidth, mapHeight));
         }
         else if (drawMode == DrawMode.Mesh)
@@ -218,6 +210,4 @@ public struct TerrainType
     public string name;
     public float height;
     public Color color;
-
-    public float defaultHeight;
 }

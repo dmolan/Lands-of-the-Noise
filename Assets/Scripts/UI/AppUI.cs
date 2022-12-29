@@ -1,6 +1,7 @@
 ﻿/*
- *  Contains functions for buttons, sliders and dropdown in app
-*/
+ * Contains functions for buttons, sliders and dropdowns in app
+ */
+
 using UnityEngine;
 using TMPro;
 
@@ -243,6 +244,7 @@ public class AppUI : MonoBehaviour
         if (mapGenerator.mapHeight - tableUI.columnsNow < 0) tableUI.upperLeftX = 0;
         tableUI.assignValuesToCells(tableUI.noiseMapNow);
     }
+    
     public void changeScrollbarVertical(float newValue)
     {
         tableUI.upperLeftY = (int)(newValue * mapGenerator.mapWidth);

@@ -1,9 +1,8 @@
 ﻿/*
- *  This code is executed only at the runtime.
- *  Functions used by the buttons in the "File" Canvas: "Save" from Map submenu and "Load" from Map submenu.
-*/
-// using System.Drawing;
-// using System.IO;
+ * This code is executed only at the runtime.
+ * Functions used by the buttons in the "File" Canvas: "Save" from Map submenu and "Load" from Map submenu.
+ */
+
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -15,7 +14,7 @@ public class MapSaveLoad : MonoBehaviour
     const string SPACES = "                    ";
 
     public MapGenerator mapGenerator;
-    public ConvertionToBMP convertionToBMP;
+    public SaveTextureToBMP convertionToBMP;
 
     public Slider sliderPersistance;
     public TMP_InputField inputFieldMapWidth, inputFieldMapHeight, inputFieldMinMapValue, inputFieldMaxMapValue;
