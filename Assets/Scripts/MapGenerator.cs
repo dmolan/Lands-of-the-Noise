@@ -72,6 +72,11 @@ public class MapGenerator : MonoBehaviour
 
     public void changeNoiseMapToFitStaticPoint(float[,] noiseMap, int staticPointX, int staticPointY, float height, int radius)
     {
+        // If some parameters are wrong, don't change "noiseMap[,]"
+        if (staticPointX < 0 || staticPointX > mapWidth 
+        || staticPointY < 0 || staticPointY > mapHeight 
+        || staticPointHeight < 0 && staticPointHeight > 1) return;
+
         float valueAfterChanges; // Current value of parabola
         float valueBeforeChanges;  // Current value on map before chages
         float currentDistanceToStaticPoint; // Current distance to the static point
@@ -153,13 +158,11 @@ public class MapGenerator : MonoBehaviour
         octaves, persistance, lacunarity, noiseScale, offset);
 
         // Here you can assign values of static point by hand
-        /*
-        staticPointX = 10;
-        staticPointY = 10;
-        staticPointHeight = 0;
-        staticPointRadius = 10;
+        staticPointX = 49;
+        staticPointY = 49;
+        staticPointHeight = 0.424242f;
+        staticPointRadius = 20;
         changeNoiseMapToFitStaticPoint(noiseMap, staticPointX, staticPointY, staticPointHeight, staticPointRadius);
-        */
 
         fillColorMap(noiseMap);
 
