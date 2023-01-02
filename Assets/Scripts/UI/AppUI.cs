@@ -43,6 +43,13 @@ public class AppUI : MonoBehaviour
         mapGenerator.generateMap();
     }
 
+    public void changePlainProbability(float newProbabilityOfPlain)
+    {
+        mapGenerator.probabilityOfPlain = newProbabilityOfPlain;
+        //probabilityOfPlainWasChanged = true;
+        mapGenerator.generateMap();
+    }
+
     public void changeMapWidth(string newMapWidth)
     {
         if (newMapWidth != "")
@@ -252,4 +259,6 @@ public class AppUI : MonoBehaviour
         if (mapGenerator.mapWidth - tableUI.rowsNow < 0) tableUI.upperLeftY = 0;
         tableUI.assignValuesToCells(tableUI.noiseMapNow);
     }
+
+    
 }

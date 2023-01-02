@@ -47,6 +47,10 @@ public class MapGenerator : MonoBehaviour
     public float staticPointHeight; // Height of static point 
     public int staticPointRadius; // Radius of static point's hill
 
+
+    public float probabilityOfPlain = 0f;
+    public bool probabilityOfPlainWasChanged = true;
+
     static Color[] colorMap;
 
 
@@ -82,7 +86,7 @@ public class MapGenerator : MonoBehaviour
         float currentDistanceToStaticPoint; // Current distance to the static point
 
         // Is true if static point is in some hill
-        bool isPointInHill = (noiseMap[staticPointX, this.staticPointY] > height); 
+        bool isPointInHill = (noiseMap[staticPointX, staticPointY] > height); 
 
         for (int y = staticPointY - radius; y < staticPointY + radius; y++)
         {
@@ -127,6 +131,65 @@ public class MapGenerator : MonoBehaviour
 
         noiseMap[this.staticPointX, this.staticPointY] = height;
     }
+    public void GeneratePlain(int x, int y, int width, int heigth, float[,] noiseMap, float probabilityOfPlain)// width mod 6 = 0;
+    {
+
+        //float cur_height;
+        float avarageHeightOnArea = 0f;
+        int numberOfPointOnArea = 0;//numberOfPointOnArea
+        for (int current_x = x; current_x < x + width; current_x++)
+        {
+            for (int current_y = y; current_y < y + heigth; current_y++)
+            {
+                numberOfPointOnArea++;
+                avarageHeightOnArea += noiseMap[current_x, current_y];
+
+                Debug.Log("hemdff");
+            }
+        }
+
+        if (numberOfPointOnArea != 0)
+        {
+            avarageHeightOnArea = avarageHeightOnArea / numberOfPointOnArea;
+        }
+
+        avarageHeightOnArea = avarageHeightOnArea * (probabilityOfPlain);
+        Debug.Log("avarage_height " + (avarageHeightOnArea).ToString());
+
+
+        for (int current_x = x; current_x < x + width; current_x++)
+        {
+            for (int current_y = y; current_y < y + heigth; current_y++)
+            {
+                if (avarageHeightOnArea > noiseMap[current_x, current_y])
+                {
+                    noiseMap[current_x, current_y] = avarageHeightOnArea;
+                }
+            }
+        }
+
+    }
+
+    public float pow(float x, int n)
+    {
+        float result = 1;
+        for(int i=0; i<n;i++)
+        {
+            result *= x;
+        }
+        return result;
+    }
+
+    public void generateGorge(int x, int y, int width, int heigth, float[,]noiseMap, float gorgeProbability)
+    {
+        for (int current_x = x; current_x < x + width; current_x++)
+        {
+            for (int current_y = y; current_y < y + heigth; current_y++)
+            {
+                noiseMap[current_x, current_y] = pow((noiseMap[current_x, current_y]-1f), 3)+1;
+            }
+        }
+    }
 
     // Fill array "colorMap" according to "noiseMap[,]" values and "regions[]" parameters
     private void fillColorMap(float[,] noiseMap)
@@ -157,12 +220,15 @@ public class MapGenerator : MonoBehaviour
         float[,] noiseMap = Noise.generateNoiseMap(seed, mapWidth, mapHeight, 
         octaves, persistance, lacunarity, noiseScale, offset);
 
-        // Here you can assign values of static point by hand
+        //Here you can assign values of static point by hand
         staticPointX = 49;
         staticPointY = 49;
         staticPointHeight = 0.424242f;
         staticPointRadius = 20;
         changeNoiseMapToFitStaticPoint(noiseMap, staticPointX, staticPointY, staticPointHeight, staticPointRadius);
+
+
+        GeneratePlain(0, 0, mapWidth, mapHeight, noiseMap, probabilityOfPlain);
 
         fillColorMap(noiseMap);
 
