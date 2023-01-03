@@ -15,6 +15,7 @@ public class MapGenerator : MonoBehaviour
     public HowToUsePages howToUsePages;
     public LanguagesForText languagesForText;
     public Config config;
+    public VisualParameters visualParameters;
 
     public enum DrawMode { NoiseMap, ColorMap, Mesh, Table };
     public DrawMode drawMode;
@@ -35,9 +36,6 @@ public class MapGenerator : MonoBehaviour
     public float meshHeightMultiplier;
     public AnimationCurve meshHeightCurve;
 
-    [Range(-1, 1)]
-    public float waterLevel;
-
     public bool autoUpdate;
 
     public TerrainType[] regions;
@@ -49,10 +47,10 @@ public class MapGenerator : MonoBehaviour
 
 
     public float probabilityOfPlain = 0f;
-    public bool probabilityOfPlainIsOn = false;
+    public bool isProbabilitySliderTurnedOn = false;
 
     public float probabilityOfGorge = 1f;
-    public bool probabilityOfPGorgeIsOn = false;
+    public bool isGorgeSliderTurnedOn = false;
 
     static Color[] colorMap;
 
@@ -134,66 +132,7 @@ public class MapGenerator : MonoBehaviour
 
         noiseMap[this.staticPointX, this.staticPointY] = height;
     }
-    public void GeneratePlain(int x, int y, int width, int heigth, float[,] noiseMap, float probabilityOfPlain)// width mod 6 = 0;
-    {
-
-        //float cur_height;
-        float avarageHeightOnArea = 0f;
-        int numberOfPointOnArea = 0;//numberOfPointOnArea
-        for (int current_x = x; current_x < x + width; current_x++)
-        {
-            for (int current_y = y; current_y < y + heigth; current_y++)
-            {
-                numberOfPointOnArea++;
-                avarageHeightOnArea += noiseMap[current_x, current_y];
-
-                Debug.Log("hemdff");
-            }
-        }
-
-        if (numberOfPointOnArea != 0)
-        {
-            avarageHeightOnArea = avarageHeightOnArea / numberOfPointOnArea;
-        }
-
-        avarageHeightOnArea = avarageHeightOnArea * (probabilityOfPlain);
-        Debug.Log("avarage_height " + (avarageHeightOnArea).ToString());
-
-
-        for (int current_x = x; current_x < x + width; current_x++)
-        {
-            for (int current_y = y; current_y < y + heigth; current_y++)
-            {
-                if (avarageHeightOnArea > noiseMap[current_x, current_y])
-                {
-                    noiseMap[current_x, current_y] = avarageHeightOnArea;
-                }
-            }
-        }
-
-    }
-
-    public float pow(float x, int n)
-    {
-        float result = 1;
-        for(int i=0; i<n;i++)
-        {
-            result *= x;
-        }
-        return result;
-    }
-
-    public void generateGorge(int x, int y, int width, int heigth, float[,]noiseMap, float gorgeProbability)
-    {
-        for (int current_x = x; current_x < x + width; current_x++)
-        {
-            for (int current_y = y; current_y < y + heigth; current_y++)
-            {
-                noiseMap[current_x, current_y] = pow((noiseMap[current_x, current_y] - 1f)* (1+gorgeProbability), 3) + 1;
-            }
-        }
-    }
-
+    
     // Fill array "colorMap" according to "noiseMap[,]" values and "regions[]" parameters
     private void fillColorMap(float[,] noiseMap)
     {
@@ -224,26 +163,23 @@ public class MapGenerator : MonoBehaviour
         octaves, persistance, lacunarity, noiseScale, offset);
 
         //Here you can assign values of static point by hand
+        /*
         staticPointX = 49;
         staticPointY = 49;
         staticPointHeight = 0.424242f;
         staticPointRadius = 20;
         changeNoiseMapToFitStaticPoint(noiseMap, staticPointX, staticPointY, staticPointHeight, staticPointRadius);
+        */
 
-        if(probabilityOfPlainIsOn)
+        if (isProbabilitySliderTurnedOn)
         {
-
-            Debug.Log("plain");
-            GeneratePlain(0, 0, mapWidth, mapHeight, noiseMap, probabilityOfPlain);
+            visualParameters.generatePlain(0, 0, mapWidth, mapHeight, noiseMap, probabilityOfPlain);
         }
 
-        if (probabilityOfPGorgeIsOn)
+        if (isGorgeSliderTurnedOn)
         {
-
-            Debug.Log("plain");
-            generateGorge(0, 0, mapWidth, mapHeight, noiseMap, probabilityOfGorge);
+            visualParameters.generateGorge(0, 0, mapWidth, mapHeight, noiseMap, probabilityOfGorge);
         }
-        //generateGorge(0, 0, mapWidth, mapHeight, noiseMap, probabilityOfPlain);
 
         fillColorMap(noiseMap);
 
@@ -267,12 +203,7 @@ public class MapGenerator : MonoBehaviour
         }
         else if (drawMode == DrawMode.Table)
         {
-            tableUI.scrollbarHorizontal.value = 0;
-            tableUI.scrollbarVertical.value = 0;
-
-            tableUI.scrollbarHorizontal.numberOfSteps = 5000;
-            tableUI.scrollbarVertical.numberOfSteps = 5000;
-
+            tableUI.setupTableUI();
             tableUI.assignValuesToCells(noiseMap);
         }
         Resources.UnloadUnusedAssets();

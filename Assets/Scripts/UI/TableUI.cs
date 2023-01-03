@@ -9,6 +9,8 @@ using TMPro;
 
 public class TableUI : MonoBehaviour
 {
+    const int STEPS_IN_SLIDER = 5000;
+
     public MapGenerator mapGenerator;
     public ScaleUI scaleUI;
 
@@ -33,6 +35,16 @@ public class TableUI : MonoBehaviour
     public float[,] noiseMapNow;
 
 
+
+    public void setupTableUI()
+    {
+        // Reset scrolbars to zero
+        scrollbarHorizontal.value = 0;
+        scrollbarVertical.value = 0;
+
+        scrollbarHorizontal.numberOfSteps = STEPS_IN_SLIDER;
+        scrollbarVertical.numberOfSteps = STEPS_IN_SLIDER;
+    }
 
     public void assignValuesToCells(float[,] noiseMap)
     {

@@ -58,16 +58,18 @@ public class AppUI : MonoBehaviour
         mapGenerator.generateMap();
     }
 
-    public void OnOffPlainProbability(bool flag)
+    public void switchPlainProbabilitySliderVisibility(bool flag)
     {
-        mapGenerator.probabilityOfPlainIsOn = flag;
+        mapGenerator.isProbabilitySliderTurnedOn = flag;
         mapGenerator.generateMap();
     }
-    public void OnOffGorgeProbability(bool flag)
+
+    public void switchGorgeProbabilitySliderVisibility(bool flag)
     {
-        mapGenerator.probabilityOfPGorgeIsOn = flag;
+        mapGenerator.isGorgeSliderTurnedOn = flag;
         mapGenerator.generateMap();
     }
+
     public void changeMapWidth(string newMapWidth)
     {
         if (newMapWidth != "")
