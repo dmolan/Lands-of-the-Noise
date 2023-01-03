@@ -49,7 +49,10 @@ public class MapGenerator : MonoBehaviour
 
 
     public float probabilityOfPlain = 0f;
-    public bool probabilityOfPlainWasChanged = true;
+    public bool probabilityOfPlainIsOn = false;
+
+    public float probabilityOfGorge = 1f;
+    public bool probabilityOfPGorgeIsOn = false;
 
     static Color[] colorMap;
 
@@ -186,7 +189,7 @@ public class MapGenerator : MonoBehaviour
         {
             for (int current_y = y; current_y < y + heigth; current_y++)
             {
-                noiseMap[current_x, current_y] = pow((noiseMap[current_x, current_y]-1f), 3)+1;
+                noiseMap[current_x, current_y] = pow((noiseMap[current_x, current_y] - 1f)* (1+gorgeProbability), 3) + 1;
             }
         }
     }
@@ -227,8 +230,20 @@ public class MapGenerator : MonoBehaviour
         staticPointRadius = 20;
         changeNoiseMapToFitStaticPoint(noiseMap, staticPointX, staticPointY, staticPointHeight, staticPointRadius);
 
+        if(probabilityOfPlainIsOn)
+        {
 
-        GeneratePlain(0, 0, mapWidth, mapHeight, noiseMap, probabilityOfPlain);
+            Debug.Log("plain");
+            GeneratePlain(0, 0, mapWidth, mapHeight, noiseMap, probabilityOfPlain);
+        }
+
+        if (probabilityOfPGorgeIsOn)
+        {
+
+            Debug.Log("plain");
+            generateGorge(0, 0, mapWidth, mapHeight, noiseMap, probabilityOfGorge);
+        }
+        //generateGorge(0, 0, mapWidth, mapHeight, noiseMap, probabilityOfPlain);
 
         fillColorMap(noiseMap);
 

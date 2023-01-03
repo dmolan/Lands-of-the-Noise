@@ -4,6 +4,7 @@
 
 using UnityEngine;
 using TMPro;
+using System;
 
 public class AppUI : MonoBehaviour
 {
@@ -50,6 +51,23 @@ public class AppUI : MonoBehaviour
         mapGenerator.generateMap();
     }
 
+    public void changeGorgeProbability(float newProbabilityOfGorge)
+    {
+        mapGenerator.probabilityOfGorge = Math.Abs(newProbabilityOfGorge-1);
+        //probabilityOfPlainWasChanged = true;
+        mapGenerator.generateMap();
+    }
+
+    public void OnOffPlainProbability(bool flag)
+    {
+        mapGenerator.probabilityOfPlainIsOn = flag;
+        mapGenerator.generateMap();
+    }
+    public void OnOffGorgeProbability(bool flag)
+    {
+        mapGenerator.probabilityOfPGorgeIsOn = flag;
+        mapGenerator.generateMap();
+    }
     public void changeMapWidth(string newMapWidth)
     {
         if (newMapWidth != "")
@@ -218,7 +236,7 @@ public class AppUI : MonoBehaviour
 
     public void randomSeed()
     {
-        mapGenerator.seed = Random.Range(0, (int)1e9 - 1);
+        mapGenerator.seed = UnityEngine.Random.Range(0, (int)1e9 - 1);
         inputFieldSeed.text = mapGenerator.seed.ToString();
         mapGenerator.generateMap();
     }
