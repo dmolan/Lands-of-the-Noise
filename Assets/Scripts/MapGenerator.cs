@@ -173,7 +173,7 @@ public class MapGenerator : MonoBehaviour
 
         if (isProbabilitySliderTurnedOn)
         {
-            visualParameters.generatePlain(0, 0, mapWidth, mapHeight, noiseMap, probabilityOfPlain);
+            visualParameters.newGeneratePlain(0, 0, mapWidth, mapHeight, noiseMap, probabilityOfPlain);
         }
 
         if (isGorgeSliderTurnedOn)
