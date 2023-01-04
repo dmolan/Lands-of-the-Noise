@@ -38583,7 +38583,7 @@ MonoBehaviour:
   canvasHowDoesItWork: {fileID: 253031964}
   canvasCredits: {fileID: 1229247058}
   canvasFiles: {fileID: 1203171078}
-  canvasStaticPoints: {fileID: 0}
+  canvasStaticPoints: {fileID: 28051145}
   settingsMenu: {fileID: 382779178}
   mainMenu: {fileID: 1708468831}
   butRun: {fileID: 1493795466}
