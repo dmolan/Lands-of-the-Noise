@@ -9,9 +9,9 @@ using UnityEngine.UI;
 public class HowToUsePages : MonoBehaviour
 {
     public Button buttonFastBw, buttonBw, buttonFw, buttonFastFw;
-    public GameObject slide1, slide2, slide3, slide4, slide5;
+    public GameObject slide1, slide2, slide3, slide4, slide5, slide6, slide7;
 
-    private const int numOfSlides = 5;
+    private const int NUM_OF_SLIDES = 7;
     public int currSlide = 1; // By default first slide
 
 
@@ -23,12 +23,14 @@ public class HowToUsePages : MonoBehaviour
         slide3.SetActive(val == 3);
         slide4.SetActive(val == 4);
         slide5.SetActive(val == 5);
+        slide6.SetActive(val == 6);
+        slide7.SetActive(val == 7);
     }
 
     public void buttonForwardPressed()
     {
         currSlide += 1;
-        if (currSlide > numOfSlides) currSlide = numOfSlides;
+        if (currSlide > NUM_OF_SLIDES) currSlide = NUM_OF_SLIDES;
         setSlide(currSlide);
     }
 
@@ -41,7 +43,7 @@ public class HowToUsePages : MonoBehaviour
 
     public void buttonFastForwardPressed()
     {
-        currSlide = numOfSlides;
+        currSlide = NUM_OF_SLIDES;
         setSlide(currSlide);
     }
 

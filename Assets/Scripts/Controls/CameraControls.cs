@@ -13,8 +13,8 @@ public class CameraControls : MonoBehaviour
     public Transform target;
     
     public float currentDistanceToMap;
-    public float defaultDistanceToMap = 800f;
-    public float deafultAngleOfView = 50f;
+    public float defaultDistanceToMap = 950f;
+    public float deafultAngleOfView = 30f;
 
     // Mouse controls
     public float rotationSensitivity = 5f;

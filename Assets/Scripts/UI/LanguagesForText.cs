@@ -38,8 +38,8 @@ public class LanguagesForText : MonoBehaviour
 
     // How To Use
     public TextMeshProUGUI howUseBack;
-    public TextMeshProUGUI howUseTitle1, howUseTitle2, howUseTitle3, howUseTitle4, howUseTitle5;
-    public TextMeshProUGUI howUseInfo1, howUseInfo2, howUseInfo3, howUseInfo4, howUseInfo5;
+    public TextMeshProUGUI howUseTitle1, howUseTitle2, howUseTitle3, howUseTitle4, howUseTitle5, howUseTitle6, howUseTitle7;
+    public TextMeshProUGUI howUseInfo1, howUseInfo2, howUseInfo3, howUseInfo4, howUseInfo5, howUseInfo6, howUseInfo7;
 
     // How Does It Work
     public TextMeshProUGUI howWorkBack;
@@ -94,8 +94,8 @@ public class LanguagesForText : MonoBehaviour
         settMenuZoomingSpeed.text = "Чутливість зуму";
         settMenuAngleOfView.text = "Кут огляду";
         settMenuCurrentDistance.text = "Відстань до камери";
-        settMenuRotationSmoothTime.text = "Плавність обертання";
-        settMenuDistanceLerpTime.text = "Плавність зуму";
+        settMenuRotationSmoothTime.text = "Інерційність обертання";
+        settMenuDistanceLerpTime.text = "Швидкість зуму";
 
         settMenuBack.text = "Назад";
         }
@@ -138,7 +138,8 @@ public class LanguagesForText : MonoBehaviour
     3) Gökhan Gökçe - за неймовірний ""Автономний Файловий Переглядач"" у відкритому доступі
     4) Avionx - за прекрасні текстури, використані на задньому плані в програмі
     5) Derrick Taylor з ""The Taylor Series"" - за зрозумілі та чіткі ілюстрації для ""Як це працює"" меню
-    6) Craig Perko - за корисне ютюб відео про витоки пам'яті";
+    6) Craig Perko - за корисне ютюб відео про витоки пам'яті
+    7) Flaticon and others - за прегарні значки для кнопок";
         creditsBack.text = "Назад";
         }
     
@@ -150,11 +151,15 @@ public class LanguagesForText : MonoBehaviour
         howUseTitle3.text = "2. Опції";
         howUseTitle4.text = "3. Програма";
         howUseTitle5.text = "4. Уподобання";
-        howUseInfo1.text = @"Є чотири найважливіші меню в програмі:
+        howUseTitle6.text = "5. Файли";
+        howUseTitle7.text = "6. Статичні точки";
+        howUseInfo1.text = @"Є шість найважливіших меню в програмі:
 1) Головне меню;
 2) Опції;
 3) Програма;
-4) Уподобання.
+4) Уподобання;
+5) Файли;
+6) Статичні точки.
 
 Усі вони будуть детально описані на наступних слайдах.";
         howUseInfo2.text = @"У Головному меню є шість кнопок:
@@ -176,9 +181,10 @@ public class LanguagesForText : MonoBehaviour
         howUseInfo4.text = @"У Програмі є декілька елементів:
 1) Поле вводу ""Зерно"" у лівому-верхньому куті - сюди можна ввести зерно для карти (див. ""Як це працює?"");
 2) Чотири позунки в правому-верхньому куті - змінюють параметри генерації карти (див. ""Як це працює?"");
-3) Кнопки з символами стрілочка вгору/вниз в правому-нижньому куті - зберегти усі нинішні параметри карти та повні значення висот / завантажити існуючу карту за параметрами;
-4) Кнопка з символом коліщатка в правому нижньому куті - відкриває меню ""Уподобання"";
-5) Кнопка ""Назад"" - вертає в головне меню.
+3) Кнопка з символом графіка в правому нижньому куті - відкриває меню ""Статичні точки"";
+4) Кнопка з символом папки в правому нижньому куті - відкриває меню ""Файли"";
+5) Кнопка з символом коліщатка в правому нижньому куті - відкриває меню ""Уподобання"";
+6) Кнопка ""Назад"" - вертає в головне меню.
 
 Примітка: у цьому меню щоб обертати камеру горизонтально, потрібно затиснути Праву Кнопку Миші, а щоб обертати камеру вертикально - ""Ctrl"" + Праву Кнопку Миші.";
         howUseInfo5.text = @"В ""Уподобаннях"" є декілька елементів:
@@ -186,6 +192,15 @@ public class LanguagesForText : MonoBehaviour
 2) Повзунок ""Октави"" - змінює кількість октав (див. ""Як це працює?"");
 3) Спадний список ""Тип візулізації"" - змінює тип візуалізації (значення в кожній точці ті ж, але відображаються через Чорний/Білий, Різні кольори або Обє'мну фігуру);
 4) Кнопка ""Назад"" - вертає в головне меню.";
+        howUseInfo6.text = @"У ""Файлах"" є декілька елементів:
+1) ""Зберегти""/""Завантажити"" під текстом ""Карта"" - зберігає всю карту в ""txt"" як таблицю, або завантажує мапу за п'ятьма числами;
+2) ""Зберегти""/""Завантажити"" під текстом ""Поточний проєкт"" - зберігає усі значення в ""txt"", або завантажує всі значення з ""txt"";
+3) ""PNG""/""BMP"" під текстом ""Зображення"" - зберігає мапу в ""PNG"" або ""BMP"";
+4) ""Додати""/""Відняти"" під текстом ""Арифметика карт"" - додавання/віднімання карт, які були збережені раніше.";     
+        howUseInfo7.text = @"У ""Статичних точках"" є декілька елементів:
+1) Кнопка зі знаком плюс - додає статичну точку з координатами й висотою, взятими з полів ліворуч;
+2) Кнопка зі знаком мінус - витирає останню статичну точку;
+3) Кнопка із символом урни - витирає всі статичні точки.";
         }
     
         // How Does It Work
@@ -200,7 +215,7 @@ public class LanguagesForText : MonoBehaviour
         howWorkTitle7.text = "6. Перша октава";
         howWorkTitle8.text = "7. Лакунарність";
         howWorkTitle9.text = "8. Деталізованість";
-        howWorkTitle10.text = "9. Кінець";
+        howWorkTitle10.text = "9. Останній етап";
         howWorkInfo1.text = @"У Процедурній генерації методом шуму Перлина (Фрактального) є п'ять ключових кроків:
 1) Отримання безперервного Потоку чисел із зерна;
 2) Поділ карти на Блоки уявними лініями, присвоєння кожному перетину ліній випадково повернутого одничного вектора;
@@ -286,7 +301,7 @@ public class LanguagesForText : MonoBehaviour
         settMenuZoomingSpeed.text = "Zooming Speed";
         settMenuAngleOfView.text = "Angle Of View";
         settMenuCurrentDistance.text = "Camera Distance";
-        settMenuRotationSmoothTime.text = "Rotation Smoothing";
+        settMenuRotationSmoothTime.text = "Inertia of rotation";
         settMenuDistanceLerpTime.text = "Distance Smoothing";
 
         settMenuBack.text = "Back";
@@ -337,7 +352,8 @@ public class LanguagesForText : MonoBehaviour
     3) Gökhan Gökçe - for amazing Standalone File Browser project on GitHub;
     4) Avionx - for gorgeus assets used in app background;
     5) Derrick Taylor from ""The Taylor Series"" - for clear illustrations used in ""How Does It Work"" menu;
-    6) Craig Perko - for helpful YouTube video on memory leaks.";
+    6) Craig Perko - for helpful YouTube video on memory leaks;
+    7) Flaticon and others - for gorgeous icons.";
         creditsBack.text = "Back";
         }
     
@@ -349,11 +365,15 @@ public class LanguagesForText : MonoBehaviour
         howUseTitle3.text = "2. Options Menu";
         howUseTitle4.text = "3. App";
         howUseTitle5.text = "4. Preferences";
-        howUseInfo1.text = @"There are four most important menus in the app:
+        howUseTitle6.text = "5. Files";
+        howUseTitle7.text = "6. Static points";
+        howUseInfo1.text = @"There are six most important menus in the app:
 1) Main Menu;
 2) Options Menu;
 3) App;
-4) Preferences.
+4) Preferences
+5) Files
+6) Static points
 
 Each of them will be covered in details on the following slides.";
         howUseInfo2.text = @"There are six buttons in the Main Menu:
@@ -375,9 +395,10 @@ Each of them will be covered in details on the following slides.";
         howUseInfo4.text = @"There are several elements in the App:
 1) ""Seed"" input field in the left-up corner - here you can write number which will give you a unique map (see ""How Does It Work"" for more);
 2) Four sliders in the right-up corner - with these you can change map generaitng values (see ""How Does It Work"" for more);
-3) Save/Load buttons in the left-bottom corner - with these you can save map by current parametrs (including full map with values) or load existing map by parametrs;
-4) Preferences button in the right-down corner - will lead you to the Preferences menu;
-5) ""Back"" button in the left-down corner - will lead you back to the App.
+3) Button with graph symbol in the right-down corner - opens menu ""Static points"";
+4) Button with folder symbol in the right-down corner - opens menu ""Files"";
+5) Button with wheel symbol in the right-down corner - opens menu ""Preferences"";
+6) ""Back"" button in the left-down corner - will lead you back to the App.
 
 Note: in this menu you can hold Right Mouse Button to rotate camera horizontally and hold Control+Right Mouse Button to rotate camera vertically.";
         howUseInfo5.text = @"There are several elements in the Preferences:
@@ -385,6 +406,15 @@ Note: in this menu you can hold Right Mouse Button to rotate camera horizontally
 2) ""Octaves"" sliders - with this you can change amount of octaves for the map;
 3) ""Draw mode"" dropdown - you can choose options of displaying the map (same values, but numbers are given color and height in ""Color Map"" and ""Mesh"" respectively);
 4) ""Back"" button - will lead you back to the App.";
+        howUseInfo6.text = @"There are several elements in the Files menu:
+1) ""Save""/""Load"" under ""Map"" text - saves whole map in ""txt"" as table, or loads map by 5 integer values;
+2) ""Save""/""Load"" under ""Preset"" text - saves all settings in ""txt"", or loads all settings from ""txt"";
+3) ""PNG""/""BMP"" under ""Image"" text - saves saves map into ""PNG"" or ""BMP"" file types;
+4) ""Add""/""Subtract"" under ""Map Arithmetics"" text - allows you to add/subtract map, saved previously.";     
+        howUseInfo7.text = @"There are several elements in the Static Points menu:
+1) Button with plus sign - adds Static Point with coordinates and height from input filed on the left of it;
+2) Button with minus sign - removes last Static Point;
+3) Button with bin sign - removes all Static Points.";
         }
 
         // How Does It Work
@@ -399,7 +429,7 @@ Note: in this menu you can hold Right Mouse Button to rotate camera horizontally
         howWorkTitle7.text = "6. First Octave";
         howWorkTitle8.text = "7. Lacunarity";
         howWorkTitle9.text = "8. Persistance";
-        howWorkTitle10.text = "9. The End";
+        howWorkTitle10.text = "9. Finishing";
         howWorkInfo1.text = @"There are four most important steps in procedural generation using Perlin (Fractal) noise:
 1) Getting continious stream of numbers from seed;
 2) Dividing map into chunks, assigning each borders interception a vector;
