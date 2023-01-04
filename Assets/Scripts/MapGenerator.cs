@@ -47,12 +47,11 @@ public class MapGenerator : MonoBehaviour
     public float staticPointHeight; // Height of static point 
     public int staticPointRadius; // Radius of static point's hill
 
-
     public float probabilityOfPlain = 0f;
     public bool isProbabilitySliderTurnedOn = false;
 
     public float probabilityOfGorge = 1f;
-    public bool isGorgeSliderTurnedOn = false;
+    public bool isGorgeProbabilitySliderTurnedOn = false;
 
     static Color[] colorMap;
 
@@ -158,7 +157,9 @@ public class MapGenerator : MonoBehaviour
             }
         }
     }
-    public void visualiseMap(){
+    
+    public void visualiseMap()
+    {
         fillColorMap(noiseMap);
 
         MapDisplay display = FindObjectOfType<MapDisplay>();
@@ -186,12 +187,13 @@ public class MapGenerator : MonoBehaviour
         }
         Resources.UnloadUnusedAssets();
     }
+
     public void generateMap()
     {
         noiseMap = Noise.generateNoiseMap(seed, mapWidth, mapHeight, 
         octaves, persistance, lacunarity, noiseScale, offset);
 
-        //Here you can assign values of static point by hand
+        // Here you can assign values of static point by hand
         /*
         staticPointX = 49;
         staticPointY = 49;
@@ -205,12 +207,12 @@ public class MapGenerator : MonoBehaviour
             visualParameters.newGeneratePlain(0, 0, mapWidth, mapHeight, noiseMap, probabilityOfPlain);
         }
 
-        if (isGorgeSliderTurnedOn)
+        if (isGorgeProbabilitySliderTurnedOn)
         {
             visualParameters.generateGorge(0, 0, mapWidth, mapHeight, noiseMap, probabilityOfGorge);
         }
-        visualiseMap();
         
+        visualiseMap();
     }
 
     // Called every time one of public variables is changed

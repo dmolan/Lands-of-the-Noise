@@ -125,7 +125,7 @@ public class MapSaveLoad : MonoBehaviour
         }
     }
 
-    public void loadMapMerger()
+    public void loadMapAndAddToCurrentMap()
     {
         string loadFilePath = "";
         string[] loadFilesPathes = StandaloneFileBrowser.OpenFilePanel("Load Map from TXT", "", "", false);
@@ -136,55 +136,74 @@ public class MapSaveLoad : MonoBehaviour
             char[] separators = new char[] { ' ', '	'};
             string mapData = System.IO.File.ReadAllText(loadFilePath);
 
-            string[] arrayOfParametrs = mapData.Split(separators , System.StringSplitOptions.RemoveEmptyEntries);
+            string[] arrayOfParametrs = mapData.Split(separators, System.StringSplitOptions.RemoveEmptyEntries);
 
             int loadMapWidth = 0;
-            while((arrayOfParametrs[loadMapWidth])[1] != '\n'){
+            while ((arrayOfParametrs[loadMapWidth])[1] != '\n')
+            {
                 ++loadMapWidth;
             }
             int loadMapHeight = arrayOfParametrs.Length/loadMapWidth;
             float[,] loadMap = new float[loadMapHeight, loadMapWidth];
             bool isAllParsed = true;
-            for(int i = 0; i < loadMapHeight; ++i){
+
+            for(int i = 0; i < loadMapHeight; ++i)
+            {
                 for (int j = 0; j < loadMapWidth; ++j)
                 {
                     isAllParsed = (isAllParsed && float.TryParse(arrayOfParametrs[loadMapWidth * i + j], out loadMap[i, j]));
                 }
             }
-             // If all values are succesfully parsed, set values and UI to new values
-            if (isAllParsed){
-                if(((mapGenerator.mapHeight > loadMapHeight) && (mapGenerator.mapWidth < loadMapWidth)) || ((mapGenerator.mapHeight < loadMapHeight) && (mapGenerator.mapWidth > loadMapWidth))){
+
+            // If all values are succesfully parsed, set values and UI to new values
+            if (isAllParsed)
+            {
+                if (((mapGenerator.mapHeight > loadMapHeight) && (mapGenerator.mapWidth < loadMapWidth)) 
+                || ((mapGenerator.mapHeight < loadMapHeight) && (mapGenerator.mapWidth > loadMapWidth)))
+                {
                     Debug.Log("Wrong file format!");
-                }else{
-                    
+                }
+                else
+                { 
                     int newMapHeight = Math.Max(mapGenerator.mapHeight, loadMapHeight);
                     int newMapWidth = Math.Max(mapGenerator.mapWidth, loadMapWidth);
                     float[,] newMap = new float[newMapHeight, newMapWidth];
-                    for(int i = 0; i < newMapHeight; i++){
+
+                    for (int i = 0; i < newMapHeight; i++)
+                    {
                         for (int j = 0; j < newMapWidth; j++)
                         {
-                            if((i > mapGenerator.mapHeight) || (j > mapGenerator.mapWidth)){
+                            if ((i > mapGenerator.mapHeight) || (j > mapGenerator.mapWidth))
+                            {
                                 newMap[i, j] = loadMap[i, j];
-                            } else if((i > loadMapHeight) || (j > loadMapWidth)){
-                                newMap[i, j] = ( mapGenerator.noiseMap[i, j]* (mapGenerator.maxMapValue - mapGenerator.minMapValue) + mapGenerator.minMapValue);
+                            } 
+                            else if ((i > loadMapHeight) || (j > loadMapWidth))
+                            {
+                                newMap[i, j] = (mapGenerator.noiseMap[i, j] * (mapGenerator.maxMapValue - mapGenerator.minMapValue) + mapGenerator.minMapValue);
                             }
-                            else{
-                                newMap[i, j] = loadMap[i, j] + ( mapGenerator.noiseMap[i, j]* (mapGenerator.maxMapValue - mapGenerator.minMapValue) + mapGenerator.minMapValue);
+                            else
+                            {
+                                newMap[i, j] = loadMap[i, j] + (mapGenerator.noiseMap[i, j] * (mapGenerator.maxMapValue - mapGenerator.minMapValue) + mapGenerator.minMapValue);
                             }
                         }
                     }
+
                     float Max = loadMap[0, 0];
                     float Min = loadMap[0, 0];
-                    for(int i = 0; i < loadMapHeight; i++){
+
+                    for (int i = 0; i < loadMapHeight; i++)
+                    {
                         for (int j = 0; j < loadMapWidth; j++)
                         {
-                            if(Max < loadMap[i, j]) Max = loadMap[i, j];
-                            if(Min > loadMap[i, j]) Min = loadMap[i, j];
+                            if (Max < loadMap[i, j]) Max = loadMap[i, j];
+                            if (Min > loadMap[i, j]) Min = loadMap[i, j];
                         }
                     }
                     Max = Max + mapGenerator.maxMapValue;
                     Min = Min + mapGenerator.minMapValue;
-                    for(int i = 0; i < newMapHeight; i++){
+
+                    for (int i = 0; i < newMapHeight; i++)
+                    {
                         for (int j = 0; j < newMapWidth; j++)
                         {
                             newMap[i, j] = (newMap[i, j] - Min)/(Max - Min);
@@ -200,14 +219,15 @@ public class MapSaveLoad : MonoBehaviour
                     mapGenerator.appUI.changeMinMapValueVis();
                     mapGenerator.visualiseMap();
                 }
-            }else{
-                Debug.Log("Wrong file format!");
             }
-            
-            
+            else
+            {
+                Debug.Log("Wrong file format!");
+            }   
         }
     }
-    public void loadMapDisMerger()
+
+    public void loadMapAndSubtractFromCurrentMap()
     {
         string loadFilePath = "";
         string[] loadFilesPathes = StandaloneFileBrowser.OpenFilePanel("Load Map from TXT", "", "", false);
@@ -218,58 +238,77 @@ public class MapSaveLoad : MonoBehaviour
             char[] separators = new char[] { ' ', '	'};
             string mapData = System.IO.File.ReadAllText(loadFilePath);
 
-            string[] arrayOfParametrs = mapData.Split(separators , System.StringSplitOptions.RemoveEmptyEntries);
+            string[] arrayOfParametrs = mapData.Split(separators, System.StringSplitOptions.RemoveEmptyEntries);
 
             int loadMapWidth = 0;
-            while((arrayOfParametrs[loadMapWidth])[1] != '\n'){
+            while ((arrayOfParametrs[loadMapWidth])[1] != '\n')
+            {
                 ++loadMapWidth;
             }
-            int loadMapHeight = arrayOfParametrs.Length/loadMapWidth;
+            int loadMapHeight = arrayOfParametrs.Length / loadMapWidth;
             float[,] loadMap = new float[loadMapHeight, loadMapWidth];
             bool isAllParsed = true;
-            for(int i = 0; i < loadMapHeight; ++i){
+
+            for (int i = 0; i < loadMapHeight; ++i)
+            {
                 for (int j = 0; j < loadMapWidth; ++j)
                 {
                     isAllParsed = (isAllParsed && float.TryParse(arrayOfParametrs[loadMapWidth * i + j], out loadMap[i, j]));
                 }
             }
-             // If all values are succesfully parsed, set values and UI to new values
-            if (isAllParsed){
-                if(((mapGenerator.mapHeight > loadMapHeight) && (mapGenerator.mapWidth < loadMapWidth)) || ((mapGenerator.mapHeight < loadMapHeight) && (mapGenerator.mapWidth > loadMapWidth))){
+            
+            // If all values are succesfully parsed, set values and UI to new values
+            if (isAllParsed)
+            {
+                if (((mapGenerator.mapHeight > loadMapHeight) && (mapGenerator.mapWidth < loadMapWidth)) 
+                || ((mapGenerator.mapHeight < loadMapHeight) && (mapGenerator.mapWidth > loadMapWidth)))
+                {
                     Debug.Log("Wrong file format!");
-                }else{
-                    
+                }
+                else
+                {    
                     int newMapHeight = Math.Max(mapGenerator.mapHeight, loadMapHeight);
                     int newMapWidth = Math.Max(mapGenerator.mapWidth, loadMapWidth);
                     float[,] newMap = new float[newMapHeight, newMapWidth];
-                    for(int i = 0; i < newMapHeight; i++){
+
+                    for (int i = 0; i < newMapHeight; i++)
+                    {
                         for (int j = 0; j < newMapWidth; j++)
                         {
-                            if((i > mapGenerator.mapHeight) || (j > mapGenerator.mapWidth)){
+                            if ((i > mapGenerator.mapHeight) || (j > mapGenerator.mapWidth))
+                            {
                                 newMap[i, j] = -loadMap[i, j];
-                            } else if((i > loadMapHeight) || (j > loadMapWidth)){
-                                newMap[i, j] = ( mapGenerator.noiseMap[i, j]* (mapGenerator.maxMapValue - mapGenerator.minMapValue) + mapGenerator.minMapValue);
+                            } 
+                            else if ((i > loadMapHeight) || (j > loadMapWidth))
+                            {
+                                newMap[i, j] = (mapGenerator.noiseMap[i, j] * (mapGenerator.maxMapValue - mapGenerator.minMapValue) + mapGenerator.minMapValue);
                             }
-                            else{
-                                newMap[i, j] = -loadMap[i, j] + ( mapGenerator.noiseMap[i, j]* (mapGenerator.maxMapValue - mapGenerator.minMapValue) + mapGenerator.minMapValue);
+                            else
+                            {
+                                newMap[i, j] = -loadMap[i, j] + (mapGenerator.noiseMap[i, j] * (mapGenerator.maxMapValue - mapGenerator.minMapValue) + mapGenerator.minMapValue);
                             }
                         }
                     }
+
                     float Max = loadMap[0, 0];
                     float Min = loadMap[0, 0];
-                    for(int i = 0; i < loadMapHeight; i++){
+
+                    for (int i = 0; i < loadMapHeight; i++)
+                    {
                         for (int j = 0; j < loadMapWidth; j++)
                         {
-                            if(Max < loadMap[i, j]) Max = loadMap[i, j];
-                            if(Min > loadMap[i, j]) Min = loadMap[i, j];
+                            if (Max < loadMap[i, j]) Max = loadMap[i, j];
+                            if (Min > loadMap[i, j]) Min = loadMap[i, j];
                         }
                     }
                     Max = Max + mapGenerator.maxMapValue;
                     Min = Min + mapGenerator.minMapValue;
-                    for(int i = 0; i < newMapHeight; i++){
+
+                    for (int i = 0; i < newMapHeight; i++)
+                    {
                         for (int j = 0; j < newMapWidth; j++)
                         {
-                            newMap[i, j] = (newMap[i, j] - Min)/(Max - Min);
+                            newMap[i, j] = (newMap[i, j] - Min) / (Max - Min);
                         }
                     }
 
@@ -282,11 +321,11 @@ public class MapSaveLoad : MonoBehaviour
                     mapGenerator.appUI.changeMinMapValueVis();
                     mapGenerator.visualiseMap();
                 }
-            }else{
+            }
+            else
+            {
                 Debug.Log("Wrong file format!");
             }
-            
-            
         }
     }
     

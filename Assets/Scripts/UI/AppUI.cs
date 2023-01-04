@@ -66,7 +66,7 @@ public class AppUI : MonoBehaviour
 
     public void switchGorgeProbabilitySliderVisibility(bool flag)
     {
-        mapGenerator.isGorgeSliderTurnedOn = flag;
+        mapGenerator.isGorgeProbabilitySliderTurnedOn = flag;
         mapGenerator.generateMap();
     }
 
@@ -130,10 +130,12 @@ public class AppUI : MonoBehaviour
             inputFieldMinMapValue.text = mapGenerator.minMapValue.ToString();
         }
     }
+
     public void changeMinMapValueVis()
     {
         inputFieldMinMapValue.text = mapGenerator.minMapValue.ToString();
     }
+    
     public void changeMaxMapValueVis()
     {
         inputFieldMaxMapValue.text = mapGenerator.maxMapValue.ToString();
