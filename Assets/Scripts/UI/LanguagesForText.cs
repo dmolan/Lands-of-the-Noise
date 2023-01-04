@@ -124,7 +124,7 @@ public class LanguagesForText : MonoBehaviour
         prefDropdown.options.Add(new TMP_Dropdown.OptionData() {text = "Таблиця"}); 
         prefDropdown.captionText.text = "Сітка";
         prefNote.text = "Примітка: видно лише в збережених значеннях";
-        prefProbabilityOfPlain.text = "Імовірність плоскоогір'їв"; 
+        prefProbabilityOfPlain.text = "Імовірність плоскогір'їв"; 
         prefProbabilityOfGorge.text = "Імовірність обривів"; 
         prefBack.text = "Назад";
         }

@@ -21,6 +21,9 @@ public class PresetSaveLoad : MonoBehaviour
     public TMP_InputField inputFieldDefaultDistanceToMap, inputFieldDefaultAngleOfView, inputFieldRotationSensitivity, 
     inputFieldZoomingSensitivity, inputFieldRotationSmoothTime, inputFieldDistanceLerpTime;
 
+    public Toggle toggleGorge, togglePlain;
+    public TMP_InputField inputFieldMaxMapValue, inputFieldMinMapValue;
+    public Slider sliderProbabilityOfPlain, sliderProbabilityOfGorge;
 
 
     // Saves Preset to ".txt" file (most of the MapGenerator and CameraControls classes parameters)
@@ -59,7 +62,14 @@ public class PresetSaveLoad : MonoBehaviour
             "RotationSmoothTime: " + cameraControls.rotationSmoothTime + '\r' + '\n' + 
             "DistanceLerpTime: " + cameraControls.distanceLerpTime + '\r' + '\n' + 
             "RotationX: " + cameraControls.rotationX + '\r' + '\n' + 
-            "RotationY: " + cameraControls.rotationY % 360f  + '\r' + '\n' + '\n';
+            "RotationY: " + cameraControls.rotationY % 360f  + '\r' + '\n' + 
+            "MaxMapValue: " + mapGenerator.maxMapValue + '\r' + '\n' +
+            "MinMapValue: " + mapGenerator.minMapValue + '\r' + '\n' +
+            "ProbabilityOfPlain: " + mapGenerator.probabilityOfPlain + '\r' + '\n' +
+            "ProbabilityOfGorge: " + mapGenerator.probabilityOfGorge + '\r' + '\n' + 
+            "IsPlainTurnedOn: " + togglePlain.isActiveAndEnabled + '\r' + '\n' + 
+            "IsGorgeTurnedOn: " + toggleGorge.isActiveAndEnabled + '\r' + '\n' + 
+            '\n';
             
             System.IO.File.WriteAllText(saveFilePath, mapData);
         }
@@ -110,7 +120,10 @@ public class PresetSaveLoad : MonoBehaviour
                 // These are temporary variables as some of them might not be assigned from parsing, 
                 // thus none will be assigned to real values (from MapGenerator and CameraControls classes)
                 int newSeed = 0, newMapWidth = 0, newMapHeight = 0, newOctaves = 0;
-                float newPersistance = 0, newLacunarity = 0, newNoiseScale = 0, newMeshHeightMultiplier = 0, offsetSpeed = 0;
+                float newPersistance = 0, newLacunarity = 0, newNoiseScale = 0, 
+                newMeshHeightMultiplier = 0, offsetSpeed = 0, newMaxMapValue = 0, newMinMapValue = 0,
+                newPlainProbability = 0, newGorgeProbability = 0;
+                bool newIsGorgeTurnedOn = false, newIsPlainTurnedOn = false;
                 Vector2 newOffset = new Vector2();
                 Vector2 newRotation = new Vector2();
                 float newCurrentDistanceToMap = 0, newDefaultDistanceToMap = 0, newDeafultAngleOfView = 0, newRotationSensitivity = 0, 
@@ -139,7 +152,14 @@ public class PresetSaveLoad : MonoBehaviour
                 float.TryParse(splittedMapData[55], out newRotationSmoothTime) &&
                 float.TryParse(splittedMapData[58], out newDistanceLerpTime) &&
                 float.TryParse(splittedMapData[61], out newRotation.x) &&
-                float.TryParse(splittedMapData[64], out newRotation.y);
+                float.TryParse(splittedMapData[64], out newRotation.y) &&
+
+                float.TryParse(splittedMapData[67], out newMaxMapValue) &&
+                float.TryParse(splittedMapData[70], out newMinMapValue) &&
+                float.TryParse(splittedMapData[73], out newPlainProbability) &&
+                float.TryParse(splittedMapData[76], out newGorgeProbability) &&
+                bool.TryParse(splittedMapData[79], out newIsPlainTurnedOn) &&
+                bool.TryParse(splittedMapData[82], out newIsGorgeTurnedOn);
 
                 // If all succesfully parsed, set values and UI to new values
                 if (isAllParsed)
@@ -184,6 +204,20 @@ public class PresetSaveLoad : MonoBehaviour
                     inputFieldZoomingSensitivity.text = cameraControls.zoomingSensitivity.ToString();
                     inputFieldRotationSmoothTime.text = cameraControls.rotationSmoothTime.ToString(); 
                     inputFieldDistanceLerpTime.text = cameraControls.distanceLerpTime.ToString();
+
+                    mapGenerator.maxMapValue = newMaxMapValue;
+                    mapGenerator.minMapValue = newMinMapValue;
+                    mapGenerator.probabilityOfPlain = newPlainProbability;
+                    mapGenerator.probabilityOfGorge = newGorgeProbability;
+                    mapGenerator.isPlainProbabilitySliderTurnedOn = newIsPlainTurnedOn;
+                    mapGenerator.isGorgeProbabilitySliderTurnedOn = newIsGorgeTurnedOn;
+
+                    inputFieldMaxMapValue.text = mapGenerator.maxMapValue.ToString();
+                    inputFieldMinMapValue.text = mapGenerator.minMapValue.ToString();
+                    sliderProbabilityOfPlain.value = mapGenerator.probabilityOfPlain;
+                    sliderProbabilityOfGorge.value = mapGenerator.probabilityOfGorge;
+                    togglePlain.isOn = mapGenerator.isPlainProbabilitySliderTurnedOn;
+                    toggleGorge.isOn = mapGenerator.isGorgeProbabilitySliderTurnedOn;
 
                     // Regenerate map with new values (new values are already set)
                     mapGenerator.generateMap();
