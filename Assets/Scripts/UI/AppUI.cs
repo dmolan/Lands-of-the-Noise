@@ -130,6 +130,14 @@ public class AppUI : MonoBehaviour
             inputFieldMinMapValue.text = mapGenerator.minMapValue.ToString();
         }
     }
+    public void changeMinMapValueVis()
+    {
+        inputFieldMinMapValue.text = mapGenerator.minMapValue.ToString();
+    }
+    public void changeMaxMapValueVis()
+    {
+        inputFieldMaxMapValue.text = mapGenerator.maxMapValue.ToString();
+    }
 
     public void checkMinMapValue(string newMinMapValue)
     {   

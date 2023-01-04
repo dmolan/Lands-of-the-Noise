@@ -21,7 +21,9 @@ public class MapGenerator : MonoBehaviour
     public DrawMode drawMode;
 
     public int seed;
-
+    
+    public float[,] noiseMap;
+    
     public int mapWidth, mapHeight;
     public float noiseScale;
 
@@ -156,31 +158,7 @@ public class MapGenerator : MonoBehaviour
             }
         }
     }
-
-    public void generateMap()
-    {
-        float[,] noiseMap = Noise.generateNoiseMap(seed, mapWidth, mapHeight, 
-        octaves, persistance, lacunarity, noiseScale, offset);
-
-        //Here you can assign values of static point by hand
-        /*
-        staticPointX = 49;
-        staticPointY = 49;
-        staticPointHeight = 0.424242f;
-        staticPointRadius = 20;
-        changeNoiseMapToFitStaticPoint(noiseMap, staticPointX, staticPointY, staticPointHeight, staticPointRadius);
-        */
-
-        if (isProbabilitySliderTurnedOn)
-        {
-            visualParameters.newGeneratePlain(0, 0, mapWidth, mapHeight, noiseMap, probabilityOfPlain);
-        }
-
-        if (isGorgeSliderTurnedOn)
-        {
-            visualParameters.generateGorge(0, 0, mapWidth, mapHeight, noiseMap, probabilityOfGorge);
-        }
-
+    public void visualiseMap(){
         fillColorMap(noiseMap);
 
         MapDisplay display = FindObjectOfType<MapDisplay>();
@@ -207,6 +185,32 @@ public class MapGenerator : MonoBehaviour
             tableUI.assignValuesToCells(noiseMap);
         }
         Resources.UnloadUnusedAssets();
+    }
+    public void generateMap()
+    {
+        noiseMap = Noise.generateNoiseMap(seed, mapWidth, mapHeight, 
+        octaves, persistance, lacunarity, noiseScale, offset);
+
+        //Here you can assign values of static point by hand
+        /*
+        staticPointX = 49;
+        staticPointY = 49;
+        staticPointHeight = 0.424242f;
+        staticPointRadius = 20;
+        changeNoiseMapToFitStaticPoint(noiseMap, staticPointX, staticPointY, staticPointHeight, staticPointRadius);
+        */
+
+        if (isProbabilitySliderTurnedOn)
+        {
+            visualParameters.newGeneratePlain(0, 0, mapWidth, mapHeight, noiseMap, probabilityOfPlain);
+        }
+
+        if (isGorgeSliderTurnedOn)
+        {
+            visualParameters.generateGorge(0, 0, mapWidth, mapHeight, noiseMap, probabilityOfGorge);
+        }
+        visualiseMap();
+        
     }
 
     // Called every time one of public variables is changed
