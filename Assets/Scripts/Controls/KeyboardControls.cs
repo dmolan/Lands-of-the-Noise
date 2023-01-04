@@ -14,7 +14,8 @@ public class KeyboardControls : MonoBehaviour
     
     public GameObject plane, mesh;
 
-    public GameObject canvasMenu, canvasApp, canvasPreferences, canvasHowToUse, canvasHowDoesItWork, canvasCredits, canvasFiles;
+    public GameObject canvasMenu, canvasApp, canvasPreferences, canvasHowToUse, 
+    canvasHowDoesItWork, canvasCredits, canvasFiles, canvasStaticPoints;
     public GameObject settingsMenu, mainMenu;
 
     public Button butRun, butOpt, butExit, butHowUse, butHowWork, butCredits;
@@ -37,6 +38,11 @@ public class KeyboardControls : MonoBehaviour
             {
                 canvasApp.SetActive(true);
                 canvasFiles.SetActive(false);
+            }
+            else if (canvasStaticPoints.activeSelf)
+            {
+                canvasApp.SetActive(true);
+                canvasStaticPoints.SetActive(false);
             }
             else if (canvasApp.activeSelf)
             {

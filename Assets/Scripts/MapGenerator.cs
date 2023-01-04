@@ -9,6 +9,8 @@ using UnityEngine;
 
 public class MapGenerator : MonoBehaviour
 {
+    public const int STATIC_POINT_RADIUS = 10;
+
     public AppUI appUI;
     public TableUI tableUI;
     public HowDoesItWorkPages howDoesItWorkPages;
@@ -43,17 +45,14 @@ public class MapGenerator : MonoBehaviour
     public TerrainType[] regions;
     public float minMapValue, maxMapValue;
 
-    public int staticPointX, staticPointY; // Coordinates of static point
-    public float staticPointHeight; // Height of static point 
-    public int staticPointRadius; // Radius of static point's hill
-
     public float probabilityOfPlain = 0f;
-    public bool isProbabilitySliderTurnedOn = false;
+    public bool isPlainProbabilitySliderTurnedOn = false;
 
     public float probabilityOfGorge = 1f;
     public bool isGorgeProbabilitySliderTurnedOn = false;
 
     static Color[] colorMap;
+    public StaticPoint[] staticPoints = new StaticPoint[0];
 
 
 
@@ -76,7 +75,7 @@ public class MapGenerator : MonoBehaviour
         return noiseMap;
     }
 
-    public void changeNoiseMapToFitStaticPoint(float[,] noiseMap, int staticPointX, int staticPointY, float height, int radius)
+    public void changeNoiseMapToFitStaticPoint(float[,] noiseMap, int staticPointX, int staticPointY, float staticPointHeight, int radius)
     {
         // If some parameters are wrong, don't change "noiseMap[,]"
         if (staticPointX < 0 || staticPointX > mapWidth 
@@ -88,7 +87,7 @@ public class MapGenerator : MonoBehaviour
         float currentDistanceToStaticPoint; // Current distance to the static point
 
         // Is true if static point is in some hill
-        bool isPointInHill = (noiseMap[staticPointX, staticPointY] > height); 
+        bool isPointInHill = (noiseMap[staticPointX, staticPointY] > staticPointHeight); 
 
         for (int y = staticPointY - radius; y < staticPointY + radius; y++)
         {
@@ -101,7 +100,7 @@ public class MapGenerator : MonoBehaviour
                         if (!isPointInHill)
                         {
                             // Value of parabola calculated by formula "a - c * x^2"
-                            valueAfterChanges = height - (height / (radius * radius)) * ((x - staticPointX) * (x - staticPointX) + (y - staticPointY) * (y - staticPointY)); 
+                            valueAfterChanges = staticPointHeight - (staticPointHeight / (radius * radius)) * ((x - staticPointX) * (x - staticPointX) + (y - staticPointY) * (y - staticPointY)); 
                             valueBeforeChanges = noiseMap[x, y];
                             currentDistanceToStaticPoint = (float)Math.Sqrt((x - staticPointX) * (x - staticPointX) + (y - staticPointY) * (y - staticPointY));
 
@@ -109,9 +108,9 @@ public class MapGenerator : MonoBehaviour
                         }
                         else
                         {
-                            if (height != minMapValue)
+                            if (staticPointHeight != minMapValue)
                             {
-                                valueAfterChanges = height + (height / (radius * radius)) * ((x - staticPointX) * (x - staticPointX) + (y - staticPointY) * (y - staticPointY));
+                                valueAfterChanges = staticPointHeight + (staticPointHeight / (radius * radius)) * ((x - staticPointX) * (x - staticPointX) + (y - staticPointY) * (y - staticPointY));
                                 valueBeforeChanges = noiseMap[x, y];
                                 currentDistanceToStaticPoint = (float)Math.Sqrt((x - staticPointX) * (x - staticPointX) + (y - staticPointY) * (y - staticPointY));
 
@@ -119,7 +118,7 @@ public class MapGenerator : MonoBehaviour
                             }
                             else
                             {
-                                valueAfterChanges = height + ((maxMapValue / 1.5f - height) / (radius * radius)) * ((x - staticPointX) * (x - staticPointX) + (y - staticPointY) * (y - staticPointY));
+                                valueAfterChanges = staticPointHeight + ((maxMapValue / 1.5f - staticPointHeight) / (radius * radius)) * ((x - staticPointX) * (x - staticPointX) + (y - staticPointY) * (y - staticPointY));
                                 valueBeforeChanges = noiseMap[x, y];
                                 currentDistanceToStaticPoint = (float)Math.Sqrt((x - staticPointX) * (x - staticPointX) + (y - staticPointY) * (y - staticPointY));
 
@@ -131,7 +130,7 @@ public class MapGenerator : MonoBehaviour
             }
         }
 
-        noiseMap[this.staticPointX, this.staticPointY] = height;
+        noiseMap[staticPointX, staticPointY] = staticPointHeight;
     }
     
     // Fill array "colorMap" according to "noiseMap[,]" values and "regions[]" parameters
@@ -193,16 +192,12 @@ public class MapGenerator : MonoBehaviour
         noiseMap = Noise.generateNoiseMap(seed, mapWidth, mapHeight, 
         octaves, persistance, lacunarity, noiseScale, offset);
 
-        // Here you can assign values of static point by hand
-        /*
-        staticPointX = 49;
-        staticPointY = 49;
-        staticPointHeight = 0.424242f;
-        staticPointRadius = 20;
-        changeNoiseMapToFitStaticPoint(noiseMap, staticPointX, staticPointY, staticPointHeight, staticPointRadius);
-        */
+        for (int i = 0; i < staticPoints.Length; ++i)
+        {
+            changeNoiseMapToFitStaticPoint(noiseMap, staticPoints[i].x, staticPoints[i].y, staticPoints[i].height, STATIC_POINT_RADIUS);
+        }
 
-        if (isProbabilitySliderTurnedOn)
+        if (isPlainProbabilitySliderTurnedOn)
         {
             visualParameters.newGeneratePlain(0, 0, mapWidth, mapHeight, noiseMap, probabilityOfPlain);
         }
@@ -231,4 +226,23 @@ public struct TerrainType
     public string name;
     public float height;
     public Color color;
+}
+
+public struct StaticPoint
+{
+    public int x, y;
+    public float height;
+
+    // public StaticPoint()
+    // {
+    //     x = 0;
+    //     y = 0;
+    // }
+
+    // public StaticPoint(int xVal, int yVal, float heightValue)
+    // {
+    //     x = xVal;
+    //     y = yVal;
+    //     height = heightValue;
+    // }
 }

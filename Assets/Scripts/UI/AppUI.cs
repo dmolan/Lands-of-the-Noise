@@ -60,7 +60,7 @@ public class AppUI : MonoBehaviour
 
     public void switchPlainProbabilitySliderVisibility(bool flag)
     {
-        mapGenerator.isProbabilitySliderTurnedOn = flag;
+        mapGenerator.isPlainProbabilitySliderTurnedOn = flag;
         mapGenerator.generateMap();
     }
 
