@@ -30737,7 +30737,7 @@ MonoBehaviour:
   defHowWorkScale: 0.6
   defCreditsScale: 0.6
   defFilesScale: 0.8
-  defStaticPointsScale: 0.8
+  defStaticPointsScale: 0.55
   defTableScale: 1
   menuScale: 0
   appScale: 0
@@ -38583,7 +38583,7 @@ MonoBehaviour:
   canvasHowDoesItWork: {fileID: 253031964}
   canvasCredits: {fileID: 1229247058}
   canvasFiles: {fileID: 1203171078}
-  canvasStaticPoints: {fileID: 28051145}
+  canvasStaticPoints: {fileID: 0}
   settingsMenu: {fileID: 382779178}
   mainMenu: {fileID: 1708468831}
   butRun: {fileID: 1493795466}
@@ -45731,7 +45731,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1813856527}
-        m_MethodName: loadMapAndSubtractFromCurrentMap
+        m_MethodName: loadMapAndSubtractToCurrentMap
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

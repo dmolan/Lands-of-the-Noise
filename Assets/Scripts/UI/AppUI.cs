@@ -131,12 +131,12 @@ public class AppUI : MonoBehaviour
         }
     }
 
-    public void changeMinMapValueVis()
+    public void changeMinMapValueWithoutGenerate()
     {
         inputFieldMinMapValue.text = mapGenerator.minMapValue.ToString();
     }
     
-    public void changeMaxMapValueVis()
+    public void changeMaxMapValueWithoutGenerate()
     {
         inputFieldMaxMapValue.text = mapGenerator.maxMapValue.ToString();
     }
