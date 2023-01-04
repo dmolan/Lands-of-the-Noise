@@ -35,8 +35,10 @@ public class StaticPointsUI : MonoBehaviour
             Array.Resize(ref mapGenerator.staticPoints, mapGenerator.staticPoints.Length + 1);
             mapGenerator.staticPoints[mapGenerator.staticPoints.Length-1].x = int.Parse(staticPointX.text);
             mapGenerator.staticPoints[mapGenerator.staticPoints.Length-1].y = int.Parse(staticPointY.text);
-            mapGenerator.staticPoints[mapGenerator.staticPoints.Length-1].height = 
-            (resultOfHeightParse - mapGenerator.minMapValue) / (mapGenerator.maxMapValue - mapGenerator.minMapValue);
+
+            if (resultOfHeightParse > mapGenerator.maxMapValue) mapGenerator.staticPoints[mapGenerator.staticPoints.Length-1].height = mapGenerator.maxMapValue;
+            else if (resultOfHeightParse < mapGenerator.minMapValue) mapGenerator.staticPoints[mapGenerator.staticPoints.Length-1].height = mapGenerator.minMapValue;
+            else mapGenerator.staticPoints[mapGenerator.staticPoints.Length-1].height = resultOfHeightParse;
 
             mapGenerator.generateMap();
         }

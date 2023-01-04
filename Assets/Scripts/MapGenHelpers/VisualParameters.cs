@@ -29,8 +29,6 @@ public class VisualParameters : MonoBehaviour
 
         avarageHeightOnArea = avarageHeightOnArea * (probabilityOfPlain);
 
-        Debug.Log(avarageHeightOnArea);
-
         for (int currentX = x; currentX < x + width; currentX++)
         {
             for (int currentY = y; currentY < y + heigth; currentY++)
@@ -75,10 +73,7 @@ public class VisualParameters : MonoBehaviour
 
         avarageHeightOnArea = avarageHeightOnArea * (probabilityOfPlain);
 
-
         float currentValue, deltaHeight;
-        Debug.Log(avarageHeightOnArea);
-
         for (int currentX = x; currentX < x + width; currentX++)
         {
             for (int currentY = y; currentY < y + heigth; currentY++)

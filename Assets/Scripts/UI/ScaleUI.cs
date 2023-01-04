@@ -17,18 +17,18 @@ public class ScaleUI : MonoBehaviour
     const float defaultDeltaScale = -0.25f;
 
     // WARNING! These values might actually be taken from Unity Editor's fields
-    public float defMenuScale = 0.4f + defaultDeltaScale;
-    public float defAppScale = 0.7f + defaultDeltaScale;
-    public float defPrefScale = 0.55f + defaultDeltaScale;
-    public float defHowUseScale = 0.35f + defaultDeltaScale;
-    public float defHowWorkScale = 0.35f + defaultDeltaScale;
-    public float defCreditsScale = 0.35f + defaultDeltaScale;
-    public float defFilesScale = 0.8f + defaultDeltaScale;
-    public float defStaticPointsScale = 0.8f + defaultDeltaScale;
+    public float defMenuScale = 0.65f + defaultDeltaScale;
+    public float defAppScale = 0.95f + defaultDeltaScale;
+    public float defPrefScale = 0.8f + defaultDeltaScale;
+    public float defHowUseScale = 0.6f + defaultDeltaScale;
+    public float defHowWorkScale = 0.6f + defaultDeltaScale;
+    public float defCreditsScale = 0.6f + defaultDeltaScale;
+    public float defFilesScale = 1f + defaultDeltaScale;
+    public float defStaticPointsScale = 1f + defaultDeltaScale;
 
-    public float defTableScale = 1.25f - defaultDeltaScale;
+    public float defTableScale = 0.75f - defaultDeltaScale;
 
-    public float menuScale, appScale, prefScale, howUseScale, howWorkScale, creditsScale, filesScale, staticPointsScale;
+    [HideInInspector] public float menuScale, appScale, prefScale, howUseScale, howWorkScale, creditsScale, filesScale, staticPointsScale;
 
     public int scaleIndexNow;
     Vector3 tableScaleVector3 = new Vector3();

@@ -17,19 +17,20 @@ public class LanguagesForText : MonoBehaviour
 
     // Main Menu
     public TextMeshProUGUI mainMenuRun, mainMenuOptions, mainMenuExit, mainMenuHowUse, 
-        mainMenuHowUseInfo, mainMenuHowWork, mainMenuHowWorkInfo, mainMenuCredits;
+    mainMenuHowUseInfo, mainMenuHowWork, mainMenuHowWorkInfo, mainMenuCredits;
 
     // Settings Menu
     public TextMeshProUGUI settMenuTitle, settMenuLanguage, settMenuScale, settMenuBack, 
-        settMenuRotationSensitivity, settMenuZoomingSpeed, settMenuAngleOfView, 
-        settMenuCurrentDistance, settMenuRotationSmoothTime, settMenuDistanceLerpTime;
+    settMenuRotationSensitivity, settMenuZoomingSpeed, settMenuAngleOfView, 
+    settMenuCurrentDistance, settMenuRotationSmoothTime, settMenuDistanceLerpTime;
     public TMP_Dropdown settMenuDropdownLanguage, settMenuDropdownScale;
 
     // App
     public TextMeshProUGUI appSeed, appLacunarity, appPersistance, appScale, appOffsetSpeed;
 
     // Preferences
-    public TextMeshProUGUI prefTitle, prefWidth, prefHeight, prefMultiplier, prefOctaves, prefDrawMode, prefBack;
+    public TextMeshProUGUI prefTitle, prefWidth, prefHeight, prefMultiplier, prefOctaves, 
+    prefDrawMode, prefNote, prefProbabilityOfPlain, prefProbabilityOfGorge, prefBack;
     public TMP_Dropdown prefDropdown;
 
     // Credits
@@ -43,9 +44,19 @@ public class LanguagesForText : MonoBehaviour
     // How Does It Work
     public TextMeshProUGUI howWorkBack;
     public TextMeshProUGUI howWorkTitle1, howWorkTitle2, howWorkTitle3, howWorkTitle4, howWorkTitle5, 
-        howWorkTitle6, howWorkTitle7, howWorkTitle8, howWorkTitle9, howWorkTitle10;
+    howWorkTitle6, howWorkTitle7, howWorkTitle8, howWorkTitle9, howWorkTitle10;
     public TextMeshProUGUI howWorkInfo1, howWorkInfo2, howWorkInfo3, howWorkInfo4, howWorkInfo5,
-        howWorkInfo6, howWorkInfo7, howWorkInfo8, howWorkInfo9, howWorkInfo10;
+    howWorkInfo6, howWorkInfo7, howWorkInfo8, howWorkInfo9, howWorkInfo10;
+
+    // Files
+    public TextMeshProUGUI filesTitle, filesMapTitle, filesMapSave, filesMapLoad, filesPresetTitle, 
+    filesPresetSave, filesPresetLoad, filesImageTitle, filesImageSaveToPNG, filesImageSaveToBMP,
+    filesMapArithmeticTitle, filesMapArithmeticAdd, filesMapArithmeticSubtract, filesBack;
+
+    // Static Points
+    public TextMeshProUGUI staticPointsTitle, staticPointsAddNewPoint, staticPointsRemoveLastPoint,
+    staticPointsClearAll, staticPointsXCoordinate, staticPointsYCoordinate, staticPointsNewPointHeight,
+    staticPointsBack;
 
 
 
@@ -112,6 +123,9 @@ public class LanguagesForText : MonoBehaviour
         prefDropdown.options.Add(new TMP_Dropdown.OptionData() {text = "Сітка"}); 
         prefDropdown.options.Add(new TMP_Dropdown.OptionData() {text = "Таблиця"}); 
         prefDropdown.captionText.text = "Сітка";
+        prefNote.text = "Примітка: видно лише в збережених значеннях";
+        prefProbabilityOfPlain.text = "Імовірність плоскоогір'їв"; 
+        prefProbabilityOfGorge.text = "Імовірність обривів"; 
         prefBack.text = "Назад";
         }
 
@@ -213,6 +227,36 @@ public class LanguagesForText : MonoBehaviour
 Примітка: потрібно знайти новий мінімум і максимум та переприсвоїти кольори після цього.";
         howWorkInfo10.text = @"Маючи Шумову карту (див. #1), можемо присвоїти різним діапазонам в межах 0-1 різні кольори (див. #2), або навіть сконструювати об'ємну фігуру - Сітку (див. #3). А наскільки високою буде Сітка, визначає множник у меню ""Уподобання"". Оскільки ми використовуємо ГПВЧ, можемо змінювати масштаб карти, рухати її тощо.";     
         }
+    
+        // Files
+        {
+            filesTitle.text = "Файли"; 
+            filesMapTitle.text = "Карта";
+            filesMapSave.text = "Зберегти"; 
+            filesMapLoad.text = "Завантажити"; 
+            filesPresetTitle.text = "Поточний проєкт"; 
+            filesPresetSave.text = "Зберегти"; 
+            filesPresetLoad.text = "Завантажити"; 
+            filesImageTitle.text = "Зображення"; 
+            filesImageSaveToPNG.text = "PNG"; 
+            filesImageSaveToBMP.text = "BMP";
+            filesMapArithmeticTitle.text = "Арифметика Карт"; 
+            filesMapArithmeticSubtract.text = "Відняти"; 
+            filesMapArithmeticAdd.text = "Додати"; 
+            filesBack.text = "Назад";
+        }
+
+        // Static Points
+        {
+            staticPointsTitle.text = "Статичні точки";
+            staticPointsAddNewPoint.text = "Додати нову точку";
+            staticPointsRemoveLastPoint.text = "Прибрати останню точку";
+            staticPointsClearAll.text = "Очистити все";
+            staticPointsXCoordinate.text = "Координата X нової точки";
+            staticPointsYCoordinate.text = "Координата Y нової точки";
+            staticPointsNewPointHeight.text = "Висота нової точки";
+            staticPointsBack.text = "Назад";
+        }
     }
 
     private void changeLanguageToEng()
@@ -278,6 +322,9 @@ public class LanguagesForText : MonoBehaviour
         settMenuDropdownScale.options.Add(new TMP_Dropdown.OptionData() {text = "150%"}); 
         settMenuDropdownScale.options.Add(new TMP_Dropdown.OptionData() {text = "200%"}); 
         settMenuDropdownScale.captionText.text = "100%";
+        prefNote.text = "Note: visible only in saved values";
+        prefProbabilityOfPlain.text = "Probability of Plain"; 
+        prefProbabilityOfGorge.text = "Probability of Gorge"; 
         prefBack.text = "Back";
         }
 
@@ -378,6 +425,36 @@ It is worth noting that we should assign values in a spiral, so that in whatever
 
 Note: you will need to find minimum and maximum values of the map, and reassign colors.";
         howWorkInfo10.text = @"Now that we have the Noise Map (see #1), we can assign different colors to different values (see #2), or even make Height Map (Mesh) from Noise Map (see #3). How high the Mesh will be controls ""Mesh Height Multiplier"". Because we are using PRNG, we can scale our map, change it's size, and move it.";        
+        }
+    
+        // Files
+        {
+            filesTitle.text = "Files"; 
+            filesMapTitle.text = "Map";
+            filesMapSave.text = "Save"; 
+            filesMapLoad.text = "Load"; 
+            filesPresetTitle.text = "Preset"; 
+            filesPresetSave.text = "Save"; 
+            filesPresetLoad.text = "Load"; 
+            filesImageTitle.text = "Image"; 
+            filesImageSaveToPNG.text = "PNG"; 
+            filesImageSaveToBMP.text = "BMP";
+            filesMapArithmeticTitle.text = "Map Arithmetic"; 
+            filesMapArithmeticSubtract.text = "Subtract"; 
+            filesMapArithmeticAdd.text = "Add"; 
+            filesBack.text = "Back";
+        }
+
+        // Static Points
+        {
+            staticPointsTitle.text = "Static Points";
+            staticPointsAddNewPoint.text = "Add New Point";
+            staticPointsRemoveLastPoint.text = "Remove Last Point";
+            staticPointsClearAll.text = "Clear All";
+            staticPointsXCoordinate.text = "New Point's X coordinate";
+            staticPointsYCoordinate.text = "New Point's Y coordinate";
+            staticPointsNewPointHeight.text = "New Point's Height";
+            staticPointsBack.text = "Back";
         }
     }
 
