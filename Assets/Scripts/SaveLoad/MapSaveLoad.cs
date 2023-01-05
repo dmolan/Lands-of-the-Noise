@@ -45,7 +45,7 @@ public class MapSaveLoad : MonoBehaviour
         if (string.IsNullOrEmpty(saveFilePath) == false)
         {
             // Regenerating Noise Map to save it
-            float[,] noiseMap = mapGenerator.getNoiseMap();
+            float[,] noiseMap = mapGenerator.noiseMap;
             string mapData = "";
 
             if (mapGenerator.minMapValue != 0f || mapGenerator.maxMapValue != 1f)
@@ -227,7 +227,7 @@ public class MapSaveLoad : MonoBehaviour
         }
     }
 
-    public void loadMapAndSubtractToCurrentMap()
+    public void loadMapAndSubtractFromCurrentMap()
     {
         string loadFilePath = "";
         string[] loadFilesPathes = StandaloneFileBrowser.OpenFilePanel("Load Map from TXT", "", "", false);
@@ -342,7 +342,7 @@ public class MapSaveLoad : MonoBehaviour
         {
             // By default the texture is white
             Texture2D texture = Texture2D.whiteTexture;
-            float[,] noiseMap = mapGenerator.getNoiseMap();
+            float[,] noiseMap = mapGenerator.noiseMap;
 
             // Fill ColorMap if needed
             if (mapGenerator.drawMode == MapGenerator.DrawMode.ColorMap || mapGenerator.drawMode == MapGenerator.DrawMode.Mesh)
@@ -396,7 +396,7 @@ public class MapSaveLoad : MonoBehaviour
         {
             // By default the texture is white
             Texture2D texture = Texture2D.whiteTexture;
-            float[,] noiseMap = mapGenerator.getNoiseMap();
+            float[,] noiseMap = mapGenerator.noiseMap;
 
             // Fill ColorMap if needed
             if (mapGenerator.drawMode == MapGenerator.DrawMode.ColorMap || mapGenerator.drawMode == MapGenerator.DrawMode.Mesh)

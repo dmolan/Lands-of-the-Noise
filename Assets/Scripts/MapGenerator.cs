@@ -67,14 +67,6 @@ public class MapGenerator : MonoBehaviour
         config.configStart();
     }
 
-    public float[,] getNoiseMap()
-    {
-        float[,] noiseMap = Noise.generateNoiseMap(seed, mapWidth, mapHeight,
-        octaves, persistance, lacunarity, noiseScale, offset);
-
-        return noiseMap;
-    }
-
     public void changeNoiseMapToFitStaticPoint(float[,] noiseMap, int staticPointX, int staticPointY, float staticPointHeight, int radius)
     {
         // If some parameters are wrong, don't change "noiseMap[,]"

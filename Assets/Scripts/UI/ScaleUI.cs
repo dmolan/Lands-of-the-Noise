@@ -19,7 +19,7 @@ public class ScaleUI : MonoBehaviour
     // WARNING! These values might actually be taken from Unity Editor's fields
     public float defMenuScale = 0.65f + defaultDeltaScale;
     public float defAppScale = 0.95f + defaultDeltaScale;
-    public float defPrefScale = 0.8f + defaultDeltaScale;
+    public float defPrefScale = 1f + defaultDeltaScale;
     public float defHowUseScale = 0.6f + defaultDeltaScale;
     public float defHowWorkScale = 0.6f + defaultDeltaScale;
     public float defCreditsScale = 0.6f + defaultDeltaScale;
