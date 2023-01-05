@@ -3,6 +3,7 @@
  */
 
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using System;
 
@@ -18,6 +19,9 @@ public class AppUI : MonoBehaviour
     public TMP_InputField inputFieldMapWidth, inputFieldMapHeight, inputFieldMeshHeightMultiplier, 
     inputFieldSeed, inputFieldMinMapValue, inputFieldMaxMapValue;
     
+    public FlexibleColorPicker fcp1, fcp2, fcp3, fcp4, fcp5, fcp6, fcp7, fcp8;
+    public Button button1, button2, button3, button4, button5, button6, button7, button8;
+
 
 
     public void changePersistance(float newPersistance)
@@ -290,5 +294,90 @@ public class AppUI : MonoBehaviour
         tableUI.assignValuesToCells(tableUI.noiseMapNow);
     }
 
-    
+    public void turnOffOtherColorPickers(int value)
+    {
+        fcp1.gameObject.SetActive(value == 1);
+        fcp2.gameObject.SetActive(value == 2);
+        fcp3.gameObject.SetActive(value == 3);
+        fcp4.gameObject.SetActive(value == 4);
+        fcp5.gameObject.SetActive(value == 5);
+        fcp6.gameObject.SetActive(value == 6);
+        fcp7.gameObject.SetActive(value == 7);
+        fcp8.gameObject.SetActive(value == 8);
+    }
+
+    public void switchFlexibleColorPicker1()
+    {
+        fcp1.gameObject.SetActive(fcp1.isActiveAndEnabled);
+        turnOffOtherColorPickers(1);
+    }
+
+    public void switchFlexibleColorPicker2()
+    {
+        fcp2.gameObject.SetActive(fcp2.isActiveAndEnabled);
+        turnOffOtherColorPickers(2);
+
+    }
+
+    public void switchFlexibleColorPicker3()
+    {
+        fcp3.gameObject.SetActive(fcp3.isActiveAndEnabled);
+        turnOffOtherColorPickers(3);
+    }
+
+    public void switchFlexibleColorPicker4()
+    {
+        fcp4.gameObject.SetActive(fcp4.isActiveAndEnabled);
+        turnOffOtherColorPickers(4);
+    }
+
+    public void switchFlexibleColorPicker5()
+    {
+        fcp5.gameObject.SetActive(fcp5.isActiveAndEnabled);
+        turnOffOtherColorPickers(5);
+    }
+
+    public void switchFlexibleColorPicker6()
+    {
+        fcp6.gameObject.SetActive(fcp6.isActiveAndEnabled);
+        turnOffOtherColorPickers(6);
+    }
+
+    public void switchFlexibleColorPicker7()
+    {
+        fcp7.gameObject.SetActive(fcp7.isActiveAndEnabled);
+        turnOffOtherColorPickers(7);
+    }
+
+    public void switchFlexibleColorPicker8()
+    {
+        fcp8.gameObject.SetActive(fcp8.isActiveAndEnabled);
+        turnOffOtherColorPickers(8);
+    }
+
+    public void setColorsOfButtons()
+    {
+        button1.image.color = mapGenerator.regions[0].color;
+        button2.image.color = mapGenerator.regions[1].color;
+        button3.image.color = mapGenerator.regions[2].color;
+        button4.image.color = mapGenerator.regions[3].color;
+        button5.image.color = mapGenerator.regions[4].color;
+        button6.image.color = mapGenerator.regions[5].color;
+        button7.image.color = mapGenerator.regions[6].color;
+        button8.image.color = mapGenerator.regions[7].color;
+    }
+
+    public void onExit()
+    {
+        mapGenerator.regions[0].color = button1.image.color;
+        mapGenerator.regions[1].color = button2.image.color;
+        mapGenerator.regions[2].color = button3.image.color;
+        mapGenerator.regions[3].color = button4.image.color;
+        mapGenerator.regions[4].color = button5.image.color;
+        mapGenerator.regions[5].color = button6.image.color;
+        mapGenerator.regions[6].color = button7.image.color;
+        mapGenerator.regions[7].color = button8.image.color;
+
+        turnOffOtherColorPickers(-1);
+    }
 }

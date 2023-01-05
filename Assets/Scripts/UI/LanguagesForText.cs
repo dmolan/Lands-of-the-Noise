@@ -58,6 +58,9 @@ public class LanguagesForText : MonoBehaviour
     staticPointsClearAll, staticPointsXCoordinate, staticPointsYCoordinate, staticPointsNewPointHeight,
     staticPointsBack;
 
+    // Colors
+    public TextMeshProUGUI colorsTitle, colorsNote, colorsBack;
+
 
 
     private void changeLanguageToUkr()
@@ -272,6 +275,13 @@ public class LanguagesForText : MonoBehaviour
             staticPointsNewPointHeight.text = "Висота нової точки";
             staticPointsBack.text = "Назад";
         }
+    
+        // Colors
+        {
+            colorsTitle.text = "Кольори";
+            colorsNote.text = "Примітка: натисність на колір щоб змінити";
+            colorsBack.text = "Назад";
+        }
     }
 
     private void changeLanguageToEng()
@@ -485,6 +495,13 @@ Note: you will need to find minimum and maximum values of the map, and reassign 
             staticPointsYCoordinate.text = "New Point's Y coordinate";
             staticPointsNewPointHeight.text = "New Point's Height";
             staticPointsBack.text = "Back";
+        }
+    
+        // Colors
+        {
+            colorsTitle.text = "Colors";
+            colorsNote.text = "Note: tap on the color to change it";
+            colorsBack.text = "Back";
         }
     }
 

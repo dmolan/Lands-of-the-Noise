@@ -69,6 +69,37 @@ public class PresetSaveLoad : MonoBehaviour
             "ProbabilityOfGorge: " + mapGenerator.probabilityOfGorge + '\r' + '\n' + 
             "IsPlainTurnedOn: " + togglePlain.isActiveAndEnabled + '\r' + '\n' + 
             "IsGorgeTurnedOn: " + toggleGorge.isActiveAndEnabled + '\r' + '\n' + 
+            "PresetColor1r: " + mapGenerator.regions[0].color.r + '\r' + '\n' + 
+            "PresetColor1g: " + mapGenerator.regions[0].color.g + '\r' + '\n' + 
+            "PresetColor1b: " + mapGenerator.regions[0].color.b + '\r' + '\n' + 
+
+            "PresetColor2r: " + mapGenerator.regions[1].color.r + '\r' + '\n' + 
+            "PresetColor2g: " + mapGenerator.regions[1].color.g + '\r' + '\n' + 
+            "PresetColor2b: " + mapGenerator.regions[1].color.b + '\r' + '\n' + 
+
+            "PresetColor3r: " + mapGenerator.regions[2].color.r + '\r' + '\n' + 
+            "PresetColor3g: " + mapGenerator.regions[2].color.g + '\r' + '\n' + 
+            "PresetColor3b: " + mapGenerator.regions[2].color.b + '\r' + '\n' + 
+
+            "PresetColor4r: " + mapGenerator.regions[3].color.r + '\r' + '\n' + 
+            "PresetColor4g: " + mapGenerator.regions[3].color.g + '\r' + '\n' + 
+            "PresetColor4b: " + mapGenerator.regions[3].color.b + '\r' + '\n' + 
+
+            "PresetColor5r: " + mapGenerator.regions[4].color.r + '\r' + '\n' + 
+            "PresetColor5g: " + mapGenerator.regions[4].color.g + '\r' + '\n' + 
+            "PresetColor5b: " + mapGenerator.regions[4].color.b + '\r' + '\n' + 
+
+            "PresetColor6r: " + mapGenerator.regions[5].color.r + '\r' + '\n' + 
+            "PresetColor6g: " + mapGenerator.regions[5].color.g + '\r' + '\n' + 
+            "PresetColor6b: " + mapGenerator.regions[5].color.b + '\r' + '\n' + 
+
+            "PresetColor7r: " + mapGenerator.regions[6].color.r + '\r' + '\n' + 
+            "PresetColor7g: " + mapGenerator.regions[6].color.g + '\r' + '\n' + 
+            "PresetColor7b: " + mapGenerator.regions[6].color.b + '\r' + '\n' + 
+
+            "PresetColor8r: " + mapGenerator.regions[7].color.r + '\r' + '\n' + 
+            "PresetColor8g: " + mapGenerator.regions[7].color.g + '\r' + '\n' + 
+            "PresetColor8b: " + mapGenerator.regions[7].color.b + '\r' + '\n' + 
             '\n';
             
             System.IO.File.WriteAllText(saveFilePath, mapData);
@@ -123,6 +154,9 @@ public class PresetSaveLoad : MonoBehaviour
                 float newPersistance = 0, newLacunarity = 0, newNoiseScale = 0, 
                 newMeshHeightMultiplier = 0, offsetSpeed = 0, newMaxMapValue = 0, newMinMapValue = 0,
                 newPlainProbability = 0, newGorgeProbability = 0;
+                float newColor1r = 0, newColor2r = 0, newColor3r = 0, newColor4r = 0, newColor5r = 0, newColor6r = 0, newColor7r = 0, newColor8r = 0;
+                float newColor1g = 0, newColor2g = 0, newColor3g = 0, newColor4g = 0, newColor5g = 0, newColor6g = 0, newColor7g = 0, newColor8g = 0;
+                float newColor1b = 0, newColor2b = 0, newColor3b = 0, newColor4b = 0, newColor5b = 0, newColor6b = 0, newColor7b = 0, newColor8b = 0;
                 bool newIsGorgeTurnedOn = false, newIsPlainTurnedOn = false;
                 Vector2 newOffset = new Vector2();
                 Vector2 newRotation = new Vector2();
@@ -159,7 +193,39 @@ public class PresetSaveLoad : MonoBehaviour
                 float.TryParse(splittedMapData[73], out newPlainProbability) &&
                 float.TryParse(splittedMapData[76], out newGorgeProbability) &&
                 bool.TryParse(splittedMapData[79], out newIsPlainTurnedOn) &&
-                bool.TryParse(splittedMapData[82], out newIsGorgeTurnedOn);
+                bool.TryParse(splittedMapData[82], out newIsGorgeTurnedOn) &&
+                float.TryParse(splittedMapData[85], out newColor1r) && 
+                float.TryParse(splittedMapData[88], out newColor1g) && 
+                float.TryParse(splittedMapData[91], out newColor1b) && 
+
+                float.TryParse(splittedMapData[94], out newColor2r) && 
+                float.TryParse(splittedMapData[97], out newColor2g) && 
+                float.TryParse(splittedMapData[100], out newColor2b) && 
+
+                float.TryParse(splittedMapData[103], out newColor3r) && 
+                float.TryParse(splittedMapData[106], out newColor3g) && 
+                float.TryParse(splittedMapData[109], out newColor3b) && 
+
+                float.TryParse(splittedMapData[112], out newColor4r) && 
+                float.TryParse(splittedMapData[115], out newColor4g) && 
+                float.TryParse(splittedMapData[118], out newColor4b) && 
+
+                float.TryParse(splittedMapData[121], out newColor5r) && 
+                float.TryParse(splittedMapData[124], out newColor5g) && 
+                float.TryParse(splittedMapData[127], out newColor5b) && 
+
+                float.TryParse(splittedMapData[130], out newColor6r) && 
+                float.TryParse(splittedMapData[133], out newColor6g) && 
+                float.TryParse(splittedMapData[136], out newColor6b) && 
+
+                float.TryParse(splittedMapData[139], out newColor7r) && 
+                float.TryParse(splittedMapData[142], out newColor7g) && 
+                float.TryParse(splittedMapData[145], out newColor7b) && 
+
+                float.TryParse(splittedMapData[148], out newColor8r) && 
+                float.TryParse(splittedMapData[151], out newColor8g) && 
+                float.TryParse(splittedMapData[154], out newColor8b)
+                ;
 
                 // If all succesfully parsed, set values and UI to new values
                 if (isAllParsed)
@@ -218,6 +284,38 @@ public class PresetSaveLoad : MonoBehaviour
                     sliderProbabilityOfGorge.value = mapGenerator.probabilityOfGorge;
                     togglePlain.isOn = mapGenerator.isPlainProbabilitySliderTurnedOn;
                     toggleGorge.isOn = mapGenerator.isGorgeProbabilitySliderTurnedOn;
+
+                    mapGenerator.regions[0].color.r = newColor1r;
+                    mapGenerator.regions[0].color.g = newColor1g;
+                    mapGenerator.regions[0].color.b = newColor1b;
+
+                    mapGenerator.regions[1].color.r = newColor2r;
+                    mapGenerator.regions[1].color.g = newColor2g;
+                    mapGenerator.regions[1].color.b = newColor2b;
+
+                    mapGenerator.regions[2].color.r = newColor3r;
+                    mapGenerator.regions[2].color.g = newColor3g;
+                    mapGenerator.regions[2].color.b = newColor3b;
+
+                    mapGenerator.regions[3].color.r = newColor4r;
+                    mapGenerator.regions[3].color.g = newColor4g;
+                    mapGenerator.regions[3].color.b = newColor4b;
+
+                    mapGenerator.regions[4].color.r = newColor5r;
+                    mapGenerator.regions[4].color.g = newColor5g;
+                    mapGenerator.regions[4].color.b = newColor5b;
+
+                    mapGenerator.regions[5].color.r = newColor6r;
+                    mapGenerator.regions[5].color.g = newColor6g;
+                    mapGenerator.regions[5].color.b = newColor6b;
+
+                    mapGenerator.regions[6].color.r = newColor7r;
+                    mapGenerator.regions[6].color.g = newColor7g;
+                    mapGenerator.regions[6].color.b = newColor7b;
+
+                    mapGenerator.regions[7].color.r = newColor8r;
+                    mapGenerator.regions[7].color.g = newColor8g;
+                    mapGenerator.regions[7].color.b = newColor8b;
 
                     // Regenerate map with new values (new values are already set)
                     mapGenerator.generateMap();
