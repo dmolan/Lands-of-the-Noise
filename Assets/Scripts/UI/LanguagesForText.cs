@@ -38,8 +38,8 @@ public class LanguagesForText : MonoBehaviour
 
     // How To Use
     public TextMeshProUGUI howUseBack;
-    public TextMeshProUGUI howUseTitle1, howUseTitle2, howUseTitle3, howUseTitle4, howUseTitle5, howUseTitle6, howUseTitle7;
-    public TextMeshProUGUI howUseInfo1, howUseInfo2, howUseInfo3, howUseInfo4, howUseInfo5, howUseInfo6, howUseInfo7;
+    public TextMeshProUGUI howUseTitle1, howUseTitle2, howUseTitle3, howUseTitle4, howUseTitle5, howUseTitle6, howUseTitle7, howUseTitle8;
+    public TextMeshProUGUI howUseInfo1, howUseInfo2, howUseInfo3, howUseInfo4, howUseInfo5, howUseInfo6, howUseInfo7, howUseInfo8;
 
     // How Does It Work
     public TextMeshProUGUI howWorkBack;
@@ -156,6 +156,7 @@ public class LanguagesForText : MonoBehaviour
         howUseTitle5.text = "4. Уподобання";
         howUseTitle6.text = "5. Файли";
         howUseTitle7.text = "6. Статичні точки";
+        howUseTitle8.text = "7. Кольори";
         howUseInfo1.text = @"Є шість найважливіших меню в програмі:
 1) Головне меню;
 2) Опції;
@@ -204,6 +205,9 @@ public class LanguagesForText : MonoBehaviour
 1) Кнопка зі знаком плюс - додає статичну точку з координатами й висотою, взятими з полів ліворуч;
 2) Кнопка зі знаком мінус - витирає останню статичну точку;
 3) Кнопка із символом урни - витирає всі статичні точки.";
+        howUseInfo8.text = @"У меню ""Кольори"" є дві групи елементів:
+1) Вісім кольорових кнопок - кожна відкриє меню вибирання кольору з кольором кнопки за промовчанням; вибраний колір буде застосовано до мапи з висотою попорційною індексу кнопки;
+2) Меню вибирання кольору - тут можна тягати різні повзунки щоб отримати бажаний колір, який буде застосовано до кнопки, яку було натиснуто останньою.";
         }
     
         // How Does It Work
@@ -377,6 +381,7 @@ public class LanguagesForText : MonoBehaviour
         howUseTitle5.text = "4. Preferences";
         howUseTitle6.text = "5. Files";
         howUseTitle7.text = "6. Static points";
+        howUseTitle8.text = "7. Colors";
         howUseInfo1.text = @"There are six most important menus in the app:
 1) Main Menu;
 2) Options Menu;
@@ -425,6 +430,9 @@ Note: in this menu you can hold Right Mouse Button to rotate camera horizontally
 1) Button with plus sign - adds Static Point with coordinates and height from input filed on the left of it;
 2) Button with minus sign - removes last Static Point;
 3) Button with bin sign - removes all Static Points.";
+        howUseInfo8.text = @"There are two groups of elements in the Colors menu:
+1) Eight colorful buttons - each will open color picker starting with button's color; chosen color will be applied to map with height corresponding to button's index;
+2) Color picker menu - here you can drag different sliders to get desired color for last clicked button.";
         }
 
         // How Does It Work
