@@ -33,13 +33,17 @@ public static class MeshGenerator
         {
             for (int x = 0; x < width; ++x)
             {
-                meshData.vertices[vertexIndex] = new Vector3(topLeftX + x, heightCurve.Evaluate(heightMap[x, y]) * heightMultiplier, topLeftZ - y);
-                meshData.uvs[vertexIndex] = new Vector2(x/(float)width, y/(float)height);
+                meshData.vertices[vertexIndex * 2] = new Vector3(topLeftX + x, heightCurve.Evaluate(heightMap[x, y]) * heightMultiplier, topLeftZ - y);
+                meshData.uvs[vertexIndex * 2] = new Vector2(x/(float)width, y/(float)height);
 
+                meshData.vertices[vertexIndex * 2 + 1] = new Vector3(topLeftX + x, heightCurve.Evaluate(heightMap[x, y]) * heightMultiplier, topLeftZ - y);
+                meshData.uvs[vertexIndex * 2 + 1] = new Vector2(x/(float)width, y/(float)height);
                 if (x < width - 1 && y < height - 1)
                 {
-                    meshData.AddTriangle(vertexIndex, vertexIndex+width+1, vertexIndex+width);
-                    meshData.AddTriangle(vertexIndex+width+1, vertexIndex, vertexIndex+1);
+                    meshData.AddTriangle((vertexIndex + width)*2, (vertexIndex+width+1)*2, vertexIndex*2);
+                    meshData.AddTriangle((vertexIndex+1)*2, vertexIndex*2, (vertexIndex+width+1)*2);
+                    meshData.AddTriangle(vertexIndex*2 + 1, (vertexIndex+width+1)*2 + 1, (vertexIndex+width)*2 + 1);
+                    meshData.AddTriangle((vertexIndex+width+1)*2 + 1, vertexIndex*2 + 1, (vertexIndex+1)*2 + 1);
                 }
                 
                 ++vertexIndex;
@@ -60,11 +64,11 @@ public class MeshData
 
     public MeshData(int meshWidth, int meshHeight)
     {
-        vertices = new Vector3[meshWidth * meshHeight];
-        uvs = new Vector2[meshWidth * meshHeight];
+        vertices = new Vector3[meshWidth * meshHeight*2];
+        uvs = new Vector2[meshWidth * meshHeight*2];
 
         // (meshWidth-1)*(meshHeight-1) - amount of squares, 6 - triangle sides in square        
-        triangles = new int[(meshWidth-1)*(meshHeight-1)*6];
+        triangles = new int[(meshWidth-1)*(meshHeight-1)*6*2];
         triangleIndex = 0;
     }
 
