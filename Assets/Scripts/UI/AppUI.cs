@@ -139,7 +139,14 @@ public class AppUI : MonoBehaviour
     {
         inputFieldMinMapValue.text = mapGenerator.minMapValue.ToString();
     }
-    
+     public void changeMapWidthWithoutGenerate()
+    {
+        inputFieldMapWidth.text = mapGenerator.mapWidth.ToString();
+    }
+    public void changeMapHeightWithoutGenerate()
+    {
+        inputFieldMapHeight.text = mapGenerator.mapHeight.ToString();
+    }
     public void changeMaxMapValueWithoutGenerate()
     {
         inputFieldMaxMapValue.text = mapGenerator.maxMapValue.ToString();

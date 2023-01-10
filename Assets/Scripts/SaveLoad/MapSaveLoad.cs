@@ -217,6 +217,8 @@ public class MapSaveLoad : MonoBehaviour
                     mapGenerator.minMapValue = Min;
                     mapGenerator.appUI.changeMaxMapValueWithoutGenerate();
                     mapGenerator.appUI.changeMinMapValueWithoutGenerate();
+                    mapGenerator.appUI.changeMapHeightWithoutGenerate();
+                    mapGenerator.appUI.changeMapWidthWithoutGenerate();
                     mapGenerator.visualiseMap();
                 }
             }
@@ -315,8 +317,15 @@ public class MapSaveLoad : MonoBehaviour
                     mapGenerator.mapWidth = newMapWidth;
                     mapGenerator.maxMapValue = mapGenerator.maxMapValue - Min;
                     mapGenerator.minMapValue = mapGenerator.minMapValue - Max;
+                    if(mapGenerator.minMapValue > mapGenerator.maxMapValue) {
+                        float t = mapGenerator.minMapValue;
+                        mapGenerator.minMapValue = mapGenerator.maxMapValue;
+                        mapGenerator.maxMapValue = t;
+                    }
                     mapGenerator.appUI.changeMaxMapValueWithoutGenerate();
                     mapGenerator.appUI.changeMinMapValueWithoutGenerate();
+                    mapGenerator.appUI.changeMapWidthWithoutGenerate();
+                    mapGenerator.appUI.changeMapHeightWithoutGenerate();
                     mapGenerator.visualiseMap();
                 }
             }
