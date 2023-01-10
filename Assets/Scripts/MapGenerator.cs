@@ -67,25 +67,26 @@ public class MapGenerator : MonoBehaviour
         config.configStart();
     }
 
-    public void changeNoiseMapToFitStaticPoint(float[,] noiseMap, int staticPointX, int staticPointY, float staticPointHeight, int radius)
+public void changeNoiseMapToFitStaticPoint(float[,] noiseMap, int staticPointX, int staticPointY, float staticPointHeight, int radius)
     {
         // If some parameters are wrong, don't change "noiseMap[,]"
-        if (staticPointX < 0 || staticPointX > mapWidth 
-        || staticPointY < 0 || staticPointY > mapHeight 
-        || staticPointHeight < 0 && staticPointHeight > 1) return;
+        if (staticPointX <= 0 || staticPointX > mapWidth ||
+         staticPointY <= 0 || staticPointY > mapHeight ||
+         staticPointHeight < 0 || staticPointHeight > 1) return;
 
         float valueAfterChanges; // Current value of parabola
         float valueBeforeChanges;  // Current value on map before chages
         float currentDistanceToStaticPoint; // Current distance to the static point
 
-        // Is true if static point is in some hill
+        staticPointY--;
+        staticPointX--;
         bool isPointInHill = (noiseMap[staticPointX, staticPointY] > staticPointHeight); 
 
         for (int y = staticPointY - radius; y < staticPointY + radius; y++)
         {
             for (int x = staticPointX - radius; x < staticPointX + radius; x++)
             {
-                if (x >= 0 && y >= 0 && x <= mapWidth && y <= mapHeight)
+                if (x >= 0 && y >= 0 && x < mapWidth && y < mapHeight)
                 {
                     if (x != staticPointX || y != staticPointY) // if is not static point
                     {
