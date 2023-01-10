@@ -13,7 +13,7 @@ public class StaticPointsUI : MonoBehaviour
 
     public void clearAllStaticPoints()
     {
-        Array.Clear(mapGenerator.staticPoints, 0, mapGenerator.staticPoints.Length);
+        mapGenerator.staticPoints = new StaticPoint[0];
         mapGenerator.generateMap();
     }
 
