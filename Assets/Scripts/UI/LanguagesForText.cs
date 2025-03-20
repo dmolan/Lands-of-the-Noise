@@ -10,10 +10,10 @@ using TMPro;
 
 public class LanguagesForText : MonoBehaviour
 {
-    public int DEFAULT_LANGUAGE = 0; // Ukrainian
+    public int DEFAULT_LANGUAGE = 1; // English
 
     public enum LanguageNow {Ukrainian, English};
-    public LanguageNow languageNow = LanguageNow.Ukrainian;
+    public LanguageNow languageNow = LanguageNow.English;
 
     // Main Menu
     public TextMeshProUGUI mainMenuRun, mainMenuOptions, mainMenuExit, mainMenuHowUse, 
