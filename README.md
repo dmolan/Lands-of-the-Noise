@@ -14,7 +14,7 @@ This is the official github page of the Lands of the Noise, an app showcasing pr
 
 ## How to run the app
 ### Run the Built Version:
-Refer to the [Releases](https://github.com/yourusername/reponame/releases) page.
+Refer to the [Releases](https://github.com/dmolan/Lands-of-the-Noise/releases) page.
 
 ### Open the Unity Project:
 1. Ensure **Unity version [2019.4.40](https://unity.com/releases/editor/whats-new/2019.4.40)** is installed.
