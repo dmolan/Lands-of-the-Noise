@@ -55,12 +55,12 @@ public class Config : MonoBehaviour
         string configData = System.IO.File.ReadAllText(pathToConfig);
         string[] linesConfigData = configData.Split();
 
-        if (linesConfigData[1] == "Ukrainian")
+        if (linesConfigData[1] == "English")
         {
             languagesForText.changeLanguage(0);
             dropdownLanguage.value = 0;
         }
-        else if (linesConfigData[1] == "English")
+        else if (linesConfigData[1] == "Ukrainian")
         {
             languagesForText.changeLanguage(1);
             dropdownLanguage.value = 1;

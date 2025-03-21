@@ -10,9 +10,9 @@ using TMPro;
 
 public class LanguagesForText : MonoBehaviour
 {
-    public int DEFAULT_LANGUAGE = 1; // English
+    public int DEFAULT_LANGUAGE = 0; // English
 
-    public enum LanguageNow {Ukrainian, English};
+    public enum LanguageNow {English, Ukrainian};
     public LanguageNow languageNow = LanguageNow.English;
 
     // Main Menu
@@ -82,8 +82,8 @@ public class LanguagesForText : MonoBehaviour
         settMenuTitle.text = "Опції";
         settMenuLanguage.text = "Мова";
         settMenuDropdownLanguage.options.Clear();
-        settMenuDropdownLanguage.options.Add(new TMP_Dropdown.OptionData() {text = "Українська"});
-        settMenuDropdownLanguage.options.Add(new TMP_Dropdown.OptionData() {text = "Англійська"}); 
+        settMenuDropdownLanguage.options.Add(new TMP_Dropdown.OptionData() {text = "Англійська"});
+        settMenuDropdownLanguage.options.Add(new TMP_Dropdown.OptionData() {text = "Українська"}); 
         settMenuDropdownLanguage.captionText.text = "Українська";
         settMenuScale.text = "Масштаб";
         settMenuDropdownScale.options.Clear();
@@ -307,8 +307,8 @@ public class LanguagesForText : MonoBehaviour
         settMenuTitle.text = "Settings";
         settMenuLanguage.text = "Language";
         settMenuDropdownLanguage.options.Clear();
-        settMenuDropdownLanguage.options.Add(new TMP_Dropdown.OptionData() {text = "Ukrainian"});
         settMenuDropdownLanguage.options.Add(new TMP_Dropdown.OptionData() {text = "English"});
+        settMenuDropdownLanguage.options.Add(new TMP_Dropdown.OptionData() {text = "Ukrainian"});
         settMenuDropdownLanguage.captionText.text = "English";
 
         settMenuRotationSensitivity.text = "Mouse Sensitivity";
@@ -517,13 +517,13 @@ Note: you will need to find minimum and maximum values of the map, and reassign 
     {
         if (val == 0) 
         {
-            changeLanguageToUkr();
-            languageNow = LanguageNow.Ukrainian;
+            changeLanguageToEng();
+            languageNow = LanguageNow.English;
         }
         else if (val == 1) 
         {
-            changeLanguageToEng();
-            languageNow = LanguageNow.English;
+            changeLanguageToUkr();
+            languageNow = LanguageNow.Ukrainian;
         }
     }
 }
