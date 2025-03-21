@@ -12,7 +12,7 @@ This is the official github page of the Lands of the Noise, an app showcasing pr
 🛠 Supported Platforms
 - 🪟 Windows (x64)
 - 🐧 Linux (x64)
-- 🍏 macOS (Intel & Apple Silicon)
+- 🍏 MacOS (Intel & Apple Silicon)
 
 ## How to run the app
 ### Run the Built Version:
